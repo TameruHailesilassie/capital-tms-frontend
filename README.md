@@ -1,4 +1,6 @@
-# CTM -  Angular Based Complete Transportation Management system.
+## CTM (Complete Transportation Management system) frontend.
 
-## Front End Application
+## Tech stack
+* Angular 13
+* AWS S3 CI/CD
 
