@@ -19,8 +19,8 @@ export class AuthfakeauthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(email: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { email, password })
+    login(email: string, password: string, role:string) {
+        return this.http.post<any>(`/users/authenticate`, { email, password, role })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
@@ -28,6 +28,8 @@ export class AuthfakeauthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
+                console.log(user);
+                
                 return user;
             }));
     }
@@ -37,4 +39,6 @@ export class AuthfakeauthenticationService {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
+
+   
 }

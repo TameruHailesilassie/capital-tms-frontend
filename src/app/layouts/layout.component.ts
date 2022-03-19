@@ -25,7 +25,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // default settings
     this.layoutType = LAYOUT_VERTICAL;
-    this.layoutwidth = "boxed";
+    this.layoutwidth = "fluid";
     this.topbar = TOPBAR;
     this.LayoutWidth(this.layoutwidth);
     // listen to event and change the layout, theme, etc
@@ -44,7 +44,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     //initial boxed sized layout set
     document.body.setAttribute("data-layout-size", "boxed");
-    document.body.classList.add("vertical-collpsed");
+    //document.body.classList.add("vertical-collpsed");
     document.body.removeAttribute("data-layout-scrollable");
   }
 

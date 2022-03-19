@@ -32,12 +32,15 @@ export class VerticalComponent implements OnInit, AfterViewInit {
     // listen to event and change the layout, theme, etc
     this.eventService.subscribe('changeSidebartype', (layout) => {
       this.sidebartype = layout;
-      this.changeSidebar(this.sidebartype);
+      //this.changeSidebar(this.sidebartype);
     });
 
     this.changeSidebar(this.sidebartype);
 
     document.body.setAttribute('data-layout', 'vertical');
+    document.body.setAttribute('data-sidebar', 'dark');
+    document.body.setAttribute('data-topbar', 'light');
+      
 
   }
 

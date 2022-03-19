@@ -5,6 +5,6 @@ export const LAYOUT_HORIZONTAL = 'horizontal';
 
 export const LAYOUT_WIDTH = 'boxed';
 
-export const SIDEBAR_TYPE = 'dark';
+export const SIDEBAR_TYPE = 'light';
 
-export const TOPBAR = 'dark';
+export const TOPBAR = 'light';

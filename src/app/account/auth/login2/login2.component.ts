@@ -78,7 +78,7 @@ export class Login2Component implements OnInit {
             this.error = error ? error : '';
           });
       } else {
-        this.authFackservice.login(this.f.email.value, this.f.password.value)
+        this.authFackservice.login(this.f.email.value, this.f.password.value, "admin")
           .pipe(first())
           .subscribe(
             data => {

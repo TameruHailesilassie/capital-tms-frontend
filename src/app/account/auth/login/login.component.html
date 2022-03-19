@@ -20,8 +20,8 @@
             <div>
               <a routerLink="/">
                 <div class="avatar-md profile-user-wid mb-4">
-                  <span class="avatar-title rounded-circle bg-light">
-                    <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                  <span class="avatar-title rounded-circle ">
+                    <img src="assets/images/logo-ctm.png" alt="" class="rounded-circle" height="34">
                   </span>
                 </div>
               </a>
@@ -44,12 +44,22 @@
                 <div class="mb-3">
                   <label for="password">Password</label>
                   <div class="input-group auth-pass-inputgroup">
-                    <input type="password" class="form-control" formControlName="password" placeholder="Enter password"
+                    <input 
+                    [type]="visiblePassword ? 'text' :'password'"
+                     class="form-control" 
+                     formControlName="password"
+                      placeholder="Enter password"
                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" aria-label="Password"
                       aria-describedby="password-addon">
 
-                    <button class="btn btn-light ms-0" type="button" id="password-addon"><i
-                        class="mdi mdi-eye-outline"></i></button>
+                    <button (click)="togglePasswordField()" 
+                    class="btn btn-light ms-0" 
+                    type="button" 
+                    id="password-addon">
+                    <i
+                        [ngClass]=" visiblePassword ? 'mdi mdi-eye-off': 'mdi mdi-eye-outline'
+                        "></i>
+                      </button>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                       <span *ngIf="f.password.errors.required">Password is required</span>
                     </div>
@@ -98,10 +108,10 @@
           </div>
         </div>
         <div class="mt-5 text-center">
-          <p>Don't have an account ? <a routerLink="/account/signup" class="fw-medium text-primary"> Signup
-              now
+          <p>Don't have an account ? <a href="javascript::void()" 
+             class="fw-medium text-primary"> contact Admin
             </a> </p>
-          <p>© {{year}} Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+          <p>© {{year}} CTM. </p>
         </div>
 
       </div>

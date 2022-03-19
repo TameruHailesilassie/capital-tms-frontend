@@ -1,5 +1,12 @@
 import { MenuItem } from './menu.model';
 
+
+//const MENU: MenuItem[];
+
+
+
+
+
 export const MENU: MenuItem[] = [
     {
         id: 1,
@@ -9,7 +16,7 @@ export const MENU: MenuItem[] = [
     {
         id: 2,
         label: 'MENUITEMS.DASHBOARDS.TEXT',
-        icon: 'bx-home-circle',
+        icon: 'bx bx-line-chart',
         badge: {
             variant: 'info',
             text: 'MENUITEMS.DASHBOARDS.BADGE',
