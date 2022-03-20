@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
 import { environment } from "../../../../environments/environment";
+import { RolebasedlandingService } from "src/app/core/services/rolebasedlanding.service";
+import { User } from "src/app/core/models/auth.models";
 
 @Component({
   selector: "app-login",
@@ -34,13 +36,13 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService
-  ) {}
-
+    private authFackservice: AuthfakeauthenticationService,
+    private roleBasedRouting: RolebasedlandingService
+  ) { }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ["admin@themesbrand.com", [Validators.required, Validators.email]],
-      password: ["123456", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required]],
     });
 
     // reset login status
@@ -76,11 +78,18 @@ export class LoginComponent implements OnInit {
           });
       } else {
         this.authFackservice
-          .login(this.f.email.value, this.f.password.value, "admin")
+          .login(this.f.email.value, this.f.password.value)
           .pipe(first())
           .subscribe(
             (data) => {
+
+              // console.log(`login component=${JSON.parse(JSON.stringify(data))}`);
               this.router.navigate(["/dashboard"]);
+
+              //let user: User = JSON.parse(JSON.stringify(data));
+              //this.roleBasedRouting.routeToLanding(user);
+
+
             },
             (error) => {
               this.error = error ? error : "";
