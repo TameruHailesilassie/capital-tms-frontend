@@ -15,7 +15,7 @@ import { WidgetModule } from '../shared/widget/widget.module';
 import { UIModule } from '../shared/ui/ui.module';
 
 import { PagesRoutingModule } from './pages-routing.module';
-
+import { AnalyticsModule } from './analytics/analytics.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { EcommerceModule } from './ecommerce/ecommerce.module';
 import { CryptoModule } from './crypto/crypto.module';
@@ -54,6 +54,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     PagesRoutingModule,
     NgApexchartsModule,
     ReactiveFormsModule,
+    AnalyticsModule,
     DashboardsModule,
     CryptoModule,
     EcommerceModule,

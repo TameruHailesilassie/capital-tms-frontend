@@ -1,5 +1,7 @@
 {
-  "transactions": [{
+  "transactions": 
+  
+  [{
       "id": "#SK2540",
       "name": "Neal Matthews",
       "date": "07 Oct, 2019",
@@ -56,16 +58,16 @@
   ],
 
   "statData": [{
-    "icon": "bx bx-copy-alt",
-    "title": "Orders",
+    "icon": "mdi mdi-dolly",
+    "title": "Total Loads",
     "value": "1,235"
   }, {
     "icon": "bx bx-archive-in",
-    "title": "Revenue",
+    "title": "Total Revenue",
     "value": "$35, 723"
   }, {
-    "icon": "bx bx-purchase-tag-alt",
-    "title": "Average Price",
+    "icon": "mdi mdi-cash",
+    "title": "Total Profit",
     "value": "$16.2"
   }],
 
@@ -73,7 +75,7 @@
     "name": "This month",
     "amount": "$2453.35",
     "revenue": "0.4",
-    "time": "From previous period",
+    "time": "From previous Month",
     "month": "Last month",
     "previousamount": "$2281.04",
     "series": [{

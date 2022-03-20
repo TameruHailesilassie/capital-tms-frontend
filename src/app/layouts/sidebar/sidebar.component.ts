@@ -5,11 +5,12 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
 
-import { MENU } from './menu';
+import { ACCOUNTING_MENU, DISPATCHER_MENU, MENU, OFFICE_ADMIN_MENU, SUPER_ADMI_NMENU } from './menu';
 import { MenuItem } from './menu.model';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthfakeauthenticationService } from 'src/app/core/services/authfake.service';
 import { User } from 'src/app/core/models/auth.models';
+import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'app-sidebar',
@@ -25,12 +26,12 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() isCondensed = false;
   menu: any;
   data: any;
-currentUser:User;
+  currentUser: User;
   menuItems = [];
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
 
-  constructor(private eventService: EventService, private fakeAuthService:AuthfakeauthenticationService,  private router: Router, public translate: TranslateService, private http: HttpClient) {
+  constructor(private eventService: EventService, private fakeAuthService: AuthfakeauthenticationService, private router: Router, public translate: TranslateService, private http: HttpClient) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this._activateMenuDropdown();
@@ -67,9 +68,9 @@ currentUser:User;
       if (document.getElementsByClassName("mm-active").length > 0) {
         const currentPosition = document.getElementsByClassName("mm-active")[0]['offsetTop'];
         if (currentPosition > 500)
-        if(this.scrollRef.SimpleBar !== null)
-          this.scrollRef.SimpleBar.getScrollElement().scrollTop =
-            currentPosition + 300;
+          if (this.scrollRef.SimpleBar !== null)
+            this.scrollRef.SimpleBar.getScrollElement().scrollTop =
+              currentPosition + 300;
       }
     }, 300);
   }
@@ -142,14 +143,25 @@ currentUser:User;
    */
   initialize(): void {
 
-this.currentUser=this.fakeAuthService.currentUserValue;
-if(this.currentUser.role==="admin"){
- 
-}
-this.menuItems = MENU;
-  
-  }
+    this.currentUser = this.fakeAuthService.currentUserValue;
 
+    switch (this.currentUser.role) {
+
+      case "super-admin":
+        this.menuItems = SUPER_ADMI_NMENU;
+        break;
+      case "office-admin":
+        this.menuItems = OFFICE_ADMIN_MENU;
+        break;
+      case "dispatcher":
+        this.menuItems = DISPATCHER_MENU;
+        break;
+      case "accounting":
+        this.menuItems = ACCOUNTING_MENU;
+        break;
+    }
+    //this.menuItems = MENU;
+  }
   /**
    * Returns true or false if given menu item has child or not
    * @param item menuItem

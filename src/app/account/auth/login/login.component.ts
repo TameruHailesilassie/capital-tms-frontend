@@ -84,10 +84,10 @@ export class LoginComponent implements OnInit {
             (data) => {
 
               // console.log(`login component=${JSON.parse(JSON.stringify(data))}`);
-              this.router.navigate(["/dashboard"]);
+              //  this.router.navigate(["/dashboard"]);
 
-              //let user: User = JSON.parse(JSON.stringify(data));
-              //this.roleBasedRouting.routeToLanding(user);
+              let user: User = JSON.parse(JSON.stringify(data));
+              this.roleBasedRouting.routeToLanding(user);
 
 
             },

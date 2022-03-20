@@ -22,7 +22,10 @@ export class RolebasedlandingService {
       case "office-admin":
         this.router.navigate(["/analytics/office"])
         break;
-
+        case "dispatcher":
+          this.router.navigate(["/analytics/personal"])
+          break;
+  
 
     }
 

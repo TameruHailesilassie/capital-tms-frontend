@@ -1,13 +1,517 @@
 import { MenuItem } from './menu.model';
 
 
-//const MENU: MenuItem[];
+const SUPER_ADMI_NMENU: MenuItem[] = 
+[
+    {
 
+        id: 1,
+        label: 'MENUITEMS.DASHBOARDS.TEXT',
+        icon: 'mdi mdi-speedometer',
 
+        subItems: [
+            {
+                id: 2,
+                label: 'Company Analytics',
+                link: '/analytics/company',
+                parentId: 1
+            },
+            {
+                id: 3,
+                label: 'Office Ananlytics',
+                link: '/analytics/office',
+                parentId: 1
+            },
+            {
+                id: 4,
+                label: 'My Dashboard',
+                link: '/analytics/personal',
+                parentId: 1
+            },
+        ]
+    },
+    {
+        id: 5,
+        label: 'MENUITEMS.APPS.TEXT',
+        isTitle: true
+    },
+    {
+        id: 6,
+        label: 'MENUITEMS.CALENDAR.TEXT',
+        icon: 'bx-calendar',
+        link: '/calendar',
+    },
+    {
+        id: 7,
+        label: 'MENUITEMS.CHAT.TEXT',
+        icon: 'bx-chat',
+        link: '/chat',
 
+    },
+    {
+        id: 8,
+        label: 'MODULES',
+        isTitle: true
+    },
+    {
+        id: 9,
+        label: 'Loads',
+        icon: 'mdi mdi-dolly',
 
+        subItems: [
+            {
+                id: 10,
+                label: 'Load Board',
+                link: '#',
+                parentId: 9
+            },
+            {
+                id: 11,
+                label: 'Build Load',
+                link: '#',
+                parentId: 9
+            }
+        ]
+    },
+    {
+        id: 12,
+        label: 'Carriers',
+        icon: 'mdi mdi-truck-delivery-outline',
 
-export const MENU: MenuItem[] = [
+        subItems: [
+            {
+                id: 13,
+                label: 'Carrier List',
+                link: '#',
+                parentId: 12
+            },
+            {
+                id: 14,
+                label: 'Add Carrier',
+                link: '#',
+                parentId: 12
+            }
+        ]
+    },
+    {
+        id: 15,
+        label: 'Shippers',
+        icon: 'mdi mdi-truck-fast-outline',
+
+        subItems: [
+            {
+                id: 16,
+                label: 'Shipper List',
+                link: '#',
+                parentId: 15
+            },
+            {
+                id: 17,
+                label: 'Add Shipper',
+                link: '#',
+                parentId: 15
+            }
+        ]
+    },
+    {
+        id: 18,
+        label: 'Customers',
+        icon: 'mdi mdi-account-multiple-check-outline',
+
+        subItems: [
+            {
+                id: 19,
+                label: 'Customer List',
+                link: '#',
+                parentId: 18
+            },
+            {
+                id: 20,
+                label: 'Add Customer',
+                link: '#',
+                parentId: 18
+            }
+        ]
+    },
+    {
+        id: 21,
+        label: 'Factoring Company',
+        icon: 'mdi mdi-bank',
+
+        subItems: [
+            {
+                id: 22,
+                label: 'Company List',
+                link: '#',
+                parentId: 21
+            },
+            {
+                id: 23,
+                label: 'Add Company',
+                link: '#',
+                parentId: 21
+            }
+        ]
+    },
+    {
+        id: 24,
+        label: 'Settings',
+        isTitle: true
+    },
+    {
+        id: 25,
+        label: 'Payments',
+        icon: 'mdi mdi-cash-100',
+        link: ""
+    },
+    {
+        id: 26,
+        label: 'Users',
+        icon: 'dripicons-user-group',
+        link: ""
+    },
+    {
+        id: 27,
+        label: 'Data Import',
+        icon: 'dripicons-upload',
+        link: ""
+    },
+    {
+        id: 28,
+        label: 'System Settings',
+        icon: 'dripicons-toggles',
+        link: ""
+    },
+    {
+        id: 29,
+        label: 'Documentations',
+        isTitle: true
+    },
+];
+
+const OFFICE_ADMIN_MENU: MenuItem[] = [
+
+    {
+        id: 1,
+        label: 'MENUITEMS.DASHBOARDS.TEXT',
+        icon: 'mdi mdi-speedometer',
+
+        subItems: [
+           
+            {
+                id: 3,
+                label: 'Office Ananlytics',
+                link: '/analytics/office',
+                parentId: 1
+            },
+            {
+                id: 4,
+                label: 'My Dashboard',
+                link: '/analytics/personal',
+                parentId: 1
+            },
+        ]
+    },
+    {
+        id: 5,
+        label: 'MENUITEMS.APPS.TEXT',
+        isTitle: true
+    },
+    {
+        id: 6,
+        label: 'MENUITEMS.CALENDAR.TEXT',
+        icon: 'bx-calendar',
+        link: '/calendar',
+    },
+    {
+        id: 7,
+        label: 'MENUITEMS.CHAT.TEXT',
+        icon: 'bx-chat',
+        link: '/chat',
+
+    },
+    {
+        id: 8,
+        label: 'MODULES',
+        isTitle: true
+    },
+    {
+        id: 9,
+        label: 'Loads',
+        icon: 'mdi mdi-dolly',
+
+        subItems: [
+            {
+                id: 10,
+                label: 'Load Board',
+                link: '/board',
+                parentId: 9
+            },
+            {
+                id: 11,
+                label: 'Build Load',
+                link: '/new/board',
+                parentId: 9
+            }
+        ]
+    },
+    {
+        id: 12,
+        label: 'Carriers',
+        icon: 'mdi mdi-truck-delivery-outline',
+
+        subItems: [
+            {
+                id: 13,
+                label: 'Carrier List',
+                link: '#',
+                parentId: 12
+            },
+            {
+                id: 14,
+                label: 'Add Carrier',
+                link: '#',
+                parentId: 12
+            }
+        ]
+    },
+    {
+        id: 15,
+        label: 'Shippers',
+        icon: 'mdi mdi-truck-fast-outline',
+
+        subItems: [
+            {
+                id: 16,
+                label: 'Shipper List',
+                link: '#',
+                parentId: 15
+            },
+            {
+                id: 17,
+                label: 'Add Shipper',
+                link: '#',
+                parentId: 15
+            }
+        ]
+    },
+    {
+        id: 18,
+        label: 'Customers',
+        icon: 'mdi mdi-account-multiple-check-outline',
+
+        subItems: [
+            {
+                id: 19,
+                label: 'Customer List',
+                link: '#',
+                parentId: 18
+            },
+            {
+                id: 20,
+                label: 'Add Customer',
+                link: '#',
+                parentId: 18
+            }
+        ]
+    },
+    {
+        id: 21,
+        label: 'Factoring Company',
+        icon: 'mdi mdi-bank',
+
+        subItems: [
+            {
+                id: 22,
+                label: 'Company List',
+                link: '#',
+                parentId: 21
+            },
+            {
+                id: 23,
+                label: 'Add Company',
+                link: '#',
+                parentId: 21
+            }
+        ]
+    },
+    {
+        id: 24,
+        label: 'Settings',
+        isTitle: true
+    },
+    
+    
+    {
+        id: 27,
+        label: 'Data Import',
+        icon: 'dripicons-upload',
+        link: ""
+    },
+    {
+        id: 28,
+        label: 'System Settings',
+        icon: 'dripicons-toggles',
+        link: ""
+    },
+    {
+        id: 29,
+        label: 'Documentations',
+        isTitle: true
+    },
+
+];
+
+const ACCOUNTING_MENU: MenuItem[] = [];
+const DISPATCHER_MENU: MenuItem[] = [
+    {
+        id: 1,
+        label: 'MENUITEMS.DASHBOARDS.TEXT',
+        icon: 'mdi mdi-speedometer',
+
+        subItems: [
+            
+            {
+                id: 4,
+                label: 'My Dashboard',
+                link: '/analytics/personal',
+                parentId: 1
+            },
+        ]
+    },
+    {
+        id: 5,
+        label: 'MENUITEMS.APPS.TEXT',
+        isTitle: true
+    },
+    {
+        id: 6,
+        label: 'MENUITEMS.CALENDAR.TEXT',
+        icon: 'bx-calendar',
+        link: '/calendar',
+    },
+    {
+        id: 7,
+        label: 'MENUITEMS.CHAT.TEXT',
+        icon: 'bx-chat',
+        link: '/chat',
+
+    },
+    {
+        id: 8,
+        label: 'MODULES',
+        isTitle: true
+    },
+    {
+        id: 9,
+        label: 'Loads',
+        icon: 'mdi mdi-dolly',
+
+        subItems: [
+            {
+                id: 10,
+                label: 'Load Board',
+                link: '',
+                parentId: 9
+            },
+            {
+                id: 11,
+                label: 'Build Load',
+                link: '',
+                parentId: 9
+            }
+        ]
+    },
+    {
+        id: 12,
+        label: 'Carriers',
+        icon: 'mdi mdi-truck-delivery-outline',
+
+        subItems: [
+            {
+                id: 13,
+                label: 'Carrier List',
+                link: '',
+                parentId: 12
+            },
+            {
+                id: 14,
+                label: 'Add Carrier',
+                link: '',
+                parentId: 12
+            }
+        ]
+    },
+    {
+        id: 15,
+        label: 'Shippers',
+        icon: 'mdi mdi-truck-fast-outline',
+
+        subItems: [
+            {
+                id: 16,
+                label: 'Shipper List',
+                link: '',
+                parentId: 15
+            },
+            {
+                id: 17,
+                label: 'Add Shipper',
+                link: '',
+                parentId: 15
+            }
+        ]
+    },
+    {
+        id: 18,
+        label: 'Customers',
+        icon: 'mdi mdi-account-multiple-check-outline',
+
+        subItems: [
+            {
+                id: 19,
+                label: 'Customer List',
+                link: '',
+                parentId: 18
+            },
+            {
+                id: 20,
+                label: 'Add Customer',
+                link: '',
+                parentId: 18
+            }
+        ]
+    },
+    {
+        id: 21,
+        label: 'Factoring Company',
+        icon: 'mdi mdi-bank',
+
+        subItems: [
+            {
+                id: 22,
+                label: 'Company List',
+                link: '',
+                parentId: 21
+            },
+            {
+                id: 23,
+                label: 'Add Company',
+                link: '',
+                parentId: 21
+            }
+        ]
+    },
+    
+    
+    {
+        id: 29,
+        label: 'Documentations',
+        isTitle: true
+    },
+];
+
+ const MENU: MenuItem[] = [
     {
         id: 1,
         label: 'MENUITEMS.MENU.TEXT',
@@ -68,7 +572,7 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.CHAT.TEXT',
         icon: 'bx-chat',
         link: '/chat',
-        
+
     },
     {
         id: 11,
@@ -211,22 +715,22 @@ export const MENU: MenuItem[] = [
                 parentId: 29,
                 subItems: [
                     {
-                        id:33 ,
+                        id: 33,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BASIC',
                         link: '/email/basic',
-                        parentId:32 
+                        parentId: 32
                     },
                     {
-                        id:34 ,
+                        id: 34,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.ALERT',
                         link: '/email/alert',
-                        parentId:32 
+                        parentId: 32
                     },
                     {
-                        id:35 ,
+                        id: 35,
                         label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BILLING',
                         link: '/email/billing',
-                        parentId:32 
+                        parentId: 32
                     }
                 ]
             }
@@ -832,4 +1336,6 @@ export const MENU: MenuItem[] = [
         ]
     }
 ];
+
+export {MENU, SUPER_ADMI_NMENU, OFFICE_ADMIN_MENU, DISPATCHER_MENU, ACCOUNTING_MENU}
 
