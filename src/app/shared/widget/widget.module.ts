@@ -5,9 +5,12 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StatComponent } from './stat/stat.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { LoadstatusComponent } from './loadstatus/loadstatus.component';
+
+
 
 @NgModule({
-  declarations: [StatComponent, TransactionComponent],
+  declarations: [StatComponent, TransactionComponent, LoadstatusComponent],
   imports: [
     CommonModule,
     NgbModalModule

@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { earningLineChart, salesAnalyticsDonutChart, emailSentBarChart, monthlyEarningChart } from '../temporaryData';
-import { ChartType } from 'src/app/core/models/ChartTypeModel';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { earningLineChart, emailSentBarChart, monthlyEarningChart,pieChart } from '../temporaryData';
+import { ChartType, PieChartModel } from 'src/app/core/models/ChartTypeModel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventService } from 'src/app/core/services/event.service'; 
 import { ConfigService } from 'src/app/core/services/config.service';
 
 import { NgbDate, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-companyanalytics',
   templateUrl: './companyanalytics.component.html',
@@ -20,10 +21,18 @@ export class CompanyanalyticsComponent implements OnInit {
   statData: Array<[]>;
   isActive: string;
   date: { year: number, month: number };
-  salesAnalyticsDonutChart: ChartType;
+  loadSummaryChart: PieChartModel;
   earningLineChart: ChartType;
   sassEarning: Array<Object>;
   sassTopSelling: Array<Object>;
+  hoveredDate: NgbDate;
+  fromNGDate: NgbDate;
+  hidden: boolean;
+  selected: any;
+  toNGDate: NgbDate;
+  @Input() fromDate: Date;
+  @Input() toDate: Date;
+  @Output() dateRangeSelected: EventEmitter<{}> = new EventEmitter();
   @ViewChild('content') content;
   @ViewChild('dp', { static: true }) datePicker: any;
   constructor(private calendar: NgbCalendar,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService) {
@@ -35,7 +44,7 @@ export class CompanyanalyticsComponent implements OnInit {
      * horizontal-vertical layput set
      */
      const attribute = document.body.getAttribute('data-layout');
-
+     this.hidden = true;
      this.isVisible = attribute;
      const vertical = document.getElementById('layout-vertical');
      if (vertical != null) {
@@ -72,7 +81,7 @@ export class CompanyanalyticsComponent implements OnInit {
     this.emailSentBarChart = emailSentBarChart;
     this.monthlyEarningChart = monthlyEarningChart;
     this.earningLineChart = earningLineChart;
-    this.salesAnalyticsDonutChart = salesAnalyticsDonutChart;
+    this.loadSummaryChart = pieChart;
     this.isActive = 'year';
     this.configService.getConfig().subscribe(data => {
       this.transactions = data.transactions;
@@ -216,4 +225,49 @@ export class CompanyanalyticsComponent implements OnInit {
    changeLayout(layout: string) {
     this.eventService.broadcast('changeLayout', layout);
   }
+  /**
+   * Is hovered over date
+   * @param date date obj
+   */
+   isHovered(date: NgbDate) {
+    return this.fromNGDate && !this.toNGDate && this.hoveredDate && date.after(this.fromNGDate) && date.before(this.hoveredDate);
+  }
+
+  /**
+   * @param date date obj
+   */
+  isInside(date: NgbDate) {
+    return date.after(this.fromNGDate) && date.before(this.toNGDate);
+  }
+
+  /**
+   * @param date date obj
+   */
+  isRange(date: NgbDate) {
+    return date.equals(this.fromNGDate) || date.equals(this.toNGDate) || this.isInside(date) || this.isHovered(date);
+  }
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromNGDate = date;
+      this.fromDate = new Date(date.year, date.month - 1, date.day);
+      this.selected = '';
+    } else if (this.fromDate && !this.toDate && date.after(this.fromNGDate)) {
+      this.toNGDate = date;
+      this.toDate = new Date(date.year, date.month - 1, date.day);
+      this.hidden = true;
+      this.selected = this.fromDate.toLocaleDateString() + '-' + this.toDate.toLocaleDateString();
+      this.dateRangeSelected.emit({ fromDate: this.fromDate, toDate: this.toDate });
+
+      this.fromDate = null;
+      this.toDate = null;
+      this.fromNGDate = null;
+      this.toNGDate = null;
+
+    } else {
+      this.fromNGDate = date;
+      this.fromDate = new Date(date.year, date.month - 1, date.day);
+      this.selected = '';
+    }
+  }
+
 }

@@ -103,8 +103,10 @@ const pieChart: ChartType = {
     }],
     color: ['#556ee6', '#34c38f', '#f1b44c', '#50a5f1', '#f46a6a'],
     legend: {
-        x: 'center',
-        y: 'bottom',
+        x: 'left',
+        textStyle: { color: '#8791af' },
+        orient: 'vertical',
+        y: 'top',
         data: ['Crome', 'IE', 'Firefox', 'Safari', 'Etc'],
     },
     tooltip: {

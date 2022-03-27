@@ -1,5 +1,5 @@
-import { ChartType } from "../../core/models/ChartTypeModel"; 
-
+import { ChartType, PieChartModel } from "../../core/models/ChartTypeModel"; 
+import { graphic } from 'echarts';
 const emailSentBarChart: ChartType = {
     chart: {
         height: 340,
@@ -96,7 +96,7 @@ const transactions = [
         name: 'Neal Matthews',
         date: '07 Oct, 2019',
         total: '$400',
-        status: 'Paid',
+        status: '0',
         payment: ['fa-cc-mastercard', 'Mastercard'],
         index: 1
     },
@@ -105,7 +105,7 @@ const transactions = [
         name: 'Jamal Burnett',
         date: '07 Oct, 2019',
         total: '$380',
-        status: 'Chargeback',
+        status: '1',
         payment: ['fa-cc-visa', 'Visa'],
         index: 2
     },
@@ -114,7 +114,7 @@ const transactions = [
         name: 'Juan Mitchell',
         date: '06 Oct, 2019',
         total: '$384',
-        status: 'Paid',
+        status: '0',
         payment: ['fab fa-cc-paypal', 'Paypal'],
         index: 3
     },
@@ -123,7 +123,7 @@ const transactions = [
         name: 'Barry Dick',
         date: '05 Oct, 2019',
         total: '$412',
-        status: 'Paid',
+        status: '1',
         payment: ['fa-cc-mastercard', 'Mastercard'],
         index: 4
     },
@@ -141,7 +141,7 @@ const transactions = [
         name: 'Jacob Hunter',
         date: '04 Oct, 2019',
         total: '$392',
-        status: 'Paid',
+        status: '0',
         payment: ['fab fa-cc-paypal', 'Paypal'],
         index: 6
     }
@@ -160,7 +160,38 @@ const statData = [{
     title: 'Average Price',
     value: '$16.2'
 }];
-
+const pieChart: PieChartModel = {
+    chart: {
+        height: 400,
+        type: 'pie',
+    },
+    series: [44, 55, 41, 17, 15,0],
+    labels: ['Series 1', 'Series 2', 'Series 3', 'Series 4', 'Series 5','Series 5'],
+    colors: ['#34c38f', '#556ee6', '#f46a6a', '#50a5f1', '#f1b44c','#654654dsfd'],
+    legend: {
+        show: true,
+        position: 'top',
+        orient: 'vertical',
+        horizontalAlign: 'left',
+        verticalAlign: 'middle',
+        floating: false,
+        fontSize: '14px',
+        offsetX: 10,
+        offsetY: 0
+    },
+    responsive: [{
+        breakpoint: 600,
+        options: {
+            chart: {
+                height: 240
+            },
+            legend: {
+                show: false
+            },
+        }
+    }]
+    
+};
 
 const earningLineChart: ChartType = {
     series: [{
@@ -194,9 +225,9 @@ const salesAnalyticsDonutChart: ChartType = {
     series: [56, 38, 26],
     chart: {
         type: 'donut',
-        height: 260,
+        height: 200,
     },
-    labels: ['Series A', 'Series B', 'Series C'],
+    labels: ['In-Transit', 'Completed', 'Open'],
     colors: ['#556ee6', '#34c38f', '#f46a6a'],
     legend: {
         show: false,
@@ -204,11 +235,11 @@ const salesAnalyticsDonutChart: ChartType = {
     plotOptions: {
         pie: {
             donut: {
-                size: '50%',
+                size: '70%',
             }
         }
     }
 };
 
 
-export {earningLineChart, salesAnalyticsDonutChart, emailSentBarChart, monthlyEarningChart, transactions, statData };
+export {earningLineChart, salesAnalyticsDonutChart, emailSentBarChart, monthlyEarningChart, transactions, statData, pieChart };

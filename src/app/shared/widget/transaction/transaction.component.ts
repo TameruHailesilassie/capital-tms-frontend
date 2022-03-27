@@ -12,10 +12,10 @@ export class TransactionComponent implements OnInit {
   @Input() transactions: Array<{
     id?: string;
     index?: number,
-    name?: string,
+    customer?: string,
     date?: string,
     total?: string,
-    status?: string,
+    status?: number,
     payment?: string[],
   }>;
 
@@ -29,7 +29,7 @@ export class TransactionComponent implements OnInit {
    * @param content modal content
    */
   openModal(content: any) {
-    this.modalService.open(content, { centered: true });
+   // this.modalService.open(content, { centered: true });
   }
 
 }
