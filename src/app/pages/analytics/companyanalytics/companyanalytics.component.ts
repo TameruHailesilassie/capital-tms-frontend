@@ -1,146 +1,109 @@
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { earningLineChart, emailSentBarChart, monthlyEarningChart,pieChart } from '../temporaryData';
+import { Component, OnInit } from '@angular/core';
+import { earningLineChart, pieChart } from '../temporaryData';
 import { ChartType, PieChartModel } from 'src/app/core/models/ChartTypeModel';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EventService } from 'src/app/core/services/event.service'; 
+import { EventService } from 'src/app/core/services/event.service';
 import { ConfigService } from 'src/app/core/services/config.service';
-
-import { NgbDate, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { EventEmitter } from '@angular/core';
+import * as moment from 'moment';
 @Component({
   selector: 'app-companyanalytics',
   templateUrl: './companyanalytics.component.html',
   styleUrls: ['./companyanalytics.component.scss']
 })
 export class CompanyanalyticsComponent implements OnInit {
-  model: NgbDateStruct;
-  isVisible: string;
-  emailSentBarChart: ChartType;
-  monthlyEarningChart: ChartType;
+
   transactions: Array<[]>;
   statData: Array<[]>;
-  isActive: string;
-  date: { year: number, month: number };
   loadSummaryChart: PieChartModel;
   earningLineChart: ChartType;
   sassEarning: Array<Object>;
-  sassTopSelling: Array<Object>;
-  hoveredDate: NgbDate;
-  fromNGDate: NgbDate;
-  hidden: boolean;
-  selected: any;
-  toNGDate: NgbDate;
-  @Input() fromDate: Date;
-  @Input() toDate: Date;
-  @Output() dateRangeSelected: EventEmitter<{}> = new EventEmitter();
-  @ViewChild('content') content;
-  @ViewChild('dp', { static: true }) datePicker: any;
-  constructor(private calendar: NgbCalendar,private modalService: NgbModal, private configService: ConfigService, private eventService: EventService) {
+  selectedDateRange: any = { startDate: null, endDate: null }
+  breadCrumbItems: Array<{}>;
+  reportStartDate: string;
+  reportEndDate: string;
+  ranges: any = {
+    Today: [moment(), moment()],
+    Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    'This Month': [moment().startOf('month'), moment().endOf('month')],
+    'Last Month': [
+      moment()
+        .subtract(1, 'month')
+        .startOf('month'),
+      moment()
+        .subtract(1, 'month')
+        .endOf('month')
+    ],
+    'Last 3 Month': [
+      moment()
+        .subtract(3, 'month')
+        .startOf('month'),
+      moment()
+        .subtract(1, 'month')
+        .endOf('month')
+    ],
+    'Last 6 Month': [
+      moment()
+        .subtract(6, 'month')
+        .startOf('month'),
+      moment()
+        .subtract(1, 'month')
+        .endOf('month')
+    ]
+
+  };
+  locale: any = {
+    format: 'MMM-DD-YYYY', // could be 'YYYY-MM-DDTHH:mm:ss.SSSSZ'
+    displayFormat: 'MMM-DD-YYYY', // default is format value
+    direction: 'ltr', // could be rtl
+    separator: ' To ', // default is ' - '
+    customRangeLabel: 'Custom range',
+    firstDay: 1 // first day is monday
+  }
+  constructor(private configService: ConfigService, private eventService: EventService) {
   }
 
   ngOnInit() {
-
-    /**
-     * horizontal-vertical layput set
-     */
-     const attribute = document.body.getAttribute('data-layout');
-     this.hidden = true;
-     this.isVisible = attribute;
-     const vertical = document.getElementById('layout-vertical');
-     if (vertical != null) {
-       vertical.setAttribute('checked', 'true');
-     }
-     if (attribute == 'horizontal') {
-       const horizontal = document.getElementById('layout-horizontal');
-       if (horizontal != null) {
-         horizontal.setAttribute('checked', 'true');
-         console.log(horizontal);
-       }
-     }
-     this.configService.getConfig().subscribe(response => {
-      this.sassEarning = response.sassEarning;
-      this.sassTopSelling = response.sassTopSelling;
-    
-    });
-    /**
-     * Fetches the data
-     */
+    this.selectedDateRange.startDate = moment().startOf('month');
+    this.selectedDateRange.endDate = moment().endOf('month');
+    this.reportStartDate = this.selectedDateRange.startDate.format("MMM-DD-YYYY");
+    this.reportEndDate = this.selectedDateRange.endDate.format("MMM-DD-YYYY");
+    this.breadCrumbItems = [{ label: 'Dashboards' }, { label: 'Company Analytics', active: true }];
     this.fetchData();
   }
 
   ngAfterViewInit() {
-   /* setTimeout(() => {
-      this.openModal();
-    }, 2000);*/
+    /* setTimeout(() => {
+       this.openModal();
+     }, 2000);*/
   }
 
   /**
    * Fetches the data
    */
   private fetchData() {
-    this.emailSentBarChart = emailSentBarChart;
-    this.monthlyEarningChart = monthlyEarningChart;
     this.earningLineChart = earningLineChart;
     this.loadSummaryChart = pieChart;
-    this.isActive = 'year';
     this.configService.getConfig().subscribe(data => {
       this.transactions = data.transactions;
       this.statData = data.statData;
+      this.sassEarning = data.sassEarning;
     });
+    this.UpdateReportData();
   }
 
-  openModal() {
-    this.modalService.open(this.content, { centered: true });
-  }
 
-  weeklyreport() {
-    this.isActive = 'week';
-    this.emailSentBarChart.series =
-      [{
-        name: 'Series A',
-         data: [44, 55, 41, 67, 22, 43, 36, 52, 24, 18, 36, 48]
-      }, {
-        name: 'Series B',
-        data: [11, 17, 15, 15, 21, 14, 11, 18, 17, 12, 20, 18]
-      }, {
-        name: 'Series C',
-        data: [13, 23, 20, 8, 13, 27, 18, 22, 10, 16, 24, 22]
-      }];
+  choosedDate(range) {
+    // console.log(range);
+    if (range.startDate !== null && range.endDate !== null) {
+      this.reportStartDate = range.startDate.format("MMM-DD-YYYY");
+      this.reportEndDate = range.endDate.format("MMM-DD-YYYY");
+      this.UpdateReportData();
+    }
   }
-
-  monthlyreport() {
-    this.isActive = 'month';
-    this.emailSentBarChart.series =
-      [{
-        name: 'Series A',
-         data: [44, 55, 41, 67, 22, 43, 36, 52, 24, 18, 36, 48]
-      }, {
-        name: 'Series B',
-        data: [13, 23, 20, 8, 13, 27, 18, 22, 10, 16, 24, 22]
-      }, {
-        name: 'Series C',
-        data: [11, 17, 15, 15, 21, 14, 11, 18, 17, 12, 20, 18]
-      }];
+  private UpdateReportData() {
+    console.log(`updating report for date Range= ${this.reportStartDate}  to ${this.reportEndDate}`);
   }
-
-  yearlyreport() {
-    this.isActive = 'year';
-    this.emailSentBarChart.series =
-      [{
-        name: 'Series A',
-         data: [13, 23, 20, 8, 13, 27, 18, 22, 10, 16, 24, 22]
-      }, {
-        name: 'Series B',
-        data: [11, 17, 15, 15, 21, 14, 11, 18, 17, 12, 20, 18]
-      }, {
-        name: 'Series C',
-        data: [44, 55, 41, 67, 22, 43, 36, 52, 24, 18, 36, 48]
-      }];
-  }
-  selectToday() {
-    this.model = this.calendar.getToday();
-  }
-
 
   selectMonth(value) {
     switch (value) {
@@ -216,57 +179,6 @@ export class CompanyanalyticsComponent implements OnInit {
           },
         ];
         break;
-    }
-  }
-  /**
-   * Change the layout onclick
-   * @param layout Change the layout
-   */
-   changeLayout(layout: string) {
-    this.eventService.broadcast('changeLayout', layout);
-  }
-  /**
-   * Is hovered over date
-   * @param date date obj
-   */
-   isHovered(date: NgbDate) {
-    return this.fromNGDate && !this.toNGDate && this.hoveredDate && date.after(this.fromNGDate) && date.before(this.hoveredDate);
-  }
-
-  /**
-   * @param date date obj
-   */
-  isInside(date: NgbDate) {
-    return date.after(this.fromNGDate) && date.before(this.toNGDate);
-  }
-
-  /**
-   * @param date date obj
-   */
-  isRange(date: NgbDate) {
-    return date.equals(this.fromNGDate) || date.equals(this.toNGDate) || this.isInside(date) || this.isHovered(date);
-  }
-  onDateSelection(date: NgbDate) {
-    if (!this.fromDate && !this.toDate) {
-      this.fromNGDate = date;
-      this.fromDate = new Date(date.year, date.month - 1, date.day);
-      this.selected = '';
-    } else if (this.fromDate && !this.toDate && date.after(this.fromNGDate)) {
-      this.toNGDate = date;
-      this.toDate = new Date(date.year, date.month - 1, date.day);
-      this.hidden = true;
-      this.selected = this.fromDate.toLocaleDateString() + '-' + this.toDate.toLocaleDateString();
-      this.dateRangeSelected.emit({ fromDate: this.fromDate, toDate: this.toDate });
-
-      this.fromDate = null;
-      this.toDate = null;
-      this.fromNGDate = null;
-      this.toNGDate = null;
-
-    } else {
-      this.fromNGDate = date;
-      this.fromDate = new Date(date.year, date.month - 1, date.day);
-      this.selected = '';
     }
   }
 

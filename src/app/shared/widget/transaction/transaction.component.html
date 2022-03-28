@@ -1,16 +1,16 @@
 <div class="table-responsive mb-0">
   <table class="table table-centered table-nowrap">
     <thead class="table-light">
+
       <tr>
-       
         <th class="align-middle">Load #</th>
         <th class="align-middle">Customer</th>
-        <th class="align-middle">Carrier</th>
-     
         <th class="align-middle">Ship Date</th>
+        <th class="align-middle">Delivery Date</th>
         <th class="align-middle">Load Status</th>
         <th class="align-middle">Action</th>
       </tr>
+
     </thead>
     <tbody>
       <tr *ngFor="let data of transactions">
@@ -18,18 +18,17 @@
         <td>
           <a href="javascript: void(0);" class="text-body fw-bold">{{data.id}}</a>
         </td>
-        <td>{{data.name}}</td>
-        <td>{{data.carrier}}</td>
-     
-        <td>{{data.del}}</td>
+        <td>{{data.customer}}</td>
+        <td>{{data.ship_date}}</td>
+        <td>{{data.del_date}}</td>
       <td><loadstatus [statusId]="data.status"></loadstatus></td>
         
-       
         <td>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary btn-sm " (click)="openModal(content)">View
             Details</button>
         </td>
+
       </tr>
     </tbody>
   </table>

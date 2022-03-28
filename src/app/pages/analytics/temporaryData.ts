@@ -165,19 +165,18 @@ const pieChart: PieChartModel = {
         height: 400,
         type: 'pie',
     },
-    series: [44, 55, 41, 17, 15,0],
-    labels: ['Series 1', 'Series 2', 'Series 3', 'Series 4', 'Series 5','Series 5'],
-    colors: ['#34c38f', '#556ee6', '#f46a6a', '#50a5f1', '#f1b44c','#654654dsfd'],
+    series: [44, 55, 41, 17, 15,0,10,55],
+    labels: ['On Route P/U', 'Arrived P/U', 'Dispatched', 'In Transit', 
+    'Arrived D/O','On Hold', 'Warehouse', 'Delivered'],
+    colors: ['#50a5f1', '#556ee6', '#f1734f', '#f1b44c', '#357756','#c3cbe4','#9f48da', '#34c38f'],
     legend: {
         show: true,
-        position: 'top',
-        orient: 'vertical',
-        horizontalAlign: 'left',
-        verticalAlign: 'middle',
+        position: 'bottom',
+        orient: 'horizontal',
         floating: false,
         fontSize: '14px',
-        offsetX: 10,
-        offsetY: 0
+        offsetX: '-0',
+        offsetY: '0'
     },
     responsive: [{
         breakpoint: 600,

@@ -16,6 +16,7 @@ import { CompanyanalyticsComponent } from './companyanalytics/companyanalytics.c
 import { OfficeanalyticsComponent } from './officeanalytics/officeanalytics.component';
 import { PersonalanalyticsComponent } from './personalanalytics/personalanalytics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxEchartsModule,
     NgxChartistModule,
     FormsModule,
+    NgxDaterangepickerMd.forRoot(),
     WidgetModule,
     ReactiveFormsModule,
     NgApexchartsModule,

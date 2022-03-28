@@ -1,36 +1,19 @@
-<app-loader></app-loader>
+<!-- <app-loader></app-loader> -->
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <ol class="breadcrumb m-0">
-
-                    <label for="example-month-input" class="col-form-label">Analytics For:</label>
-                    <div class="col-md-6">
-                        <ng-template #t let-date let-focused="focused">
-
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                            (mouseleave)="hoveredDate = null">
-                            {{ date.day }}
-                        </span>
-                        
-                        </ng-template>
-
-                        <input type="text" class="form-control date" (click)="hidden=!hidden" name="daterange"
-                            autocomplete="off" [(ngModel)]="selected" />
-
-                        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                            [dayTemplate]="t" outsideDays="hidden" [hidden]="hidden">
-                        </ngb-datepicker>
-                    </div>
-
-                </ol>
-                
-                <div class="page-title-right">
-                    <h4 class="mb-0 font-size-18">COMPANY Dashboard</h4> 
+                <div class="col-sm-2">
+                  
+                        <label class="col-form-label">Analytics Period: &nbsp;&nbsp; </label>
+                        <input id="datePicker" class="form-control " ngxDaterangepickerMd [closeOnAutoApply]="true"
+                            [showCustomRangeLabel]="true" [autoApply]="true" [singleDatePicker]="false" [ranges]="ranges"
+                            (datesUpdated)="choosedDate($event)" [locale]="locale" [alwaysShowCalendars]="false"
+                            [linkedCalendars]="true" [(ngModel)]="selectedDateRange">
+                    
                 </div>
+                <app-page-title title="" [breadcrumbItems]="breadCrumbItems"></app-page-title>
             </div>
         </div>
     </div>
@@ -39,9 +22,76 @@
     <div class="row">
         <div class="col-xl-8">
             <div class="row">
-                <div *ngFor="let stat of statData" class="col-md-4">
-                    <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon"></app-stat>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                                        <i class="mdi mdi-dolly"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Total Loads</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
+                                        class="ms-2 text-truncate">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                                        <i class="bx bx-archive-in"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Total Revenue</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>$ 28,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
+                                        class="ms-2 text-truncate">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                                        <i class="bx bx-dollar"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Total Profit</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>$ 2,116.2 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-warning font-size-12"> 0% </span> <span
+                                        class="ms-2 text-truncate">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- end row -->
 
@@ -106,9 +156,14 @@
                 <div class="bg-primary bg-soft">
                     <div class="row">
                         <div class="col-8">
-                            <div class="text-primary p-3">
-                                <h5 class="text-primary">Welcome Back !</h5>
-                                <p>CTM Dashboard</p>
+                            <div class=" p-3">
+                                <div class="media-body align-self-center">
+                                    <div class="text-muted">
+                                        <h6 class="mb-2 text-primary text-truncate">Welcome to your dashboard!</h6>
+                                        <h5 class="mb-1">Alec Manoukian</h5>
+                                        <p class="mb-0">Company Admin</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-4 align-self-end">
@@ -116,28 +171,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body pt-0">
-                    <div class="row">
+                <!--   <div class="card-body pt-0">
+                   <div class="row">
 
-                        <div class="col-4">
-                            <div class="mt-4">
-                                <p class="mb-2 text-truncate"><i
-                                        class="mdi mdi-map-marker-outline text-primary me-1"></i>
-                                    Offices</p>
-                                <h4 class="">32</h4>
+                        <div class="col-sm-4">
+
+                            <div class="font-size-24 text-primary mb-2 ">
+                                <i class="bx bx-map-pin"></i>
                             </div>
+                            <p class="text-muted mb-2"><strong> Total Offices </strong></p>
+                            <h5>5</h5>
                         </div>
 
-                        <div class="col-4">
-                            <div class="mt-4">
-                                <p class="mb-2 text-truncate"><i class="mdi mdi-account-group text-success me-1"></i>
-                                    Dispatchers</p>
-                                <h4 class="">132</h4>
+                        <div class="col-sm-4">
+
+                            <div class="font-size-24 text-primary mb-2 ">
+                                <i class="bx bx-group"></i>
                             </div>
+                            <p class="text-muted mb-2"><strong> Total Dispatchers </strong></p>
+                            <h5>5</h5>
                         </div>
-
-
-                    </div>
+                    </div> 
+                </div>-->
+            </div>
+            <div class="row">
+                <div *ngFor="let stat of statData" class="col-md-6">
+                    <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon"></app-stat>
                 </div>
             </div>
 
@@ -159,8 +218,6 @@
 
     </div>
     <!-- end row -->
-
-
 
     <div class="row">
         <div class="col-lg-12">

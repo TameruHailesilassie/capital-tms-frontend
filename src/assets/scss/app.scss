@@ -8,7 +8,6 @@
 //@import "variables";
 @import "./node_modules/bootstrap/scss/mixins.scss";
 
-
 // Structure
 @import "custom/structure/general";
 @import "custom/structure/topbar";
@@ -84,3 +83,59 @@
 // @import "custom/rtl/plugins-rtl";
 // @import "custom/rtl/components-rtl";
 // @import "custom/rtl/pages-rtl";
+
+/* .md-drppicker  {
+    background-color:#2a3042 !important;
+   border: white !important;
+   
+  }
+
+  .md-drppicker .calendar {
+    background-color:#2a3042 !important;
+  }
+  .md-drppicker td.active{
+    background-color:$primary !important;
+  }
+
+  .md-drppicker td.active:hover {
+    background-color:$primary !important;
+}
+
+
+
+
+ */
+.md-drppicker td.active {
+  background-color: $primary !important;
+}
+
+.md-drppicker {
+  background-color: #2a3042 !important;
+  color: white !important;
+  .ranges ul li button.active {
+    background-color: $primary !important;
+  }
+  .ranges ul li:hover {
+    background-color: $primary !important;
+  }
+
+  .ranges {
+    background-color: #2a3042  !important;
+    border-color: white;
+    border-radius: 4px;
+
+    ul {
+      li {
+        button {
+          color: white !important;
+        }
+      }
+    }
+  }
+  .calendar-table {
+    background-color: #2a3042 !important;
+  }
+  .btn{
+      background-color: $primary;
+  }
+}

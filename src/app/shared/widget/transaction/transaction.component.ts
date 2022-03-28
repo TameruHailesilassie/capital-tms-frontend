@@ -13,10 +13,10 @@ export class TransactionComponent implements OnInit {
     id?: string;
     index?: number,
     customer?: string,
-    date?: string,
-    total?: string,
+    ship_date?: string,
+    del_date?: string,
     status?: number,
-    payment?: string[],
+  
   }>;
 
   constructor(private modalService: NgbModal) { }
