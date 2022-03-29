@@ -62,13 +62,13 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 10,
                 label: 'Load Board',
-                link: '#',
+                link: '/loads/load-board',
                 parentId: 9
             },
             {
                 id: 11,
                 label: 'Build Load',
-                link: '#',
+                link: '/loads/create',
                 parentId: 9
             }
         ]

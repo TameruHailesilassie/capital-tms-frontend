@@ -14,27 +14,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         const users: any[] = JSON.parse(localStorage.getItem('users')) || [
             {
                 username: 'admin',
-                email: 'superAdmin@ctm.org',
+                email: 'superAdmin@capitaltms.org',
                 password: '123456',
                 role: 'super-admin'
             },
 
             {
                 username: 'officeAdmin',
-                email: 'officeAdmin@ctm.org',
+                email: 'officeAdmin@capitaltms.org',
                 password: '123456',
                 role: 'office-admin'
             },
 
             {
                 username: 'accounting',
-                email: 'accounting@ctm.org',
+                email: 'accounting@capitaltms.org',
                 password: '123456',
                 role: 'accounting'
             },
             {
                 username: 'dispatcher',
-                email: 'dispatcher@ctm.org',
+                email: 'dispatcher@capitaltms.org',
                 password: '123456',
                 role: 'dispatcher'
             },

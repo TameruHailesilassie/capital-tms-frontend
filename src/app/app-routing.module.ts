@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
   { path: 'analytics', loadChildren: () => import('./pages/analytics/analytics.module').then(m => m.AnalyticsModule) },
+  { path: 'loads', loadChildren: () => import('./pages/load/load.module').then(m => m.LoadModule) },
 
   { path: '**', component: Page404Component },
 ];

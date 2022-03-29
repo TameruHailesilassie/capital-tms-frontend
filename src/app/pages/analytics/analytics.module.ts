@@ -6,10 +6,8 @@ import { NgbNavModule, NgbDropdownModule, NgbModalModule, NgbTooltipModule , Ngb
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { LightboxModule } from 'ngx-lightbox';
-
 import { WidgetModule } from '../../shared/widget/widget.module';
 import { UIModule } from '../../shared/ui/ui.module';
-
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { CompanyanalyticsComponent } from './companyanalytics/companyanalytics.component';

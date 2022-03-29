@@ -10,12 +10,11 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import { LightboxModule } from 'ngx-lightbox';
-
 import { WidgetModule } from '../shared/widget/widget.module';
 import { UIModule } from '../shared/ui/ui.module';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { LoadModule } from './load/load.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { EcommerceModule } from './ecommerce/ecommerce.module';
 import { CryptoModule } from './crypto/crypto.module';
@@ -54,6 +53,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     PagesRoutingModule,
     NgApexchartsModule,
     ReactiveFormsModule,
+    LoadModule,
     AnalyticsModule,
     DashboardsModule,
     CryptoModule,
