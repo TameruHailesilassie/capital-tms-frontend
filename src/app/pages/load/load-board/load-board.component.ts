@@ -23,8 +23,8 @@ export class LoadBoardComponent implements OnInit {
   model: NgbDateStruct;
   statusList: LoadStatus[];
   isAdmin: boolean = false;
-  officeList:["Los Angeles"];
-
+  officeList:string[]=["Los Angeles", "Denver", "San Diego"];
+  customerSearchTerm:string;
   tableData: Load[];
   tables$: Observable<Load[]>;
 
@@ -50,8 +50,13 @@ export class LoadBoardComponent implements OnInit {
       this.authService.currentUserValue.role === "super-admin" ||
       this.authService.currentUserValue.role === "office-admin";
 
+//this.service.
 
+  }
 
+  onCustomerFilter(customerSearchTerm){
+   this.service.searchTerm=customerSearchTerm.target.value;
+    
   }
 
   onSort({ column, direction }: SortEvent) {

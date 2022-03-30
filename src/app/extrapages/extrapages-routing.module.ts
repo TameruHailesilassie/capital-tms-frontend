@@ -1,26 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { Page401Component } from './page401/page401.component';
 import { Page404Component } from './page404/page404.component';
-import { Page500Component } from './page500/page500.component';
-import { LockscreenComponent } from './lockscreen/lockscreen.component';
-import { Login2Component } from '../account/auth/login2/login2.component';
-import { Lockscreen2Component } from './lockscreen2/lockscreen2.component';
-import { ConfirmmailComponent } from './confirmmail/confirmmail.component';
-import { Confirmmail2Component } from './confirmmail2/confirmmail2.component';
-import { VerificationComponent } from './verification/verification.component';
-import { Verification2Component } from './verification2/verification2.component';
-import { SteptwoverificationComponent } from './steptwoverification/steptwoverification.component';
-import { Steptwoverification2Component } from './steptwoverification2/steptwoverification2.component';
-import { ComingsoonComponent } from './comingsoon/comingsoon.component';
+
 
 const routes: Routes = [
     {
-        path: 'maintenance',
-        component: MaintenanceComponent
+        path: 'unauthorized',
+        component: Page401Component
     },
     {
+        path: '404',
+        component: Page404Component
+    },
+   /*  {
         path: 'coming-soon',
         component: ComingsoonComponent
     },
@@ -67,7 +60,7 @@ const routes: Routes = [
     {
         path: 'two-step-verification-2',
         component: Steptwoverification2Component
-    },
+    }, */
 ];
 
 

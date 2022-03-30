@@ -16,8 +16,6 @@ import { LoadModule } from './load/load.module';
 import { UtilityModule } from './utility/utility.module';
 import { UiModule } from './ui/ui.module';
 import { TablesModule } from './tables/tables.module';
-import { IconsModule } from './icons/icons.module';
-import { ChartModule } from './chart/chart.module';
 import { MapsModule } from './maps/maps.module';
 
 
@@ -44,8 +42,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UtilityModule,
     UiModule,
     TablesModule,
-    IconsModule,
-    ChartModule,
     WidgetModule,
     MapsModule,
     FullCalendarModule,

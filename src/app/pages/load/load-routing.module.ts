@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoadBoardComponent } from './load-board/load-board.component';
 import { CreatLoadComponent } from './creat-load/creat-load.component';
-
-
 const routes: Routes = [
 
   {
@@ -16,7 +14,6 @@ const routes: Routes = [
     component: CreatLoadComponent
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
