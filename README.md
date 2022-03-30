@@ -1,5 +1,5 @@
-![alt text](https://github.com/TameruHailesilassie/ctm-frontend/blob/main/src/favicon.ico?raw=true)  CTM 
-### Complete Transportation Management system frontend.
+![alt text](https://github.com/TameruHailesilassie/ctm-frontend/blob/main/src/assets/images/light-ctms-logo.png?raw=true)  CTMS 
+### Capital TMS.  Transportation Management system frontend.
 
 
 ## Tech stack
