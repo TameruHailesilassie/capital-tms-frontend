@@ -15,6 +15,6 @@ import { LoadstatusComponent } from './loadstatus/loadstatus.component';
     CommonModule,
     NgbModalModule
   ],
-  exports: [StatComponent, TransactionComponent]
+  exports: [StatComponent, TransactionComponent, LoadstatusComponent]
 })
 export class WidgetModule { }

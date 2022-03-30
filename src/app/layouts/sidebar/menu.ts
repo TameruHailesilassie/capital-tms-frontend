@@ -244,13 +244,13 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 10,
                 label: 'Load Board',
-                link: '/board',
+                link: '/loads/load-board',
                 parentId: 9
             },
             {
                 id: 11,
                 label: 'Build Load',
-                link: '/new/board',
+                link: '/loads/create',
                 parentId: 9
             }
         ]
@@ -411,13 +411,13 @@ const DISPATCHER_MENU: MenuItem[] = [
             {
                 id: 10,
                 label: 'Load Board',
-                link: '',
+                link: '/loads/load-board',
                 parentId: 9
             },
             {
                 id: 11,
                 label: 'Build Load',
-                link: '',
+                link: '/loads/create',
                 parentId: 9
             }
         ]

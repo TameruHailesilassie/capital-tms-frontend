@@ -7,8 +7,6 @@ import { LOAD_STATUS } from './status';
   styleUrls: ['./loadstatus.component.scss']
 })
 export class LoadstatusComponent implements OnInit {
-
-  statusClass: "badge-soft-info";
   status: string;
   icon:string;
   badge:string;

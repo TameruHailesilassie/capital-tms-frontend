@@ -1,5 +1,9 @@
-<span [className]="badge">
-   
+<span 
+    [className]="badge"
+
+    [ngStyle]="{height:'100%', width:'100%',display:'block', overflow:'auto'}" 
+    class="my">
+    
     <i class=" {{icon}}  mdi-18px"></i>&nbsp;
-    {{status  }}
+    {{status }}
 </span>

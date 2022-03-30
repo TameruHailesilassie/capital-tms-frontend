@@ -5,8 +5,10 @@ import { UIModule } from './ui/ui.module';
 
 import { WidgetModule } from './widget/widget.module';
 
+
 @NgModule({
   declarations: [],
+
   imports: [
     CommonModule,
     UIModule,

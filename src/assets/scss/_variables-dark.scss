@@ -20,8 +20,8 @@ $sidebar-dark-bg: #2a3042; //2c313a
 $sidebar-dark-menu-item-color: #a6b0cf;
 $sidebar-dark-menu-sub-item-color: #79829c;
 $sidebar-dark-menu-item-icon-color: #6a7187;
-$sidebar-dark-menu-item-hover-color: #556ee6;
-$sidebar-dark-menu-item-active-color: #556ee6;
+$sidebar-dark-menu-item-hover-color: #1DA1F2;
+$sidebar-dark-menu-item-active-color: #1DA1F2;
 
 // Topbar - Deafult Light
 $header-height: 70px;
@@ -56,7 +56,7 @@ $display-block: none;
 $navbar-brand-box-width: 250px;
 
 // Boxed layout width
-$boxed-layout-width:    1600px;
+$boxed-layout-width:    1700px;
 $boxed-body-bg:       #32394f;
 
 // Font Weight
@@ -104,7 +104,7 @@ $grays: (
 );
 
 // fusv-enable
-
+$brand:#1DA1F2;
 $blue:    #556ee6;
 $indigo:  #564ab1;
 $purple:  #6f42c1;
@@ -117,8 +117,11 @@ $teal:    #050505;
 $cyan:    #50a5f1;
 $stat-color-1: #9f48da;
 $stat-color-2: #357756;
+$stat-pending: #e0619c;
+$info-variant:#b46530;
 // scss-docs-start colors-map
 $colors: (
+  "brand":$brand,
     "blue":       $blue,
     "indigo":     $indigo,
     "purple":     $purple,
@@ -133,11 +136,13 @@ $colors: (
     "gray":       $gray-600,
     "gray-dark":  $gray-800,
     "stat-color-1": $stat-color-1,
-    "stat-color-2": $stat-color-2
+    "stat-color-2": $stat-color-2,
+    "pending-status":$stat-pending,
+    "info-variant":$info-variant
 );
 // scss-docs-end colors-map
 
-$primary:       $blue;
+$primary:       $brand;
 $secondary:     $gray-600;
 $success:       $green;
 $info:          $cyan;
@@ -145,9 +150,10 @@ $warning:       $yellow;
 $danger:        $red;
 $light:         $gray-300;
 $dark:          $gray-800;
-$info-2:        $blue;
+$info-2:        $info-variant;
 $status-1:      $stat-color-1;
 $stat-color-2:  $stat-color-2;
+$stat-pending:$stat-pending;
 // scss-docs-start theme-colors-map
 $theme-colors: (
     "primary":    $primary,
@@ -161,7 +167,8 @@ $theme-colors: (
     "dark":       $dark,
     "info-2":     $info-2,
     "status-1":   $status-1,
-    "status-2": $stat-color-2
+    "status-2": $stat-color-2,
+    "pending-status":$stat-pending
 );
 
 

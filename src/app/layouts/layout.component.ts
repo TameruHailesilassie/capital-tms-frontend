@@ -25,7 +25,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // default settings
     this.layoutType = LAYOUT_VERTICAL;
-    this.layoutwidth = "fluid";
+    this.layoutwidth = "boxed";
     this.topbar = TOPBAR;
     this.LayoutWidth(this.layoutwidth);
     // listen to event and change the layout, theme, etc

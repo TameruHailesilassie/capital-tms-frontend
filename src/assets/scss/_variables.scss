@@ -58,7 +58,7 @@ $display-block: block;
 $navbar-brand-box-width: 250px;
 
 // Boxed layout width
-$boxed-layout-width: 1600px;
+$boxed-layout-width: 1700px;
 $boxed-body-bg: #ebebf4;
 
 // Font Weight
@@ -116,6 +116,7 @@ $yellow: #f1b44c;
 $green: #34c38f;
 $teal: #050505;
 $cyan: #50a5f1;
+$stat-pending: #e2d9e9;
 $stat-color-1: #9f48da;
 $stat-color-2: #357756;
 // scss-docs-start colors-map
@@ -135,6 +136,7 @@ $colors: (
   "gray-dark": $gray-800,
   "status-1": $stat-color-1,
   "status-2": $stat-color-2
+  "pending-status":$stat-pending
 );
 // scss-docs-end colors-map
 
@@ -148,6 +150,7 @@ $light: $gray-200;
 $dark: $gray-800;
 $info-2: $blue;
 $status-1: $stat-color-1;
+$stat-pending:$stat-pending;
 $stat-color-2:$stat-color-2;
 // scss-docs-start theme-colors-map
 $theme-colors: (
@@ -162,6 +165,7 @@ $theme-colors: (
   "dark": $dark,
   "info-2": $info-2,
   "status-1":   $status-1,
+  "pending-status":$stat-pending
   "status-2": $stat-color-2
 );
 // scss-docs-end theme-colors-map
