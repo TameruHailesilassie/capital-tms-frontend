@@ -7,7 +7,7 @@
     <div class="card-body">
       <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
 
-        <li [ngbNavItem]="1">
+        <li [ngbNavItem]="1" [destroyOnHide]="false">
           <a ngbNavLink>Active Loads</a>
           <ng-template ngbNavContent>
             <load-table [service]="service._activeLoadsTableService"></load-table>
@@ -15,14 +15,14 @@
 
         </li>
 
-        <li [ngbNavItem]="2">
+        <li [ngbNavItem]="2" [destroyOnHide]="false">
           <a ngbNavLink>Delivered</a>
           <ng-template ngbNavContent>
             <load-table [service]="service._deliveredLoadsTableService"></load-table>
           </ng-template>
         </li>
 
-        <li [ngbNavItem]="3">
+        <li [ngbNavItem]="3" [destroyOnHide]="false">
           <a ngbNavLink>Cancelled</a>
           <ng-template ngbNavContent>
             <load-table [service]="service._cancelledLoadsTableService"></load-table>
