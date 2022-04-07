@@ -16,27 +16,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 username: 'admin',
                 email: 'superAdmin@capitaltms.org',
                 password: '123456',
-                role: 'super-admin'
+                role: 'super-admin',
+                id:2
             },
 
             {
                 username: 'officeAdmin',
                 email: 'officeAdmin@capitaltms.org',
                 password: '123456',
-                role: 'office-admin'
+                role: 'office-admin',
+                id:1
             },
 
             {
                 username: 'accounting',
                 email: 'accounting@capitaltms.org',
                 password: '123456',
-                role: 'accounting'
+                role: 'accounting',
+                id:3
             },
             {
                 username: 'dispatcher',
                 email: 'dispatcher@capitaltms.org',
                 password: '123456',
-                role: 'dispatcher'
+                role: 'dispatcher',
+                id:4
             },
 
         ];

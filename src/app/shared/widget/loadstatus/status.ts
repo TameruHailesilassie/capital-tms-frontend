@@ -1,6 +1,7 @@
 import { LoadStatus } from "./status.model";
 
-export const LOAD_STATUS: LoadStatus[] = [
+
+ const LOAD_STATUS: LoadStatus[] = [
   {
     id: 0,
     icon: "mdi mdi-progress-wrench",
@@ -60,3 +61,11 @@ export const LOAD_STATUS: LoadStatus[] = [
     badge: "badge  badge-soft-success  font-size-12",
   },
 ];
+
+  let LOAD_SELECT:any[]=
+ 
+ LOAD_STATUS.map(status=>{
+   return {"id": status.id, "name":status.label};
+ });
+ export {LOAD_STATUS, LOAD_SELECT}
+

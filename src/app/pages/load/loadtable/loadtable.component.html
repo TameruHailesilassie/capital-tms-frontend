@@ -1,0 +1,213 @@
+<form>
+  <div class="row">
+    <div class="col-xl-2 col-sm-6" *ngIf="isAdmin">
+      <div class="mt-2 mb-0">
+        <label><i class="bx bx-filter-alt text-primary"></i> Office</label>
+        <ng-select name="officeFilterTerm" [(ngModel)]="loadFilters.office" placeholder="Select Office"
+          (clearable)="true" (ngModelChange)="onOfficeFilter($event)" [items]="officeList"></ng-select>
+
+      </div>
+    </div>
+    <div class="col-xl-2 col-sm-6">
+      <div class="mt-2 mb-0">
+        <label><i class="bx bx-filter-alt text-primary"></i> Status</label>
+        <ng-select name="statusFilterTerm" [(ngModel)]="loadFilters.status" placeholder="Select Status"
+          (ngModelChange)="onStatusFilter($event)" [items]="statusList" bindLabel="name" bindValue="id"></ng-select>
+
+      </div>
+    </div>
+    <div class="col-xl-2 col-sm-6">
+      <label><i class="bx bx-filter-alt text-primary"></i> Pickup Date :</label>
+      <div class="input-group clockpicker mt-2">
+        <input class="form-control date-cursor" placeholder="Choose Date" name="dp" [(ngModel)]="pickupDateModel"
+          (click)="d.toggle()" ngbDatepicker (ngModelChange)="onPickUpDateSelection($event)" #d="ngbDatepicker"
+          autocomplete="off">
+
+        <div class="input-group-append" (click)="onPickUpDateCanceled()">
+          <span class="input-group-text ">
+            <i [ngClass]="pickupDateModel!==null ? 'mdi mdi-close'  :'mdi mdi-calendar'
+                "></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 col-sm-6" *ngIf="isAdmin">
+      <div class="mt-2 mb-0">
+
+        <div class="form-check form-check-primary mb-3">
+          <input class="form-check-input date-cursor" type="checkbox" name="showMyLoad"
+            [(ngModel)]="loadFilters.onlyMyLoad" (change)="onShowMyLods()" id="formCheckcolor1">
+          <label>Only My Loads</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+<div class="row mb-md-2  mt-3">
+  <div class="col-sm-12 col-md-6">
+    <div class="dataTables_length" id="tickets-table_length"><label class="d-inline-flex align-items-center">Show
+        <select name="tickets-table_length" aria-controls="tickets-table" name="pageSize" [(ngModel)]="service.pageSize"
+          class="form-control form-control-sm mx-2">
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="25">25</option>
+          <option [ngValue]="50">50</option>
+          <option [ngValue]="100">100</option>
+        </select> entries</label></div>
+  </div>
+  <!-- Search -->
+  <div class="col-sm-12 col-md-6">
+    <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
+        class="d-inline-flex align-items-center">Search:
+        <input type="text" name="searchTerm" class="form-control form-control-sm ms-2" aria-controls="tickets-table"
+          [(ngModel)]="service.searchTerm"></label>
+    </div>
+  </div>
+  <!-- End search -->
+</div>
+<!-- Table -->
+<div class="table-responsive">
+  <table id="basic-datatable" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline myt">
+    <thead>
+      <tr>
+        <th sortable="status" (sort)="onSort($event)">Status</th>
+        <th sortable="loadNumber" (sort)="onSort($event)">Load No.</th>
+        <th sortable="poNumber" (sort)="onSort($event)">P/O No.</th>
+        <th sortable="customer" (sort)="onSort($event)">Customer</th>
+        <th sortable="carrier" (sort)="onSort($event)">Carrier</th>
+        <th sortable="pickuDate" (sort)="onSort($event)">Pickup Date</th>
+        <th sortable="origin" (sort)="onSort($event)">Origin</th>
+        <th sortable="delDate" (sort)="onSort($event)">Del. Date</th>
+        <th sortable="destination" (sort)="onSort($event)">Destination</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let table of loads$ | async;let i=index">
+      <tr [ngStyle]="{padding:'0px', height:'5px'}">
+
+        <td [ngStyle]="{padding:'0px'}">
+          <loadstatus [statusId]="table.status"></loadstatus>
+        </td>
+        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+          <ngb-highlight [result]="table.loadNumber" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+        <td class="text-truncate">
+          <ngb-highlight [result]="table.poNumber" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+          <ngb-highlight [result]="table.customer.name" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+          <ngb-highlight [result]="table.carrier.name" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+
+        <td class="text-truncate">
+          <ngb-highlight [result]="table.pickupDate" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+          <ngb-highlight class="text-grey" [result]="table.origin.name" [term]="service.searchTerm"></ngb-highlight>
+        </td>
+        <td class="text-truncate">
+          <ngb-highlight [result]="table.delDate" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+          <ngb-highlight [result]="table.destination.name" [term]="service.searchTerm">
+          </ngb-highlight>
+        </td>
+
+        <td>
+          <div ngbDropdown placement="bottom-left">
+            <i class="mdi mdi-dots-horizontal dropdown-toggle" ngbDropdownToggle data-toggle="dropdown"
+              aria-expanded="true"></i>
+            <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+              <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-pen text-warning"></i> Edit</a>
+              <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-list-check text-warning"></i>
+                Details</a>
+              <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-map text-warning"></i> Track
+                Shipment</a>
+              <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-copy text-warning"></i>
+                Duplicate</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+<!-- End table -->
+<div class="row justify-content-md-between align-items-md-center mt-2">
+  <div class="col-sm-12 col-md-5">
+    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+      {{service.startIndex}} to
+      {{service.endIndex}} of {{service.totalRecords}}
+      entries
+    </div>
+  </div>
+  <!-- Pagination -->
+  <div class="col-sm-12 col-md-5">
+    <div class="text-md-right float-md-end pagination-rounded">
+      <ngb-pagination [collectionSize]="service.total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+    </div>
+  </div>
+  <!-- End Pagination -->
+</div>
+
+
+<ng-template #scrollDataModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Detail</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
+      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
+      laoreet rutrum faucibus dolor auctor.</p>
+    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
+      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</ng-template>

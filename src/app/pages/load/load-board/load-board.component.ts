@@ -1,14 +1,7 @@
-import { Component, OnInit, ViewChildren, QueryList } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DecimalPipe } from "@angular/common";
-import { Observable } from "rxjs";
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-import { Load } from "./load.model";
-import { Loads } from "./data";
-import { LoadService } from "./loadService";
-import { LoadsSortableDirective, SortEvent } from "./loads-sortable.directive";
-import { LoadStatus } from "src/app/shared/widget/loadstatus/status.model";
-import { LOAD_STATUS } from "src/app/shared/widget/loadstatus/status";
-import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
+import { LoadService } from "../loadService";
+
 @Component({
   selector: "app-load-board",
   templateUrl: "./load-board.component.html",
@@ -16,57 +9,14 @@ import { AuthfakeauthenticationService } from "src/app/core/services/authfake.se
   providers: [LoadService, DecimalPipe],
 })
 export class LoadBoardComponent implements OnInit {
-  // breadcrumb items
   breadCrumbItems: Array<{}>;
-  loads$: Observable<Load[]>;
-  total$: Observable<number>;
-  model: NgbDateStruct;
-  statusList: LoadStatus[];
-  isAdmin: boolean = false;
-  officeList:string[]=["Los Angeles", "Denver", "San Diego"];
-  customerSearchTerm:string;
-  tableData: Load[];
-  tables$: Observable<Load[]>;
 
-  @ViewChildren(LoadsSortableDirective)
-  headers: QueryList<LoadsSortableDirective>;
-
-  constructor(
-    public service: LoadService,
-    public authService: AuthfakeauthenticationService
-  ) {
-    this.tables$ = service.tables$;
-    this.total$ = service.total$;
-  }
+  constructor(public service: LoadService) {}
 
   ngOnInit(): void {
     this.breadCrumbItems = [
       { label: "Loads" },
       { label: "Load Board", active: true },
     ];
-    this.tableData = Loads;
-    this.statusList = LOAD_STATUS;
-    this.isAdmin =
-      this.authService.currentUserValue.role === "super-admin" ||
-      this.authService.currentUserValue.role === "office-admin";
-
-//this.service.
-
-  }
-
-  onCustomerFilter(customerSearchTerm){
-   this.service.searchTerm=customerSearchTerm.target.value;
-    
-  }
-
-  onSort({ column, direction }: SortEvent) {
-    // resetting other headers
-    this.headers.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = "";
-      }
-    });
-    this.service.sortColumn = column;
-    this.service.sortDirection = direction;
   }
 }
