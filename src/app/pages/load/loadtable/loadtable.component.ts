@@ -13,11 +13,10 @@ import {
 import { Observable } from "rxjs";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
 import { LOAD_SELECT } from "src/app/shared/widget/loadstatus/status";
+import { LoadAttributeModalComponent } from "../load-attribute-modal/load-attribute-modal.component";
 import { Load } from "../load.model";
-import {
-  LoadsSortableDirective,
-  SortEvent,
-} from "./loads-sortable.directive";
+import { ShowPopupEvent } from "./load-show-detail.directive";
+import { LoadsSortableDirective, SortEvent } from "./loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
 @Component({
   selector: "load-table",
@@ -49,8 +48,6 @@ export class LoadTable implements OnInit {
 
   ngOnInit(): void {
     this.loads$ = this.service.loads$;
-    console.log("called");
-
     this.statusList = LOAD_SELECT;
     this.isAdmin =
       this.authService.currentUserValue.role === "super-admin" ||
@@ -87,26 +84,32 @@ export class LoadTable implements OnInit {
 
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
+
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = "";
       }
     });
-    
+
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
   }
+
   onShowMyLods() {
     this.onFilterLoads();
   }
+
   onPickUpDateCanceled() {
     this.loadFilters.pickupDate = null;
     this.pickupDateModel = null;
     this.onFilterLoads();
   }
 
-  scrollModal() {
-
-    this.modalService.open('scrollDataModal', { scrollable: true });
+  scrollModal({ attribute, attributeID }: ShowPopupEvent) {
+    this.modalService.open(LoadAttributeModalComponent, {
+      scrollable: true,
+      size: "xl",
+      centered: true,
+    });
   }
 }

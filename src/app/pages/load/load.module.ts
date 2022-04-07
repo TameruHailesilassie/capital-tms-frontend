@@ -18,9 +18,10 @@ import { LoadShowDetailDirective } from "./loadtable/load-show-detail.directive"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WidgetModule } from "src/app/shared/widget/widget.module";
 import { LoadTable } from './loadtable/loadtable.component';
+import { LoadAttributeModalComponent } from './load-attribute-modal/load-attribute-modal.component';
 
 @NgModule({
-  declarations: [LoadBoardComponent, CreatLoadComponent, LoadShowDetailDirective,LoadsSortableDirective, LoadTable],
+  declarations: [LoadBoardComponent, CreatLoadComponent, LoadShowDetailDirective,LoadsSortableDirective, LoadTable, LoadAttributeModalComponent],
 
   imports: [
     CommonModule,

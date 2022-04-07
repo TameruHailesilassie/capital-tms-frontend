@@ -88,7 +88,8 @@
         <td [ngStyle]="{padding:'0px'}">
           <loadstatus [statusId]="table.status"></loadstatus>
         </td>
-        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+        <td showDetail loadAttribute="loadNumber" loadAttributeId="{{table.loadNumber}}"
+          class="text-truncate date-cursor popup" (showPopup)="scrollModal($event)">
           <ngb-highlight [result]="table.loadNumber" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
@@ -96,11 +97,13 @@
           <ngb-highlight [result]="table.poNumber" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
-        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+        <td showDetail loadAttribute="customer" loadAttributeId="{{table.customer.id}}"
+          (showPopup)="scrollModal($event)" class="text-truncate date-cursor popup">
           <ngb-highlight [result]="table.customer.name" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
-        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+        <td showDetail loadAttribute="carrier" loadAttributeId="{{table.carrier.id}}" (showPopup)="scrollModal($event)"
+          class="text-truncate date-cursor popup">
           <ngb-highlight [result]="table.carrier.name" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
@@ -109,14 +112,16 @@
           <ngb-highlight [result]="table.pickupDate" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
-        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+        <td showDetail loadAttribute="origin" loadAttributeId="{{table.origin.id}}" (showPopup)="scrollModal($event)"
+          class="text-truncate date-cursor popup">
           <ngb-highlight class="text-grey" [result]="table.origin.name" [term]="service.searchTerm"></ngb-highlight>
         </td>
         <td class="text-truncate">
           <ngb-highlight [result]="table.delDate" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
-        <td class="text-truncate date-cursor popup" (click)="scrollModal()">
+        <td showDetail loadAttribute="destination" loadAttributeId="{{table.destination.id}}"
+          (showPopup)="scrollModal($event)" class="text-truncate date-cursor popup">
           <ngb-highlight [result]="table.destination.name" [term]="service.searchTerm">
           </ngb-highlight>
         </td>
@@ -160,54 +165,3 @@
   </div>
   <!-- End Pagination -->
 </div>
-
-
-<ng-template #scrollDataModal let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title mt-0">Detail</h5>
-    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-label="Close">
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas
-      eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl
-      consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button>
-  </div>
-</ng-template>
