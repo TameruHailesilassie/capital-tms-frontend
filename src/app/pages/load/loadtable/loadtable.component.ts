@@ -1,3 +1,4 @@
+import { DecimalPipe } from "@angular/common";
 import {
   Component,
   Input,
@@ -15,6 +16,7 @@ import { AuthfakeauthenticationService } from "src/app/core/services/authfake.se
 import { LOAD_SELECT } from "src/app/shared/widget/loadstatus/status";
 import { LoadAttributeModalComponent } from "../load-attribute-modal/load-attribute-modal.component";
 import { Load } from "../load.model";
+import { LoadService, LOAD_TAB_TYPE } from "../loadService";
 import { ShowPopupEvent } from "./load-show-detail.directive";
 import { LoadsSortableDirective, SortEvent } from "./loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
@@ -22,31 +24,40 @@ import { LoadTableService } from "./LoadTableService";
   selector: "load-table",
   templateUrl: "./loadtable.component.html",
   styleUrls: ["./loadtable.component.scss"],
+  providers: [DecimalPipe],
 })
 export class LoadTable implements OnInit {
   officeList: string[] = ["Los Angeles", "Denver", "San Diego"];
-  loads$: Observable<Load[]>;
   loadFilters = {
     office: null,
     status: null,
     pickupDate: null,
-    onlyMyLoad: false,
   };
+  loads$: Observable<Load[]>;
   pickupDateModel: NgbDateStruct = null;
   statusList: any[];
   isAdmin: boolean = false;
-
+  service: LoadTableService;
   @ViewChildren(LoadsSortableDirective)
   headers: QueryList<LoadsSortableDirective>;
-  @Input() service: LoadTableService;
+  @Input() loadType: LOAD_TAB_TYPE;
 
   constructor(
     private ngbDateParserFormatter: NgbDateParserFormatter,
     private modalService: NgbModal,
-    public authService: AuthfakeauthenticationService
-  ) {}
+    public authService: AuthfakeauthenticationService,
+    private pipe: DecimalPipe,
+    private _loadService: LoadService
+  ) {
+    this.service = new LoadTableService(
+      this.pipe,
+      this.authService,
+      this._loadService
+    );
+  }
 
   ngOnInit(): void {
+    this.service.initForLoadType = this.loadType;
     this.loads$ = this.service.loads$;
     this.statusList = LOAD_SELECT;
     this.isAdmin =
@@ -58,8 +69,7 @@ export class LoadTable implements OnInit {
     this.service.filterTable(
       this.loadFilters.office,
       this.loadFilters.status,
-      this.loadFilters.pickupDate,
-      this.loadFilters.onlyMyLoad
+      this.loadFilters.pickupDate
     );
   }
 
@@ -93,10 +103,6 @@ export class LoadTable implements OnInit {
 
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-  }
-
-  onShowMyLods() {
-    this.onFilterLoads();
   }
 
   onPickUpDateCanceled() {

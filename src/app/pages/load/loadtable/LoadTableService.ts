@@ -5,6 +5,7 @@ import { debounceTime, delay, switchMap, tap } from "rxjs/operators";
 import { FilteredResult, Load, SearchResult } from "../load.model";
 import { SortDirection } from "./loads-sortable.directive";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
+import { LoadService, LOAD_TAB_TYPE } from "../loadService";
 
 interface State {
   page: number;
@@ -57,7 +58,7 @@ function matches(tables: Load, term: string, pipe: PipeTransform) {
 }
 
 export class LoadTableService {
-  private loads: Load[];
+  public loads = new BehaviorSubject<Load[]>([]);
   // tslint:disable-next-line: variable-name
   private _loading$ = new BehaviorSubject<boolean>(true);
   // tslint:disable-next-line: variable-name
@@ -69,11 +70,10 @@ export class LoadTableService {
   private _processedLoads$ = new BehaviorSubject<Load[]>([]);
   // tslint:disable-next-line: variable-name
   private _totalLoads$ = new BehaviorSubject<number>(0);
-  private pipe: DecimalPipe;
   private office: string;
-  private _onlyMyload: boolean;
   private status: number;
   private pickupDate: string;
+
   // tslint:disable-next-line: variable-name
 
   private _State: State = {
@@ -88,13 +88,11 @@ export class LoadTableService {
   };
 
   constructor(
-    private passed_loads: Load[],
-    private pipe_passed: DecimalPipe,
-    private authService: AuthfakeauthenticationService
+    //private passed_loads: Load[],
+    private pipe: DecimalPipe,
+    private authService: AuthfakeauthenticationService,
+    private _loadService: LoadService
   ) {
-    this.loads = passed_loads;
-    this.pipe = pipe_passed;
-
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -137,6 +135,32 @@ export class LoadTableService {
         this._loads$.next(result.loadsFiltered);
         this._totalLoads$.next(result.total);
       });
+  }
+
+  set initForLoadType(type: LOAD_TAB_TYPE) {
+    this._loadService.loads$.subscribe((data) => {
+      let filteredData: Load[];
+
+      switch (type) {
+        case LOAD_TAB_TYPE.ACTIVE:
+          filteredData = data.filter((load) => {
+            if (load.status !== 8 && load.status !== 6) return true;
+          });
+          break;
+        case LOAD_TAB_TYPE.DELIVERED:
+          filteredData = data.filter((load) => load.status === 8);
+          break;
+        case LOAD_TAB_TYPE.CANCELLED:
+          filteredData = data.filter((load) => load.status === 6);
+          break;
+      }
+
+      this.loads.next(filteredData);
+      // this._processedLoads$.next(filteredData);
+
+      this._filter$.next();
+      this._search$.next();
+    });
   }
 
   get loads$() {
@@ -188,9 +212,7 @@ export class LoadTableService {
   set officeFilterTerm(term: string) {
     this.office = term;
   }
-  set onlyMyLoad(term: boolean) {
-    this._onlyMyload = term;
-  }
+
   set statusFilterTerm(term: number) {
     this.status = term;
   }
@@ -228,7 +250,6 @@ export class LoadTableService {
       this._State;
 
     let loadsFiltered = this._processedLoads$.value;
-
     loadsFiltered = sort(loadsFiltered, sortColumn, sortDirection);
     const total = loadsFiltered.length;
     // 3. paginate
@@ -250,10 +271,11 @@ export class LoadTableService {
     const { sortColumn, sortDirection, pageSize, page, searchTerm } =
       this._State;
     let loadsToSearch: Load[];
-    if (this._processedLoads$.value.length == 0) {
-      this._processedLoads$.next(this.loads);
-      loadsToSearch = this.loads;
-    } else loadsToSearch = this._processedLoads$.value;
+
+    if (this._processedLoads$.value.length === 0)
+      this._processedLoads$.next(this.loads.value);
+
+    loadsToSearch = this._processedLoads$.value;
 
     // 1. sort
     let loads = sort(loadsToSearch, sortColumn, sortDirection);
@@ -289,22 +311,16 @@ export class LoadTableService {
       else return true;
     };
 
-    const filterMyLoad = (load: Load) => {
-      if (this._onlyMyload)
-        return load.dispatcher == this.authService.currentUserValue.id;
-      else return true;
-    };
-
     const { sortColumn, sortDirection, pageSize, page, searchTerm } =
       this._State;
     // 1. sort
-    let loads = sort(this.loads, sortColumn, sortDirection);
+    let loads = sort(this.loads.value, sortColumn, sortDirection);
     // 2. filter
     loads = loads
       .filter(filterByOffice)
       .filter(filterByStatus)
-      .filter(filterByPickUpDate)
-      .filter(filterMyLoad);
+      .filter(filterByPickUpDate);
+
     this._processedLoads$.next(loads);
     const total = loads.length;
     // 3. paginate
@@ -319,16 +335,10 @@ export class LoadTableService {
     return of({ loads, total });
   }
 
-  filterTable(
-    office?: string,
-    status?: number,
-    pickupDate?: string,
-    myload?: boolean
-  ) {
+  filterTable(office?: string, status?: number, pickupDate?: string) {
     this.officeFilterTerm = office;
     this.statusFilterTerm = status;
     this.pickUpFilterTerm = pickupDate;
-    this.onlyMyLoad = myload;
     this._filter$.next();
   }
 }

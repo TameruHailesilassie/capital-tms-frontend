@@ -4,13 +4,27 @@
   </app-page-title>
 
   <div class="card">
+
     <div class="card-body">
+
+      <div class="col-xl-2 col-sm-6 content-right" *ngIf="isAdmin">
+        <div class="mt-2 mb-0">
+
+          <div class="form-check form-check-primary mb-3">
+            <input class="form-check-input date-cursor" type="checkbox" name="showMyLoad" [(ngModel)]="onlyMyLoad"
+              (change)="onShowMyLods()" id="formCheckcolor1">
+            <label>Only My Loads</label>
+          </div>
+        </div>
+      </div>
+
+
       <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
 
         <li [ngbNavItem]="1" [destroyOnHide]="false">
           <a ngbNavLink>Active Loads</a>
           <ng-template ngbNavContent>
-            <load-table [service]="service._activeLoadsTableService"></load-table>
+            <load-table [loadType]="tabType.ACTIVE"></load-table>
           </ng-template>
 
         </li>
@@ -18,14 +32,14 @@
         <li [ngbNavItem]="2" [destroyOnHide]="false">
           <a ngbNavLink>Delivered</a>
           <ng-template ngbNavContent>
-            <load-table [service]="service._deliveredLoadsTableService"></load-table>
+            <load-table [loadType]="tabType.DELIVERED"></load-table>
           </ng-template>
         </li>
 
         <li [ngbNavItem]="3" [destroyOnHide]="false">
           <a ngbNavLink>Cancelled</a>
           <ng-template ngbNavContent>
-            <load-table [service]="service._cancelledLoadsTableService"></load-table>
+            <load-table [loadType]="tabType.CANCELLED"></load-table>
           </ng-template>
         </li>
       </ul>
