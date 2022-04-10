@@ -13,6 +13,7 @@ export class OfficeanalyticsComponent implements OnInit {
   @ViewChild('scrollRef') scrollRef;
 
   // bread crumb items
+  transactions: Array<[]>;
   breadCrumbItems: Array<{}>;
   earningLineChart: ChartType;
   sassEarning: Array<Object>;
@@ -82,7 +83,10 @@ export class OfficeanalyticsComponent implements OnInit {
     this.earningLineChart=earningLineChart
     this.loadSummaryChart = pieChart;
     this.UpdateReportData();
-  }
+    this.configService.getConfig().subscribe(data => {
+      this.transactions = data.transactions;
+  });
+}
 
   ngAfterViewInit() {
    // this.scrollRef.SimpleBar.getScrollElement().scrollTop = 500;
