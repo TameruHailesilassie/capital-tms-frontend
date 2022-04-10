@@ -12,6 +12,7 @@ import { AuthfakeauthenticationService } from "src/app/core/services/authfake.se
 export class LoadBoardComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   tabType = LOAD_TAB_TYPE;
+
   onlyMyLoad = false;
   constructor(
     public service: LoadService,
@@ -24,6 +25,7 @@ export class LoadBoardComponent implements OnInit {
       { label: "Load Board", active: true },
     ];
     this.service.fetchLoads();
+
     this.isAdmin =
       this.authService.currentUserValue.role === "super-admin" ||
       this.authService.currentUserValue.role === "office-admin";

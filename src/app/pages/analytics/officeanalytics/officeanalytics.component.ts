@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { earningLineChart,pieChart } from '../temporaryData';
-import { ChartType, PieChartModel } from 'src/app/core/models/ChartTypeModel';
+import { pieChart } from '../temporaryData';
+import { PieChartModel } from 'src/app/core/models/ChartTypeModel';
 import { ConfigService } from '../../../core/services/config.service';
 import * as moment from 'moment';
+import { AuthfakeauthenticationService } from 'src/app/core/services/authfake.service';
+
+
+import { StatisticsChart, StatChartType } from './statistics';
 @Component({
   selector: 'app-officeanalytics',
   templateUrl: './officeanalytics.component.html',
@@ -13,14 +17,16 @@ export class OfficeanalyticsComponent implements OnInit {
   @ViewChild('scrollRef') scrollRef;
 
   // bread crumb items
+  OveviewChart: StatChartType;
   transactions: Array<[]>;
   breadCrumbItems: Array<{}>;
-  earningLineChart: ChartType;
+
   sassEarning: Array<Object>;
   loadSummaryChart: PieChartModel;
   selectedDateRange: any = { startDate: null, endDate: null }
   reportStartDate: string;
   reportEndDate: string;
+  isSuperAdmin: boolean = false;
   ranges: any = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -61,7 +67,7 @@ export class OfficeanalyticsComponent implements OnInit {
     customRangeLabel: 'Custom range',
     firstDay: 1 // first day is monday
   }
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService, private authService :AuthfakeauthenticationService) { }
 
   ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'Dashboards' }, { label: 'Office Analytics', active: true }];
@@ -69,7 +75,7 @@ export class OfficeanalyticsComponent implements OnInit {
     this.selectedDateRange.endDate = moment().endOf('month');
     this.reportStartDate = this.selectedDateRange.startDate.format("MMM-DD-YYYY");
     this.reportEndDate = this.selectedDateRange.endDate.format("MMM-DD-YYYY");
-
+  
     this._fetchData();
   
     this.configService.getConfig().subscribe(response => {
@@ -77,11 +83,12 @@ export class OfficeanalyticsComponent implements OnInit {
   
     });
     
-   
+    this.isSuperAdmin =
+    this.authService.currentUserValue.role === "super-admin" ;
   }
   private _fetchData() {
-    this.earningLineChart=earningLineChart
     this.loadSummaryChart = pieChart;
+    this.OveviewChart = StatisticsChart;
     this.UpdateReportData();
     this.configService.getConfig().subscribe(data => {
       this.transactions = data.transactions;

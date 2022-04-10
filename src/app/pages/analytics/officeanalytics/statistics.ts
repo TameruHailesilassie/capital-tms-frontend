@@ -1,24 +1,32 @@
-import { ChartType } from './wallet.model';
 
-const OveviewChart: ChartType = {
+ interface StatChartType {
+    series?: any;
+    chart?: any;
+    dataLabels?: any;
+    stroke?: any;
+    fill?: any;
+    xaxis?: any;
+    colors?: any;
+}
+const StatisticsChart: StatChartType = {
     series: [{
         type: 'area',
-        name: 'Total Loads',
+        name: 'Gross Revenue',
         data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
     }, {
         type: 'area',
         name: 'Net Profit',
         data: [28, 41, 52, 42, 13, 18, 29, 18, 36, 51, 55, 35]
     }, {
-        type: 'line',
-        name: 'Total Commision',
+        type: 'area',
+        name: 'Load Volume',
         data: [45, 52, 38, 24, 33, 65, 45, 75, 54, 18, 28, 10]
     }],
     chart: {
         height: 350,
         type: 'line',
         toolbar: {
-            show: false,
+            show: true,
         }
     },
     dataLabels: {
@@ -27,18 +35,17 @@ const OveviewChart: ChartType = {
     stroke: {
         curve: 'smooth',
         width: 2,
-        dashArray: [0, 0, 3]
+        dashArray: [0, 0, 0]
     },
     fill: {
         type: 'solid',
-        opacity: [0.15, 0.05, 1],
+        opacity: [0.15, 0.05, 0.15],
     },
     xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     },
-    colors: ['#f1b44c', '#3452e1', '#50a5f1'],
+    colors: ['#f1b44c', '#3452e1', '#1DA1F2'],
 };
 
 
-
-export { OveviewChart };
+export {StatChartType, StatisticsChart}
