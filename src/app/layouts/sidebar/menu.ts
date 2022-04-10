@@ -13,15 +13,10 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 2,
                 label: 'Company Analytics',
-                link: '/analytics/company',
+                link: '/analytics',
                 parentId: 1
             },
-            {
-                id: 3,
-                label: 'Office Ananlytics',
-                link: '/analytics/office',
-                parentId: 1
-            },
+            
             {
                 id: 4,
                 label: 'My Dashboard',
@@ -201,7 +196,7 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 3,
                 label: 'Office Ananlytics',
-                link: '/analytics/office',
+                link: '/analytics',
                 parentId: 1
             },
             {

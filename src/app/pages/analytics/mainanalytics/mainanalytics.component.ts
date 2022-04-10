@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { earningLineChart, pieChart } from '../temporaryData';
-import { ChartType, PieChartModel } from 'src/app/core/models/ChartTypeModel';
-import { EventService } from 'src/app/core/services/event.service';
-import { ConfigService } from 'src/app/core/services/config.service';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { pieChart } from '../temporaryData';
+import { PieChartModel } from 'src/app/core/models/ChartTypeModel';
+import { ConfigService } from '../../../core/services/config.service';
 import * as moment from 'moment';
-@Component({
-  selector: 'app-companyanalytics',
-  templateUrl: './companyanalytics.component.html',
-  styleUrls: ['./companyanalytics.component.scss']
-})
-export class CompanyanalyticsComponent implements OnInit {
+import { AuthfakeauthenticationService } from 'src/app/core/services/authfake.service';
 
+
+import { StatisticsChart, StatChartType } from './statistics';
+@Component({
+  selector: 'app-mainanalytics',
+  templateUrl: './mainanalytics.component.html',
+  styleUrls: ['./mainanalytics.component.scss']
+})
+export class MainAnalyticsComponent implements OnInit {
+
+  @ViewChild('scrollRef') scrollRef;
+
+  // bread crumb items
+  OveviewChart: StatChartType;
   transactions: Array<[]>;
-  statData: Array<[]>;
-  loadSummaryChart: PieChartModel;
-  earningLineChart: ChartType;
-  sassEarning: Array<Object>;
-  selectedDateRange: any = { startDate: null, endDate: null }
   breadCrumbItems: Array<{}>;
+
+  sassEarning: Array<Object>;
+  loadSummaryChart: PieChartModel;
+  selectedDateRange: any = { startDate: null, endDate: null }
   reportStartDate: string;
   reportEndDate: string;
+  isSuperAdmin: boolean = false;
+  isOfficeAdmin: boolean = false;
   ranges: any = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -60,49 +68,36 @@ export class CompanyanalyticsComponent implements OnInit {
     customRangeLabel: 'Custom range',
     firstDay: 1 // first day is monday
   }
-  constructor(private configService: ConfigService, private eventService: EventService) {
-  }
+  constructor(private configService: ConfigService, private authService :AuthfakeauthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'Dashboards' }, { label: 'Office Analytics', active: true }];
     this.selectedDateRange.startDate = moment().startOf('month');
     this.selectedDateRange.endDate = moment().endOf('month');
     this.reportStartDate = this.selectedDateRange.startDate.format("MMM-DD-YYYY");
     this.reportEndDate = this.selectedDateRange.endDate.format("MMM-DD-YYYY");
-    this.breadCrumbItems = [{ label: 'Dashboards' }, { label: 'Company Analytics', active: true }];
-    this.fetchData();
-  }
+    this._fetchData();
+    this.configService.getConfig().subscribe(response => {
+      this.sassEarning = response.sassEarning;
+    });
+    
+    this.isSuperAdmin =
+    this.authService.currentUserValue.role === "super-admin" ;
 
-  ngAfterViewInit() {
-    /* setTimeout(() => {
-       this.openModal();
-     }, 2000);*/
+    this.isOfficeAdmin =
+    this.authService.currentUserValue.role === "office-admin" ;
   }
-
-  /**
-   * Fetches the data
-   */
-  private fetchData() {
-    this.earningLineChart = earningLineChart;
+  private _fetchData() {
     this.loadSummaryChart = pieChart;
+    this.OveviewChart = StatisticsChart;
+    this.UpdateReportData();
     this.configService.getConfig().subscribe(data => {
       this.transactions = data.transactions;
-      this.statData = data.statData;
-      this.sassEarning = data.sassEarning;
-    });
-    this.UpdateReportData();
-  }
+  });
+}
 
-
-  choosedDate(range) {
-    // console.log(range);
-    if (range.startDate !== null && range.endDate !== null) {
-      this.reportStartDate = range.startDate.format("MMM-DD-YYYY");
-      this.reportEndDate = range.endDate.format("MMM-DD-YYYY");
-      this.UpdateReportData();
-    }
-  }
-  private UpdateReportData() {
-    console.log(`updating report for date Range= ${this.reportStartDate}  to ${this.reportEndDate}`);
+  ngAfterViewInit() {
+   // this.scrollRef.SimpleBar.getScrollElement().scrollTop = 500;
   }
 
   selectMonth(value) {
@@ -129,7 +124,7 @@ export class CompanyanalyticsComponent implements OnInit {
         this.sassEarning = [
           {
             name: "This month",
-            amount: "$10007.35",
+            amount: "$2007.35",
             revenue: "0.2",
             time: "From previous period",
             month: "Last month",
@@ -181,5 +176,15 @@ export class CompanyanalyticsComponent implements OnInit {
         break;
     }
   }
-
+  choosedDate(range) {
+    // console.log(range);
+    if (range.startDate !== null && range.endDate !== null) {
+      this.reportStartDate = range.startDate.format("MMM-DD-YYYY");
+      this.reportEndDate = range.endDate.format("MMM-DD-YYYY");
+      this.UpdateReportData();
+    }
+  }
+  private UpdateReportData() {
+    console.log(`updating report for date Range= ${this.reportStartDate}  to ${this.reportEndDate}`);
+  }
 }

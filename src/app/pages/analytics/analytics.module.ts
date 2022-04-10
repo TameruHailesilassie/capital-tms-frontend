@@ -10,8 +10,7 @@ import { WidgetModule } from '../../shared/widget/widget.module';
 import { UIModule } from '../../shared/ui/ui.module';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
-import { CompanyanalyticsComponent } from './companyanalytics/companyanalytics.component';
-import { OfficeanalyticsComponent } from './officeanalytics/officeanalytics.component';
+import { MainAnalyticsComponent } from './mainanalytics/mainanalytics.component';
 import { PersonalanalyticsComponent } from './personalanalytics/personalanalytics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
@@ -19,8 +18,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   declarations: [
-    CompanyanalyticsComponent,
-    OfficeanalyticsComponent,
+    MainAnalyticsComponent,
     PersonalanalyticsComponent,
 
   ],
