@@ -9,7 +9,7 @@ import { ACCOUNTING_MENU, DISPATCHER_MENU, MENU, OFFICE_ADMIN_MENU, SUPER_ADMI_N
 import { MenuItem } from './menu.model';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthfakeauthenticationService } from 'src/app/core/services/authfake.service';
-import { User } from 'src/app/core/models/auth.models';
+import { User } from 'src/app/shared/models/auth.models';
 import { ThemeService } from 'ng2-charts';
 
 @Component({

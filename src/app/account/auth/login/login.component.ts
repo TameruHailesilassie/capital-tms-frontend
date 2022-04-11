@@ -9,7 +9,7 @@ import { first } from "rxjs/operators";
 
 import { environment } from "../../../../environments/environment";
 import { RolebasedlandingService } from "src/app/core/services/rolebasedlanding.service";
-import { User } from "src/app/core/models/auth.models";
+import { User } from "src/app/shared/models/auth.models";
 
 @Component({
   selector: "app-login",
