@@ -1,13 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
-import { AuthenticationService } from "../../../core/services/auth.service";
-import { AuthfakeauthenticationService } from "../../../core/services/authfake.service";
-
+import { AuthenticationService } from "src/app/core/services/auth.service";
+import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
-
-import { environment } from "../../../../environments/environment";
+import { environment } from "src/environments/environment";
 import { RolebasedlandingService } from "src/app/core/services/rolebasedlanding.service";
 import { User } from "src/app/shared/models/auth.models";
 
@@ -38,7 +35,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
     private roleBasedRouting: RolebasedlandingService
-  ) { }
+  ) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
@@ -82,14 +79,11 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
             (data) => {
-
               // console.log(`login component=${JSON.parse(JSON.stringify(data))}`);
               //  this.router.navigate(["/dashboard"]);
 
               let user: User = JSON.parse(JSON.stringify(data));
               this.roleBasedRouting.routeToLanding(user);
-
-
             },
             (error) => {
               this.error = error ? error : "";

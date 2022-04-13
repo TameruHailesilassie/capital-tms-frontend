@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: "account",
     loadChildren: () =>
-      import("./account/account.module").then((m) => m.AccountModule),
+      import("./modules/account/account.module").then((m) => m.AccountModule),
   },
   // tslint:disable-next-line: max-line-length
   {

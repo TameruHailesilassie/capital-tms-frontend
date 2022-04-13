@@ -12,6 +12,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { WidgetModule } from '../shared/widget/widget.module';
 import { PagesRoutingModule } from './modules-routing.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { AccountModule } from './account/account.module';
 import { LoadModule } from './load/load.module';
 import { UiModule } from '../shared/components/ui.module';
 import { MapsModule } from './maps/maps.module';
@@ -33,6 +34,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgbDropdownModule,
     NgbModalModule,
     PagesRoutingModule,
+    AccountModule,
     NgApexchartsModule,
     ReactiveFormsModule,
     LoadModule,
