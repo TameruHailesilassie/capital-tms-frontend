@@ -1,51 +1,70 @@
-
- interface StatChartType {
-    series?: any;
-    chart?: any;
-    dataLabels?: any;
-    stroke?: any;
-    fill?: any;
-    xaxis?: any;
-    colors?: any;
+interface StatChartType {
+  series?: any;
+  chart?: any;
+  legend?: any;
+  dataLabels?: any;
+  stroke?: any;
+  fill?: any;
+  xaxis?: any;
+  colors?: any;
 }
 const StatisticsChart: StatChartType = {
-    series: [{
-        type: 'area',
-        name: 'Gross Revenue',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
-    }, {
-        type: 'area',
-        name: 'Net Profit',
-        data: [28, 41, 52, 42, 13, 18, 29, 18, 36, 51, 55, 35]
-    }, {
-        type: 'area',
-        name: 'Load Volume',
-        data: [45, 52, 38, 24, 33, 65, 45, 75, 54, 18, 28, 10]
-    }],
-    chart: {
-        height: 350,
-        type: 'line',
-        toolbar: {
-            show: true,
-        }
+  series: [
+    {
+      type: "area",
+      name: "Gross Revenue",
+      data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
     },
-    dataLabels: {
-        enabled: false
+    {
+      type: "area",
+      name: "Net Profit",
+      data: [28, 41, 52, 42, 13, 18, 29, 18, 36, 51, 55, 35],
     },
-    stroke: {
-        curve: 'smooth',
-        width: 2,
-        dashArray: [0, 0, 0]
+    {
+      type: "area",
+      name: "Load Volume",
+      data: [45, 52, 38, 24, 33, 65, 45, 75, 54, 18, 28, 10],
     },
-    fill: {
-        type: 'solid',
-        opacity: [0.15, 0.05, 0.15],
+  ],
+  chart: {
+    height: 350,
+    type: "line",
+    toolbar: {
+      show: true,
     },
-    xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    },
-    colors: ['#f1b44c', '#3452e1', '#1DA1F2'],
+
+  },
+  dataLabels: {
+    enabled: false,
+  },
+
+  stroke: {
+    curve: "smooth",
+    width: 2,
+    dashArray: [0, 0, 0],
+  },
+  fill: {
+    type: "solid",
+    opacity: [0.15, 0.05, 0.15],
+  },
+  xaxis: {
+    categories: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  },
+
+  colors: ["#f1b44c", "#3452e1", "#1DA1F2"],
 };
 
-
-export {StatChartType, StatisticsChart}
+export { StatChartType, StatisticsChart };
