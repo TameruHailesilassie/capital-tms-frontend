@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { User } from "src/app/shared/models/auth.models";
 
 @Injectable({ providedIn: "root" })
+
 export class AuthfakeauthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
