@@ -13,7 +13,7 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 2,
                 label: 'Company Analytics',
-                link: '/analytics',
+                link: '/analytics/admin',
                 parentId: 1
             },
             
@@ -183,7 +183,6 @@ const SUPER_ADMI_NMENU: MenuItem[] =
         isTitle: true
     },
 ];
-
 const OFFICE_ADMIN_MENU: MenuItem[] = [
 
     {
@@ -196,7 +195,7 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 3,
                 label: 'Office Ananlytics',
-                link: '/analytics',
+                link: '/analytics/admin',
                 parentId: 1
             },
             {
@@ -356,7 +355,6 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
     },
 
 ];
-
 const ACCOUNTING_MENU: MenuItem[] = [];
 const DISPATCHER_MENU: MenuItem[] = [
     {
@@ -505,7 +503,6 @@ const DISPATCHER_MENU: MenuItem[] = [
         isTitle: true
     },
 ];
-
  const MENU: MenuItem[] = [
     {
         id: 1,

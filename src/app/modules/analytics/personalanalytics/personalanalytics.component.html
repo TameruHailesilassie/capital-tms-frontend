@@ -1,31 +1,41 @@
 <div class="container-fluid">
+    <div class="page-title-box d-flex align-items-center justify-content-between">
+        <div class="col-sm-2">
+            <label class="col-form-label">Analytics Period: &nbsp;&nbsp; </label>
+            <input id="datePicker" class="form-control " ngxDaterangepickerMd [closeOnAutoApply]="true"
+                [showCustomRangeLabel]="true" [autoApply]="true" [singleDatePicker]="false" [ranges]="ranges"
+                (datesUpdated)="choosedDate($event)" [locale]="locale" [alwaysShowCalendars]="false"
+                [linkedCalendars]="true" [(ngModel)]="selectedDateRange">
+        </div>
+        <div class="col-sm-2 pull-right">
 
-    <app-page-title title="" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+            <app-page-title title="" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-xl-4">
+            <div class="card bg-primary bg-soft">
+                <div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="text-primary p-3">
+                                <h5>Tameru H.</h5>
+                                <p class="mb-1">tameru@logisticmanager.com</p>
+                                <p class="mb-0 text-warning ">Dispatcher</p>
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="me-4 col-sm-4">
-                            <img src="assets/images/supply-chain.png" alt="" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <label class="col-form-label">Analytics Period: &nbsp;&nbsp; </label>
-                            <input id="datePicker" class="form-control " ngxDaterangepickerMd [closeOnAutoApply]="true"
-                                [showCustomRangeLabel]="false" [autoApply]="true" [singleDatePicker]="false"
-                                [ranges]="ranges" (datesUpdated)="choosedDate($event)" [locale]="locale"
-                                [alwaysShowCalendars]="false" [linkedCalendars]="true" [(ngModel)]="selectedDateRange">
-                        </div>
 
+                            </div>
+                        </div>
+                        <div class="col-4 align-self-end">
+                            <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
 
-
-
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-body">
                     <div class="media">
                         <div class="me-4">
@@ -64,6 +74,20 @@
                     </div>
                 </div>
 
+            </div> -->
+
+            <div class="card ">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 ">LOAD BREAKDOWN</h4>
+
+                    <apx-chart class="apex-charts" dir="ltr" [series]="loadSummaryChart.series"
+                        [chart]="loadSummaryChart.chart" [labels]="loadSummaryChart.labels"
+                        [legend]="loadSummaryChart.legend" [colors]="loadSummaryChart.colors"
+                        [responsive]="loadSummaryChart.responsive">
+                    </apx-chart>
+
+
+                </div>
             </div>
         </div>
 
@@ -75,11 +99,60 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="me-3 align-self-center">
-                                    <i class="bx bx-dollar h1 text-danger mb-0 font-size-24"></i>
+                                    <i class="bx bx-archive-in h1 text-danger mb-0 font-size-24"></i>
                                 </div>
                                 <div class="media-body">
-                                    <p class="text-muted mb-2">Total Net Profit</p>
+                                    <p class="text-muted mb-2">Gross Revenue</p>
                                     <h5 class="mb-0">$ 3,500 </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="me-3 align-self-center">
+                                    <i class="bx bx-dollar h1 text-info mb-0 font-size-24"></i>
+                                </div>
+                                <div class="media-body">
+                                    <p class="text-muted mb-2">Net Profit</p>
+                                    <h5 class="mb-0">$3,850 </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="me-3 align-self-center">
+                                    <i class="mdi mdi-dolly h text-warning mb-0 font-size-24"></i>
+                                </div>
+                                <div class="media-body">
+                                    <p class="text-muted mb-2">Total Loads</p>
+                                    <h5 class="mb-0">11,500 </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="me-3 align-self-center">
+                                    <i class="mdi mdi-dolly h1 text-danger mb-0 font-size-24"></i>
+                                </div>
+                                <div class="media-body">
+                                    <p class="text-muted mb-2">Load Average</p>
+                                    <h5 class="mb-0">{{loadAverage | currency}} </h5>
                                 </div>
                             </div>
                         </div>
@@ -105,10 +178,10 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="me-3 align-self-center">
-                                    <i class="mdi mdi-dolly h text-warning mb-0 font-size-24"></i>
+                                    <i class="mdi mdi-sack-percent h text-warning mb-0 font-size-24"></i>
                                 </div>
                                 <div class="media-body">
-                                    <p class="text-muted mb-2">Total Loads</p>
+                                    <p class="text-muted mb-2">Profit Margin</p>
                                     <h5 class="mb-0">11,500 </h5>
                                 </div>
                             </div>
@@ -116,7 +189,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
 
             <div class="card">
                 <div class="card-body">
@@ -136,12 +208,20 @@
 
     </div>
     <!-- end row -->
-
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title mb-4">MY LATEST TRANSACTION </h4>
-            <app-transaction [transactions]="transactions"></app-transaction>
-            <!-- end table -->
+    <div class="row">
+        <div class="col-xl-4">
         </div>
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">RECENT LOADS </h4>
+                    <app-transaction [transactions]="transactions"></app-transaction>
+                    <!-- end table -->
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </div>

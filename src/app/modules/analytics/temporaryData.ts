@@ -162,7 +162,7 @@ const statData = [{
 }];
 const pieChart: PieChartModel = {
     chart: {
-        height: 400,
+        height: 450,
         type: 'pie',
     },
     series: [44, 55, 41, 17, 15,0,10,55],
