@@ -1,38 +1,72 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
-import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
-import { RolebasedlandingService } from "src/app/core/services/rolebasedlanding.service";
-
 import { LoginComponent } from "./login.component";
 
 describe("LoginComponent", () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule.withRoutes([]), HttpClientModule],
-        declarations: [LoginComponent],
-        providers: [
-          FormBuilder,
-          HttpClient,
-          AuthfakeauthenticationService,
-          RolebasedlandingService,
-        ],
-      }).compileComponents();
-    })
-  );
+  let fixure: LoginComponent;
+  let formBuilderMock: FormBuilder;
+  let authFackserviceMock: any;
+  let roleBasedRoutingServiceMock: any;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    authFackserviceMock = {
+      login: jest.fn(),
+    };
+    roleBasedRoutingServiceMock = {
+      routeToLanding: jest.fn(),
+    };
+
+    formBuilderMock = new FormBuilder();
+    fixure = new LoginComponent(
+      formBuilderMock,
+      authFackserviceMock,
+      roleBasedRoutingServiceMock
+    );
+    fixure.ngOnInit();
   });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
+  it("initialize the form", () => {
+    const loginForm = {
+      email: "",
+      password: "",
+    };
+    expect(fixure.loginForm.value).toEqual(loginForm);
+  });
+
+  it("set submitted flag", () => {
+    fixure.onSubmit();
+    expect(fixure.submitted).toBeTruthy();
+  });
+
+  it("invalidate form", () => {
+    fixure.loginForm.controls.email.setValue("tameruh.s@gmail.com");
+    fixure.loginForm.controls.password.setValue("");
+    expect(fixure.loginForm.valid).toBeFalsy();
+  });
+
+  it("shouldn't call service if form invalid", () => {
+    fixure.loginForm.controls.email.setValue("");
+    fixure.loginForm.controls.password.setValue("453456");
+    fixure.onSubmit();
+    expect(authFackserviceMock.login).not.toHaveBeenCalled();
+  });
+
+  it("should call login service", () => {
+    fixure.loginForm.controls.email.setValue("tata@gmail.com");
+    fixure.loginForm.controls.password.setValue("453456");
+    const spyLogin = jest
+      .spyOn(authFackserviceMock, "login")
+      .mockReturnValue(true);
+    expect(
+      authFackserviceMock.login(
+        fixure.loginForm.controls.email.value,
+        fixure.loginForm.controls.password.value
+      )
+    ).toBe(true);
+  });
+
+  it("should toggle password visibility", () => {
+    fixure.visiblePassword = false;
+    fixure.togglePasswordField();
+    expect(fixure.visiblePassword).toBeTruthy();
   });
 });

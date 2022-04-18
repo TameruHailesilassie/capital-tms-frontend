@@ -1,19 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
 import { first } from "rxjs/operators";
-import { RolebasedlandingService } from "src/app/core/services/rolebasedlanding.service";
-import { User } from "src/app/shared/models/auth.models";
+import { RolebasedlandingService } from "../../../../core/services/rolebasedlanding.service";
+import { User } from "../../../../shared/models/auth.models";
+import { AuthfakeauthenticationService } from "../../../../core/services/authfake.service";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-
-/**
- * Login component
- */
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
@@ -21,7 +17,6 @@ export class LoginComponent implements OnInit {
   visiblePassword = false;
   // set the currenr year
   year: number = new Date().getFullYear();
-  // tslint:disable-next-line: max-line-length
   constructor(
     private formBuilder: FormBuilder,
     private authFackservice: AuthfakeauthenticationService,
@@ -32,12 +27,6 @@ export class LoginComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
     });
-
-    // reset login status
-    // this.authenticationService.logout();
-    // get return url from route parameters or default to '/'
-    // tslint:disable-next-line: no-string-literal
-    //  this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
   // convenience getter for easy access to form fields
@@ -51,7 +40,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     } else {
@@ -60,9 +48,6 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           (data) => {
-            // console.log(`login component=${JSON.parse(JSON.stringify(data))}`);
-            //  this.router.navigate(["/dashboard"]);
-
             let user: User = JSON.parse(JSON.stringify(data));
             this.roleBasedRouting.routeToLanding(user);
           },

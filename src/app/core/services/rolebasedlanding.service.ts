@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { User } from "src/app/shared/models/auth.models";
+import { Router } from "@angular/router";
+import { User } from "../../shared/models/auth.models";
 
 @Injectable({
   providedIn: "root",
