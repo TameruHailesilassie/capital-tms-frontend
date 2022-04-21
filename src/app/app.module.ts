@@ -56,7 +56,6 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbAccordionModule,
     NgbNavModule,
     NgbTooltipModule,
-
     ScrollToModule.forRoot(),
     NgbModule,
   ],

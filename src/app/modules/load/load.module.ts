@@ -13,8 +13,8 @@ import {
   NgbTypeaheadModule,
   NgbDatepickerModule,
 } from "@ng-bootstrap/ng-bootstrap";
-import { LoadsSortableDirective } from "./loadtable/loads-sortable.directive";
-import { LoadShowDetailDirective } from "./loadtable/load-show-detail.directive";
+import { LoadsSortableDirective } from "src/app/shared/directives/loads-sortable.directive";
+import { LoadShowDetailDirective } from "src/app/shared/directives/load-show-detail.directive";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WidgetModule } from "src/app/shared/widget/widget.module";
 import { LoadTable } from './loadtable/loadtable.component';

@@ -1,17 +1,21 @@
 <div class="card mini-stats-wid">
+  <div class="bg-holder bg-card"></div>
   <div class="card-body">
-    <div class="media">
-      <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-        <span class="avatar-title">
-          <i class="bx {{icon}} font-size-24"></i>
-        </span>
+      <div class="d-flex align-items-center mb-3">
+          <div class="avatar-xs me-3">
+              <span
+                  class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
+                  <i class="{{icon}}"></i>
+              </span>
+          </div>
+          <h5 class="font-size-14 mb-0">{{title}}</h5>
       </div>
-      <div class="media-body align-right">
-        <h5 class="font-size-14 mb-2 text-center">{{title}}</h5>
-        <h5 class="text-center">{{value}}</h5>
+      <div class="text-muted mt-4">
+          <h4> {{isCurrency? (value| currency) : (value| number) }}<i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+          <div class="d-flex">
+              <span class="badge badge-soft-success font-size-12">{{comparison>0? '+':'-'}} {{comparison | percent}}</span> <span
+                  class="ms-2 text-truncate">From previous period</span>
+          </div>
       </div>
-    </div>
   </div>
-  <!-- end card-body -->
 </div>
-<!-- end card -->

@@ -17,8 +17,8 @@ import { LOAD_SELECT } from "src/app/shared/widget/loadstatus/status";
 import { LoadAttributeModalComponent } from "../load-attribute-modal/load-attribute-modal.component";
 import { Load } from "../load.model";
 import { LoadService, LOAD_TAB_TYPE } from "../loadService";
-import { ShowPopupEvent } from "./load-show-detail.directive";
-import { LoadsSortableDirective, SortEvent } from "./loads-sortable.directive";
+import { ShowPopupEvent } from "src/app/shared/directives/load-show-detail.directive";
+import { LoadsSortableDirective, SortEvent } from "src/app/shared/directives/loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
 @Component({
   selector: "load-table",

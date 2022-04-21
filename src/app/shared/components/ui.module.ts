@@ -34,6 +34,7 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { AgmCoreModule } from '@agm/core';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 
+
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [AlertsComponent, ButtonsComponent, CardsComponent, CarouselComponent, DropdownsComponent, GridComponent, ImagesComponent, ModalsComponent, ProgressbarComponent, TypographyComponent, GeneralComponent, ColorsComponent, VideoComponent, TabsComponent, SweetalertComponent, RangesliderComponent, ImagecropperComponent, LightboxComponent, PlaceholderComponent],

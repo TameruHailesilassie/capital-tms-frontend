@@ -13,14 +13,12 @@ import { AnalyticsRoutingModule } from './analytics-routing.module';
 import { MainAnalyticsComponent } from './mainanalytics/mainanalytics.component';
 import { PersonalanalyticsComponent } from './personalanalytics/personalanalytics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-
 
 @NgModule({
   declarations: [
     MainAnalyticsComponent,
     PersonalanalyticsComponent,
-
+  
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     NgxEchartsModule,
     NgxChartistModule,
     FormsModule,
-    NgxDaterangepickerMd.forRoot(),
     WidgetModule,
     ReactiveFormsModule,
     NgApexchartsModule,

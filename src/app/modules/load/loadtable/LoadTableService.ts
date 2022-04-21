@@ -3,7 +3,7 @@ import { DecimalPipe } from "@angular/common";
 import { BehaviorSubject, Observable, of, Subject } from "rxjs";
 import { debounceTime, delay, switchMap, tap } from "rxjs/operators";
 import { FilteredResult, Load, SearchResult } from "../load.model";
-import { SortDirection } from "./loads-sortable.directive";
+import { SortDirection } from "src/app/shared/directives/loads-sortable.directive";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
 import { LoadService, LOAD_TAB_TYPE } from "../loadService";
 

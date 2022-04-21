@@ -4,10 +4,10 @@
             <div class="page-title-box d-flex align-items-center justify-content-between">
                 <div class="col-sm-2">
                     <label class="col-form-label">Analytics Period: &nbsp;&nbsp; </label>
-                    <input id="datePicker" class="form-control " ngxDaterangepickerMd [closeOnAutoApply]="true"
-                        [showCustomRangeLabel]="true" [autoApply]="true" [singleDatePicker]="false" [ranges]="ranges"
-                        (datesUpdated)="choosedDate($event)" [locale]="locale" [alwaysShowCalendars]="false"
-                        [linkedCalendars]="true" [(ngModel)]="selectedDateRange">
+                    <!--Date Range picker -->
+                    <date-range-picker [ranges]="ranges" (rangeSelected)="onDateRangeSlelected($event)">
+                    </date-range-picker>
+
                 </div>
                 <div class="col-sm-2 pull-right">
 
@@ -32,7 +32,6 @@
                                 <h5 class="mb-1">Alec Manoukian</h5>
                                 <p class="mb-0 text-warning">Company Admin</p>
 
-
                                 <ul class="ps-3 mb-0">
                                     <li class="py-1">Navigate to Offices</li>
                                     <li class="py-1">Load Summary and more</li>
@@ -50,73 +49,21 @@
         <div class="col-xl-9">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="mdi mdi-dolly"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Load Count</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--Load Count-->
+                    <app-stat [icon]="loadCount.icon" [title]="loadCount.title" [value]="loadCount.value"
+                        [comparison]="loadCount.comparison"></app-stat>
                 </div>
 
                 <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="bx bx-archive-in"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Gross Revenue</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>$ 28,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--gross revenue-->
+                    <app-stat [icon]="grossRevenue.icon" [title]="grossRevenue.title" [value]="grossRevenue.value"
+                        [comparison]="grossRevenue.comparison" [isCurrency]="grossRevenue.currency"></app-stat>
                 </div>
 
                 <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="bx bx-dollar"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Net Profit</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>$ 2,116.2 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-warning font-size-12"> 0% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--Net Profit-->
+                    <app-stat [icon]="netProfit.icon" [title]="netProfit.title" [value]="netProfit.value"
+                        [comparison]="netProfit.comparison" [isCurrency]="netProfit.currency"></app-stat>
                 </div>
 
             </div>
@@ -127,48 +74,98 @@
         <div class="col-xl-6">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="mdi mdi-dolly"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Load Average</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--Load Average-->
+                    <app-stat [icon]="loadAverage.icon" [title]="loadAverage.title" [value]="loadAverage.value"
+                        [comparison]="loadAverage.comparison"></app-stat>
                 </div>
                 <div class="col-xl-6">
-                    <div class="card ">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="mdi mdi-sack-percent"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Profit Margin</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
+                    <!--Profit Margin -->
+                    <app-stat [icon]="profitMargin.icon" [title]="profitMargin.title" [value]="profitMargin.value"
+                        [comparison]="profitMargin.comparison" [isCurrency]="profitMargin.currency"></app-stat>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Load Coverage</h4>
+                    <ul ngbNav #nav1="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
+
+                        <li [ngbNavItem]="1" [destroyOnHide]="false">
+                            <a ngbNavLink>Origin</a>
+                            <ng-template ngbNavContent>
+                                <ng-template [ngTemplateOutlet]="originMap"></ng-template>
+                            </ng-template>
+
+                        </li>
+
+                        <li [ngbNavItem]="2">
+                            <a ngbNavLink>Destination</a>
+                            <ng-template ngbNavContent>
+                                <ng-template [ngTemplateOutlet]="destinationMap"></ng-template>
+                            </ng-template>
+                        </li>
+
+                    </ul>
+                    <div [ngbNavOutlet]="nav1"></div>
+
+
+                </div>
+            </div>
+
+            <div class="">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">RECENT LOADS </h4>
+                        <app-transaction [transactions]="transactions"></app-transaction>
+                        <!-- end table -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="clearfix">
+                        <div class="float-end">
+                            <div class="input-group input-group-sm">
+                                <label class="input-group-text">Report</label>
+                                <select class="form-select form-select-sm" (change)="selectMonth($event.target.value)">
+                                    <option value="january" selected>Total Revenue</option>
+                                    <option value="december">Total Profit</option>
+                                    <option value="november">Total Loads</option>
+                                </select>
                             </div>
                         </div>
+                        <h4 class="card-title mb-4">STATISTICS</h4>
                     </div>
+
+                    <div>
+                        <div id="overview-chart" class="apex-charts" dir="ltr"></div>
+                        <apx-chart class="apex-charts" dir="ltr" [series]="OveviewChart.series"
+                            [chart]="OveviewChart.chart" [colors]="OveviewChart.colors" [stroke]="OveviewChart.stroke"
+                            [dataLabels]="OveviewChart.dataLabels" [fill]="OveviewChart.fill"
+                            [xaxis]="OveviewChart.xaxis">
+                        </apx-chart>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="row" *ngIf="isSuperAdmin">
+
+                <div class="col-xl-6">
+                    <!--Total Offices-->
+                    <app-stat [icon]="totalOffice.icon" [title]="totalOffice.title" [value]="totalOffice.value"
+                        [comparison]="totalOffice.comparison" [isCurrency]="totalOffice.currency"></app-stat>
+                </div>
+                <div class="col-xl-6">
+                    <!--total Dispatcher-->
+                    <app-stat [icon]="totalDispatchers.icon" [title]="totalDispatchers.title"
+                        [value]="totalDispatchers.value" [comparison]="totalDispatchers.comparison"
+                        [isCurrency]="totalDispatchers.currency"></app-stat>
                 </div>
             </div>
 
@@ -211,115 +208,7 @@
 
                 </div>
             </div>
-
         </div>
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="clearfix">
-                        <div class="float-end">
-                            <div class="input-group input-group-sm">
-                                <label class="input-group-text">Report</label>
-                                <select class="form-select form-select-sm" (change)="selectMonth($event.target.value)">
-                                    <option value="january" selected>Total Revenue</option>
-                                    <option value="december">Total Profit</option>
-                                    <option value="november">Total Loads</option>
-
-                                </select>
-
-                            </div>
-                        </div>
-                        <h4 class="card-title mb-4">STATISTICS</h4>
-                    </div>
-
-
-                    <div>
-                        <div id="overview-chart" class="apex-charts" dir="ltr"></div>
-                        <apx-chart class="apex-charts" dir="ltr" [series]="OveviewChart.series"
-                            [chart]="OveviewChart.chart" [colors]="OveviewChart.colors" [stroke]="OveviewChart.stroke"
-                            [dataLabels]="OveviewChart.dataLabels" [fill]="OveviewChart.fill"
-                            [xaxis]="OveviewChart.xaxis">
-                        </apx-chart>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-            <div class="card" *ngIf="isOfficeAdmin">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">RECENT LOADS </h4>
-                    <app-transaction [transactions]="transactions"></app-transaction>
-                    <!-- end table -->
-                </div>
-            </div>
-
-            <div class="row" *ngIf="isSuperAdmin">
-
-                <div class="col-xl-6">
-                    <div class="card ">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="bx bx-map-pin"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Total Offices</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card ">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="avatar-xs me-3">
-                                    <span
-                                        class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-24">
-                                        <i class="bx bx-group"></i>
-                                    </span>
-                                </div>
-                                <h5 class="font-size-14 mb-0">Total Dispatchers</h5>
-                            </div>
-                            <div class="text-muted mt-4">
-                                <h4>1,452 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
-                                <div class="d-flex">
-                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
-                                        class="ms-2 text-truncate">From previous period</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" *ngIf="isSuperAdmin">
-
-        <div class="col-lg-6">
-
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">RECENT LOADS </h4>
-                    <app-transaction [transactions]="transactions"></app-transaction>
-                    <!-- end table -->
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
     <ng-template #performersTable>
@@ -510,4 +399,12 @@
             </table>
         </div>
 
+    </ng-template>
+
+    <ng-template #originMap>
+        <USA-map [coverage]="pickUpCoverage"></USA-map>
+    </ng-template>
+
+    <ng-template #destinationMap>
+        <USA-map [coverage]="deliveryCoverage"></USA-map>
     </ng-template>

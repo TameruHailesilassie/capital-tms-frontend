@@ -1,0 +1,4 @@
+<input id="datePicker" class="form-control " ngxDaterangepickerMd [closeOnAutoApply]="true"
+    [showCustomRangeLabel]="true" [autoApply]="true" [singleDatePicker]="false" [ranges]="ranges"
+    (datesUpdated)="choosedDate($event)" [locale]="locale" [alwaysShowCalendars]="false" [linkedCalendars]="true"
+    [(ngModel)]="selectedDateRange">

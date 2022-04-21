@@ -8,6 +8,94 @@ interface StatChartType {
   xaxis?: any;
   colors?: any;
 }
+
+interface DashboardStat {
+  title: string;
+  icon: string;
+  value: number;
+  comparison?: number;
+  currency?:boolean;
+}
+
+interface Stats {
+  name: string;
+  content: DashboardStat;
+}
+
+const dashboardStats: Stats[] = [
+  {
+    name: "laodCount",
+    content: {
+      title: "Load Count",
+      icon: "mdi mdi-dolly",
+      value: 1250,
+      comparison: +0.03,
+    },
+  },
+  {
+    name: "grossRevenue",
+    content: {
+      title: "Gross Revenue",
+      icon: "bx bx-archive-in",
+      value: 28452,
+      comparison: +0.03,
+      currency:true
+    },
+  },
+  {
+    name: "netProfit",
+    content: {
+      title: "Net Profit",
+      icon: "bx bx-dollar",
+      value: 2116.2,
+      comparison: +0.03,
+      currency:true
+    },
+  },
+
+
+  {
+    name: "loadAvergae",
+    content: {
+      title: "Load Average",
+      icon: "mdi mdi-dolly",
+      value: 1452,
+      comparison: +0.03,
+    },
+  },
+  
+  {
+    name: "profitMargin",
+    content: {
+      title: "Profit Margin",
+      icon: "mdi mdi-sack-percent",
+      value: 1452,
+      comparison: +0.03,
+      currency:true
+    },
+  },
+  {
+    name: "totalOffice",
+    content: {
+      title: "Total Offices",
+      icon: "bx bx-map-pin",
+      value: 5,
+      comparison: +0.03,
+    
+    },
+  },
+  {
+    name: "totalDispatchers",
+    content: {
+      title: "Total Dispatchers",
+      icon: "bx bx-group",
+      value: 15,
+      comparison: +0.03,
+   
+    },
+  },
+];
+
 const StatisticsChart: StatChartType = {
   series: [
     {
@@ -32,7 +120,6 @@ const StatisticsChart: StatChartType = {
     toolbar: {
       show: true,
     },
-
   },
   dataLabels: {
     enabled: false,
@@ -67,4 +154,4 @@ const StatisticsChart: StatChartType = {
   colors: ["#f1b44c", "#3452e1", "#1DA1F2"],
 };
 
-export { StatChartType, StatisticsChart };
+export { StatChartType, StatisticsChart, Stats, DashboardStat, dashboardStats };

@@ -3,8 +3,8 @@ import { ChartType } from "./wallet.model";
 import * as moment from "moment";
 import { pieChart } from "../temporaryData";
 import { OveviewChart } from "./data";
-import { ConfigService } from "src/app/core/services/config.service";
-import { PieChartModel } from "src/app/shared/models/ChartTypeModel";
+import { ConfigService } from "../../../core/services/config.service";
+import { PieChartModel } from "../../../shared/models/ChartTypeModel";
 @Component({
   selector: "app-personalanalytics",
   templateUrl: "./personalanalytics.component.html",
@@ -34,15 +34,7 @@ export class PersonalanalyticsComponent implements OnInit {
     "Last 7 Days": [moment().subtract(6, "days"), moment()],
     "Last 30 Days": [moment().subtract(29, "days"), moment()],
   };
-  locale: any = {
-    format: "MMM-DD-YYYY", // could be 'YYYY-MM-DDTHH:mm:ss.SSSSZ'
-    displayFormat: "MMM-DD-YYYY", // default is format value
-    direction: "ltr", // could be rtl
-    separator: " To ", // default is ' - '
-    customRangeLabel: "Custom range",
 
-    firstDay: 1, // first day is monday
-  };
   constructor(private configService: ConfigService) {}
 
   ngOnInit(): void {
@@ -78,11 +70,9 @@ export class PersonalanalyticsComponent implements OnInit {
     );
   }
 
-  choosedDate(range) {
-    if (range.startDate !== null && range.endDate !== null) {
-      this.reportStartDate = range.startDate.format("MMM-DD-YYYY");
-      this.reportEndDate = range.endDate.format("MMM-DD-YYYY");
-      this.UpdateReportData();
-    }
+  onDateRangeSlelected(event) {
+    this.reportStartDate = event.startDate;
+    this.reportEndDate = event.endDate;
+    this.UpdateReportData();
   }
 }
