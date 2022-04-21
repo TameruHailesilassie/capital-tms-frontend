@@ -48,11 +48,7 @@
         </div>
         <div class="col-xl-9">
             <div class="row">
-                <div class="col-sm-4">
-                    <!--Load Count-->
-                    <app-stat [icon]="loadCount.icon" [title]="loadCount.title" [value]="loadCount.value"
-                        [comparison]="loadCount.comparison"></app-stat>
-                </div>
+
 
                 <div class="col-sm-4">
                     <!--gross revenue-->
@@ -65,6 +61,13 @@
                     <app-stat [icon]="netProfit.icon" [title]="netProfit.title" [value]="netProfit.value"
                         [comparison]="netProfit.comparison" [isCurrency]="netProfit.currency"></app-stat>
                 </div>
+                <div class="col-sm-4">
+                    <!--Profit Margin -->
+                    <app-stat [icon]="profitMargin.icon" [title]="profitMargin.title" [value]="profitMargin.value"
+                        [comparison]="profitMargin.comparison" [isCurrency]="profitMargin.currency"></app-stat>
+                </div>
+
+
 
             </div>
         </div>
@@ -73,15 +76,20 @@
     <div class="row ">
         <div class="col-xl-6">
             <div class="row">
+
+
+
                 <div class="col-sm-6">
+                    <!--Load Count-->
+                    <app-stat [icon]="loadCount.icon" [title]="loadCount.title" [value]="loadCount.value"
+                        [comparison]="loadCount.comparison"></app-stat>
+
+                </div>
+                <div class="col-xl-6">
                     <!--Load Average-->
                     <app-stat [icon]="loadAverage.icon" [title]="loadAverage.title" [value]="loadAverage.value"
                         [comparison]="loadAverage.comparison"></app-stat>
-                </div>
-                <div class="col-xl-6">
-                    <!--Profit Margin -->
-                    <app-stat [icon]="profitMargin.icon" [title]="profitMargin.title" [value]="profitMargin.value"
-                        [comparison]="profitMargin.comparison" [isCurrency]="profitMargin.currency"></app-stat>
+
                 </div>
             </div>
             <div class="card">

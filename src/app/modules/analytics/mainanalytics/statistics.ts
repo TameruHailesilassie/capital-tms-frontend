@@ -58,7 +58,7 @@ const dashboardStats: Stats[] = [
     name: "loadAvergae",
     content: {
       title: "Load Average",
-      icon: "mdi mdi-dolly",
+      icon: "mdi mdi-chart-bell-curve",
       value: 1452,
       comparison: +0.03,
     },
