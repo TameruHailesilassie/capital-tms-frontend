@@ -45,6 +45,34 @@
 
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Load Coverage</h4>
+                    <ul ngbNav #nav1="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
+
+                        <li [ngbNavItem]="1" [destroyOnHide]="false">
+                            <a ngbNavLink>Origin</a>
+                            <ng-template ngbNavContent>
+                                <ng-template [ngTemplateOutlet]="originMap"></ng-template>
+                            </ng-template>
+
+                        </li>
+
+                        <li [ngbNavItem]="2">
+                            <a ngbNavLink>Destination</a>
+                            <ng-template ngbNavContent>
+                                <ng-template [ngTemplateOutlet]="destinationMap"></ng-template>
+                            </ng-template>
+                        </li>
+
+                    </ul>
+                    <div [ngbNavOutlet]="nav1"></div>
+
+
+                </div>
+            </div>
+
+
         </div>
 
         <div class="col-xl-8">
@@ -164,15 +192,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div>
-    <!-- end row -->
-    <div class="row">
-        <div class="col-xl-4">
-        </div>
-        <div class="col-xl-8">
-
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">RECENT LOADS </h4>
@@ -183,5 +202,14 @@
         </div>
 
     </div>
+   
 
 </div>
+
+<ng-template #originMap>
+    <USA-map [coverage]="pickUpCoverage"></USA-map>
+</ng-template>
+
+<ng-template #destinationMap>
+    <USA-map [coverage]="deliveryCoverage"></USA-map>
+</ng-template>
