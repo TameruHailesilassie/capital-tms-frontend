@@ -11,10 +11,10 @@ export class RolebasedlandingService {
   routeToLanding(user: User) {
     switch (user.role) {
       case "super-admin":
-        this.router.navigate(["/analytics"]);
+        this.router.navigate(["/analytics/admin"]);
         break;
       case "office-admin":
-        this.router.navigate(["/analytics"]);
+        this.router.navigate(["/analytics/admin"]);
         break;
       case "dispatcher":
         this.router.navigate(["/analytics/personal"]);

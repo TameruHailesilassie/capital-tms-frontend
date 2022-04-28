@@ -137,13 +137,13 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 22,
                 label: 'Company List',
-                link: '#',
+                link: '/factoring-company/list',
                 parentId: 21
             },
             {
                 id: 23,
                 label: 'Add Company',
-                link: '#',
+                link: '/factoring-company/add',
                 parentId: 21
             }
         ]

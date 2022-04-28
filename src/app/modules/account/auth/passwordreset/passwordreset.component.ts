@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "src/app/core/services/auth.service";
 import { environment } from "src/environments/environment";
 @Component({
   selector: "app-passwordreset",
@@ -27,7 +26,7 @@ export class PasswordresetComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+  //  private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -55,11 +54,11 @@ export class PasswordresetComponent implements OnInit, AfterViewInit {
       return;
     }
     if (environment.defaultauth === "firebase") {
-      this.authenticationService
+     /* this.authenticationService
         .resetPassword(this.f.email.value)
         .catch((error) => {
           this.error = error ? error : "";
-        });
+        });*/
     }
   }
 }

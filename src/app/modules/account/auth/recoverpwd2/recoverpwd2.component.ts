@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthenticationService } from "src/app/core/services/auth.service";
 import { environment } from "src/environments/environment";
 
 @Component({
@@ -24,7 +23,7 @@ export class Recoverpwd2Component implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+   // private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -50,11 +49,11 @@ export class Recoverpwd2Component implements OnInit {
       return;
     }
     if (environment.defaultauth === "firebase") {
-      this.authenticationService
+      /*this.authenticationService
         .resetPassword(this.f.email.value)
         .catch((error) => {
           this.error = error ? error : "";
-        });
+        });*/
     }
   }
 
