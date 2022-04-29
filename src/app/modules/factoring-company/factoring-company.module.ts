@@ -5,7 +5,8 @@ import { FactoringCompanyRoutingModule } from './factoring-company-routing.modul
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { UIModule } from "../../shared/ui/ui.module";
-
+import { NgxMaskModule } from 'ngx-mask';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AddCompanyComponent,
@@ -15,7 +16,9 @@ import { UIModule } from "../../shared/ui/ui.module";
     CommonModule,
     FactoringCompanyRoutingModule,
     ReactiveFormsModule,
-    UIModule
+    UIModule,
+    NgSelectModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class FactoringCompanyModule { }

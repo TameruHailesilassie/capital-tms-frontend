@@ -19,7 +19,6 @@ import { UiModule } from '../shared/components/ui.module';
 import { MapsModule } from './maps/maps.module';
 
 
-
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,

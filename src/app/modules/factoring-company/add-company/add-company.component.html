@@ -1,81 +1,139 @@
 <div class="container-fluid">
-    <app-page-title title="Add Factoring Comapny" [breadcrumbItems]="breadCrumbItems">
-  
-    </app-page-title>
- <div class="card">
+  <app-page-title title="Add Factoring Comapny" [breadcrumbItems]="breadCrumbItems">
+
+  </app-page-title>
+  <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Add Company</h4>
-      <p class="card-title-desc">Provide valuable, actionable feedback to your users with HTML5 form
-        validation–available in all our supported browsers.</p>
       <form class="needs-validation" (ngSubmit)="validSubmit()" [formGroup]="companyForm">
         <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="validationCustom01">First name</label>
-              <input type="text" class="form-control" id="validationCustom01" formControlName="firstName"
-                placeholder="First name" [ngClass]="{'is-valid': submit && form.firstName.errors}">
-              <div *ngIf="submit && form.firstName.errors" class="valid-feedback">
-                <span *ngIf="form.firstName.errors.required">Looks good!</span>
+          <div class="col-md-4 mb-3">
+            <div class="">
+              <label for="floatingemailInput">Company Name *</label>
+              <input type="email" class="form-control" formControlName="name" placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && form.name.errors ,'is-valid': !form.name.errors}">
+              <div *ngIf="submit && form.name.errors" class="invalid-feedback">
+                <span *ngIf="form.name.errors.required">Please provide a valid name.</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="validationCustom02">Last name</label>
-              <input type="text" class="form-control" id="validationCustom02" formControlName="lastName"
-                placeholder="Last name" [ngClass]="{'is-valid': submit && form.lastName.errors}">
-              <div *ngIf="submit && form.lastName.errors" class="valid-feedback">
-                <span *ngIf="form.lastName.errors.required">Looks good!</span>
+
+          <div class="col-md-4 mb-3">
+            <div class="">
+              <label for="floatingemailInput">Address Line 1 *</label>
+              <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
+                [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
+
+              <div *ngIf="submit && form.address_1.errors" class="invalid-feedback">
+                <span *ngIf="form.address_1.errors.required">Please provide a valid Address.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="">
+              <label for="floatingemailInput">Address Line 2 * </label>
+              <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
+                [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
+
+              <div *ngIf="submit && form.address_2.errors" class="invalid-feedback">
+                <span *ngIf="form.address_2.errors.required">Please provide a valid Address.</span>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 mb-3">
             <div class="mb-3">
-              <label for="validationCustom03">City</label>
-              <input type="text" class="form-control" id="validationCustom03" formControlName="city"
-                placeholder="City" [ngClass]="{'is-invalid': submit && form.city.errors}">
+              <label for="state">Country *</label>
+              <ng-select formControlName="country"
+              (ngModelChange)="onCountryChnage($event)"
+              placeholder="Select Country" [items]="countryList" bindLabel="name"
+                bindValue="isoCode"
+                [ngClass]="{'is-invalid' :submit && form.country.errors ,'is-valid': !form.country.errors}">
+              </ng-select>
+
+              <div *ngIf="submit && form.country.errors" class="invalid-feedback">
+                <span *ngIf="form.country.errors.required">Please choose a valid Country.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <div class="mb-3">
+
+              <label for="state">City *</label>
+              <ng-select formControlName="city" placeholder="Select City" [items]="stateList" bindLabel="name"
+                bindValue="name" [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
+              </ng-select>
+
               <div *ngIf="submit && form.city.errors" class="invalid-feedback">
-                <span *ngIf="form.city.errors.required">Please provide a valid city.</span>
+                <span *ngIf="form.city.errors.required">Please choose a valid Country.</span>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+
+          <div class="col-md-4 mb-3">
             <div class="mb-3">
-              <label for="validationCustom04">State</label>
-              <input type="text" class="form-control" id="validationCustom04" formControlName="state"
-                placeholder="State" [ngClass]="{'is-invalid': submit && form.state.errors}">
+
+              <label for="state">State/Province *</label>
+              <ng-select formControlName="state" placeholder="Select State" [items]="stateList" bindLabel="name"
+                bindValue="name"
+                [ngClass]="{'is-invalid' :submit && form.state.errors ,'is-valid': !form.state.errors}">
+              </ng-select>
+
               <div *ngIf="submit && form.state.errors" class="invalid-feedback">
-                <span *ngIf="form.state.errors.required">Please provide a valid state.</span>
+                <span *ngIf="form.state.errors.required">Please choose a valid State.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class=" mb-3">
+              <label for="phoneNumber">Phone Number </label>
+              <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Enter Phone Number"
+                [ngClass]="{'is-invalid' :submit && form.phoneNumber.errors ,'is-valid': !form.phoneNumber.errors}"
+                mask="(000) 000-0000">
+
+              <div *ngIf="submit && form.phoneNumber.errors" class="invalid-feedback">
+                <span *ngIf="form.phoneNumber.errors.required">Please provide a valid Phone Number.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class=" mb-3">
+              <label for="faxNumber">Fax Number </label>
+              <input type="email" class="form-control" formControlName="faxNumber" placeholder="Enter Fax Number"
+                [ngClass]="{'is-invalid' :submit && form.faxNumber.errors ,'is-valid': !form.faxNumber.errors}">
+
+              <div *ngIf="submit && form.faxNumber.errors" class="invalid-feedback">
+                <span *ngIf="form.faxNumber.errors.required">Please provide a valid Fax Number.</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="mb-3">
-              <label for="validationCustom05">Zip</label>
-              <input type="text" class="form-control" id="validationCustom05" formControlName="zip"
-                placeholder="Zip" [ngClass]="{'is-invalid': submit && form.zip.errors}">
-              <div *ngIf="submit && form.zip.errors" class="invalid-feedback">
-                <span *ngIf="form.zip.errors.required">Please provide a valid zip.</span>
+              <label for="remittanceEmail">Remittance Email </label>
+              <input type="email" class="form-control" formControlName="remittanceEmail"
+                placeholder="Enter Remittance Email"
+                [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors ,'is-valid': !form.remittanceEmail.errors}">
+
+              <div *ngIf="submit && form.remittanceEmail.errors" class="invalid-feedback">
+                <span *ngIf="form.remittanceEmail.errors.required">Please provide a valid Email.</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
-              required>
-          <label class="form-check-label" for="invalidCheck">
-              Agree to terms and conditions
-          </label>
-          <div class="invalid-feedback">
-              You must agree before submitting.
-          </div>
-      </div>
-      <div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="submit" class="btn btn-primary waves-effect waves-light">
+            Save
+          </button>
+          <button type="reset" class="btn btn-secondary waves-effect">
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   </div>
-  </div>
+</div>
