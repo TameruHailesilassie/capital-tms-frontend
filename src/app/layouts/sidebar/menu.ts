@@ -318,13 +318,13 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 22,
                 label: 'Company List',
-                link: '#',
+                link: '/factoring-company/list',
                 parentId: 21
             },
             {
                 id: 23,
                 label: 'Add Company',
-                link: '#',
+                link: '/factoring-company/add',
                 parentId: 21
             }
         ]
@@ -484,13 +484,13 @@ const DISPATCHER_MENU: MenuItem[] = [
             {
                 id: 22,
                 label: 'Company List',
-                link: '',
+                link: '/factoring-company/list',
                 parentId: 21
             },
             {
                 id: 23,
                 label: 'Add Company',
-                link: '',
+                link: '/factoring-company/add',
                 parentId: 21
             }
         ]
