@@ -16,79 +16,6 @@
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="floatingemailInput">Primary Contact</label>
-              <input type="text" class="form-control" formControlName="primaryConatct"
-                placeholder="Enter Primary Contact" [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
-            </div>
-
-            <div class="mb-3">
-              <label for="zip">Zip/Postal </label>
-              <input type="zip" class="form-control" formControlName="zip" placeholder="Enter Zip/postal code"
-                [ngClass]="{'is-invalid' :submit && form.zip.errors ,'is-valid': !form.zip.errors}">
-
-              <div *ngIf="submit && form.zip.errors" class="invalid-feedback">
-                <span *ngIf="form.zip.errors.required">Please provide a valid Postal Address.</span>
-              </div>
-            </div>
-
-
-
-            <div class=" mb-3">
-              <label for="tollFree">Toll Free </label>
-              <input type="text" class="form-control" formControlName="tollFree" placeholder="Enter Toll Free"
-                [ngClass]="{'is-invalid' :submit && form.tollFree.errors }">
-
-              <div *ngIf="submit && form.tollFree.errors" class="invalid-feedback">
-                <span *ngIf="form.tollFree.errors.required">Please provide a valid Toll Free.</span>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email">Email </label>
-              <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"
-                [ngClass]="{'is-invalid' :submit && form.email.errors }">
-
-              <div *ngIf="submit && form.email.errors" class="invalid-feedback">
-                <span *ngIf="form.email.errors.required">Please provide a valid Email.</span>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="remittanceEmail">Remittance Email </label>
-              <input type="email" class="form-control" formControlName="remittanceEmail"
-                placeholder="Enter Remittance Email" [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors }">
-
-              <div *ngIf="submit && form.remittanceEmail.errors" class="invalid-feedback">
-                <span *ngIf="form.remittanceEmail.errors.required">Please provide a valid Email.</span>
-              </div>
-            </div>
-
-
-          </div>
-
-
-          <div class="col-md-4 mb-3">
-
-            <div class="mb-3">
-              <label for="floatingemailInput">Address Line 1 <span class="text-danger"> *</span></label>
-              <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
-                [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
-
-              <div *ngIf="submit && form.address_1.errors" class="invalid-feedback">
-                <span *ngIf="form.address_1.errors.required">Please provide a valid Address.</span>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="floatingemailInput">Address Line 2 <span class="text-danger"> *</span></label>
-              <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
-                [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
-
-              <div *ngIf="submit && form.address_2.errors" class="invalid-feedback">
-                <span *ngIf="form.address_2.errors.required">Please provide a valid Address.</span>
-              </div>
-            </div>
 
             <div class="mb-3">
               <label for="state">Country <span class="text-danger"> *</span></label>
@@ -101,6 +28,7 @@
                 <span *ngIf="form.country.errors.required">Please choose a valid Country.</span>
               </div>
             </div>
+
 
             <div class="mb-3">
 
@@ -115,18 +43,7 @@
               </div>
             </div>
 
-            <div class="mb-3">
 
-              <label for="state">City <span class="text-danger"> *</span></label>
-              <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
-                bindValue="isoCode"
-                [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
-              </ng-select>
-
-              <div *ngIf="submit && form.city.errors" class="invalid-feedback">
-                <span *ngIf="form.city.errors.required">Please choose a valid Country.</span>
-              </div>
-            </div>
             <div class="row col-sm-12 mb-3">
 
               <div class="col-sm-6">
@@ -151,20 +68,19 @@
                 </div>
               </div>
             </div>
-            <div class=" mb-3">
-              <label for="fax">Fax </label>
-              <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
-                [dropSpecialCharacters]="false" formControlName="fax" placeholder="Enter Fax Number"
-                [ngClass]="{'is-invalid' :submit && form.fax.errors}" mask="(000) 000-0000">
 
-              <div *ngIf="submit && form.fax.errors" class="invalid-feedback">
-                <span *ngIf="form.fax.errors.required">Please provide a valid Fax Number.</span>
+
+            <div class="mb-3">
+              <label for="email">Email </label>
+              <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"
+                [ngClass]="{'is-invalid' :submit && form.email.errors }">
+
+              <div *ngIf="submit && form.email.errors" class="invalid-feedback">
+                <span *ngIf="form.email.errors.required">Please provide a valid Email.</span>
               </div>
             </div>
 
-          </div>
 
-          <div class="col-md-4 mb-3">
 
             <div class="mb-3">
 
@@ -178,6 +94,75 @@
               </div>
             </div>
 
+          </div>
+
+
+          <div class="col-md-4 mb-3">
+
+            <div class="mb-3">
+              <label for="floatingemailInput">Primary Contact</label>
+              <input type="text" class="form-control" formControlName="primaryConatct"
+                placeholder="Enter Primary Contact" [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
+            </div>
+
+            <div class="mb-3">
+              <label for="floatingemailInput">Address Line 1 <span class="text-danger"> *</span></label>
+              <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
+                [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
+
+              <div *ngIf="submit && form.address_1.errors" class="invalid-feedback">
+                <span *ngIf="form.address_1.errors.required">Please provide a valid Address.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+
+              <label for="state">City <span class="text-danger"> *</span></label>
+              <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
+                bindValue="isoCode"
+                [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
+              </ng-select>
+
+              <div *ngIf="submit && form.city.errors" class="invalid-feedback">
+                <span *ngIf="form.city.errors.required">Please choose a valid Country.</span>
+              </div>
+            </div>
+
+            <div class=" mb-3">
+              <label for="tollFree">Toll Free </label>
+              <input type="text" class="form-control" formControlName="tollFree" placeholder="Enter Toll Free"
+                [ngClass]="{'is-invalid' :submit && form.tollFree.errors }">
+
+              <div *ngIf="submit && form.tollFree.errors" class="invalid-feedback">
+                <span *ngIf="form.tollFree.errors.required">Please provide a valid Toll Free.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="remittanceEmail">Remittance Email </label>
+              <input type="email" class="form-control" formControlName="remittanceEmail"
+                placeholder="Enter Remittance Email" [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors }">
+
+              <div *ngIf="submit && form.remittanceEmail.errors" class="invalid-feedback">
+                <span *ngIf="form.remittanceEmail.errors.required">Please provide a valid Email.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="taxID">Tax ID/EIN </label>
+              <input type="email" class="form-control" formControlName="taxID" placeholder="Enter Tax ID"
+                [ngClass]="{'is-invalid' :submit && form.taxID.errors }">
+
+              <div *ngIf="submit && form.taxID.errors" class="invalid-feedback">
+                <span *ngIf="form.taxID.errors.required">Please provide a valid Tax ID.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 mb-3">
+
+          
             <div class="mb-3">
               <label for="paymentTerms">Payment Terms</label>
               <ng-select formControlName="paymentTerms" placeholder="Select Terms" [items]="paymentTerms"
@@ -191,12 +176,32 @@
             </div>
 
             <div class="mb-3">
-              <label for="taxID">Tax ID/EIN </label>
-              <input type="email" class="form-control" formControlName="taxID" placeholder="Enter Tax ID"
-                [ngClass]="{'is-invalid' :submit && form.taxID.errors }">
+              <label for="floatingemailInput">Address Line 2 <span class="text-danger"> *</span></label>
+              <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
+                [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
 
-              <div *ngIf="submit && form.taxID.errors" class="invalid-feedback">
-                <span *ngIf="form.taxID.errors.required">Please provide a valid Tax ID.</span>
+              <div *ngIf="submit && form.address_2.errors" class="invalid-feedback">
+                <span *ngIf="form.address_2.errors.required">Please provide a valid Address.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="zip">Zip/Postal </label>
+              <input type="zip" class="form-control" formControlName="zip" placeholder="Enter Zip/postal code"
+                [ngClass]="{'is-invalid' :submit && form.zip.errors ,'is-valid': !form.zip.errors}">
+
+              <div *ngIf="submit && form.zip.errors" class="invalid-feedback">
+                <span *ngIf="form.zip.errors.required">Please provide a valid Postal Address.</span>
+              </div>
+              </div>
+
+            <div class=" mb-3">
+              <label for="fax">Fax </label>
+              <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                [dropSpecialCharacters]="false" formControlName="fax" placeholder="Enter Fax Number"
+                [ngClass]="{'is-invalid' :submit && form.fax.errors}" mask="(000) 000-0000">
+
+              <div *ngIf="submit && form.fax.errors" class="invalid-feedback">
+                <span *ngIf="form.fax.errors.required">Please provide a valid Fax Number.</span>
               </div>
             </div>
 
