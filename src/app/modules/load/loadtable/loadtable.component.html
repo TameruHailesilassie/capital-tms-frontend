@@ -8,7 +8,7 @@
 
       </div>
     </div>
-    <div class="col-xl-2 col-sm-6">
+    <div *ngIf="statusFilterRequired" class="col-xl-2 col-sm-6">
       <div class="mt-2 mb-0">
         <label><i class="bx bx-filter-alt text-primary"></i> Status</label>
         <ng-select name="statusFilterTerm" [(ngModel)]="loadFilters.status" placeholder="Select Status"

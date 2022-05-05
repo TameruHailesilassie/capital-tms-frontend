@@ -41,7 +41,7 @@ export class LoadTable implements OnInit {
   @ViewChildren(LoadsSortableDirective)
   headers: QueryList<LoadsSortableDirective>;
   @Input() loadType: LOAD_TAB_TYPE;
-
+  @Input() statusFilterRequired: boolean;
   constructor(
     private ngbDateParserFormatter: NgbDateParserFormatter,
     private modalService: NgbModal,

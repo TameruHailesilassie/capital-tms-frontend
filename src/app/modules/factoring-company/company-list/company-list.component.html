@@ -1,1 +1,121 @@
-<p>company-list works!</p>
+<!-- <div class="row mb-md-2  mt-3">
+    <div class="col-sm-12 col-md-6">
+      <div class="dataTables_length" id="tickets-table_length"><label class="d-inline-flex align-items-center">Show
+          <select name="tickets-table_length" aria-controls="tickets-table" name="pageSize" [(ngModel)]="service.pageSize"
+            class="form-control form-control-sm mx-2">
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+            <option [ngValue]="100">100</option>
+          </select> entries</label></div>
+    </div>
+    <!-- Search -->
+    <!-- <div class="col-sm-12 col-md-6">
+      <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
+          class="d-inline-flex align-items-center">Search:
+          <input type="text" name="searchTerm" class="form-control form-control-sm ms-2" aria-controls="tickets-table"
+            [(ngModel)]="service.searchTerm"></label>
+      </div>
+    </div> -->
+    <!-- End search -->
+  <!-- </div> -->
+  <!-- Table -->
+ <!--  <div class="table-responsive">
+    <table id="basic-datatable" class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline myt">
+      <thead>
+        <tr>
+          <th sortable="name" (sort)="onSort($event)">Name</th>
+          <th sortable="loadNumber" (sort)="onSort($event)">Load No.</th>
+          <th sortable="poNumber" (sort)="onSort($event)">P/O No.</th>
+          <th sortable="customer" (sort)="onSort($event)">Customer</th>
+          <th sortable="carrier" (sort)="onSort($event)">Carrier</th>
+          <th sortable="pickuDate" (sort)="onSort($event)">Pickup Date</th>
+          <th sortable="origin" (sort)="onSort($event)">Origin</th>
+          <th sortable="delDate" (sort)="onSort($event)">Del. Date</th>
+          <th sortable="destination" (sort)="onSort($event)">Destination</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let table of loads$ | async;let i=index">
+        <tr [ngStyle]="{padding:'0px', height:'5px'}">
+  
+          <td [ngStyle]="{padding:'0px'}">
+            <loadstatus [statusId]="table.status"></loadstatus>
+          </td>
+          <td showDetail loadAttribute="loadNumber" loadAttributeId="{{table.loadNumber}}"
+            class="text-truncate date-cursor popup" (showPopup)="scrollModal($event)">
+            <ngb-highlight [result]="table.loadNumber" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td class="text-truncate">
+            <ngb-highlight [result]="table.poNumber" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td showDetail loadAttribute="customer" loadAttributeId="{{table.customer.id}}"
+            (showPopup)="scrollModal($event)" class="text-truncate date-cursor popup">
+            <ngb-highlight [result]="table.customer.name" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td showDetail loadAttribute="carrier" loadAttributeId="{{table.carrier.id}}" (showPopup)="scrollModal($event)"
+            class="text-truncate date-cursor popup">
+            <ngb-highlight [result]="table.carrier.name" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+  
+          <td class="text-truncate">
+            <ngb-highlight [result]="table.pickupDate" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td showDetail loadAttribute="origin" loadAttributeId="{{table.origin.id}}" (showPopup)="scrollModal($event)"
+            class="text-truncate date-cursor popup">
+            <ngb-highlight class="text-grey" [result]="table.origin.name" [term]="service.searchTerm"></ngb-highlight>
+          </td>
+          <td class="text-truncate">
+            <ngb-highlight [result]="table.delDate" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+          <td showDetail loadAttribute="destination" loadAttributeId="{{table.destination.id}}"
+            (showPopup)="scrollModal($event)" class="text-truncate date-cursor popup">
+            <ngb-highlight [result]="table.destination.name" [term]="service.searchTerm">
+            </ngb-highlight>
+          </td>
+  
+          <td>
+            <div ngbDropdown placement="bottom-left">
+              <i class="mdi mdi-dots-horizontal dropdown-toggle" ngbDropdownToggle data-toggle="dropdown"
+                aria-expanded="true"></i>
+              <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-pen text-warning"></i> Edit</a>
+                <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-list-check text-warning"></i>
+                  Details</a>
+                <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-map text-warning"></i> Track
+                  Shipment</a>
+                <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-copy text-warning"></i>
+                  Duplicate</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+  
+  
+      </tbody>
+    </table>
+  </div> -->
+  <!-- End table -->
+  <!-- <div class="row justify-content-md-between align-items-md-center mt-2">
+    <div class="col-sm-12 col-md-5">
+      <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+        {{service.startIndex}} to
+        {{service.endIndex}} of {{service.totalRecords}}
+        entries
+      </div>
+    </div>
+    <!-- Pagination -->
+    <!-- <div class="col-sm-12 col-md-5">
+      <div class="text-md-right float-md-end pagination-rounded">
+        <ngb-pagination [collectionSize]="service.total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+        </ngb-pagination>
+      </div>
+    </div> -->
+    <!-- End Pagination -->
+  <!--</div>  -->
