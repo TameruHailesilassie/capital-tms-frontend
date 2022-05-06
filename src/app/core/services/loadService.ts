@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
-import { Loads } from "./data";
-import { Load } from "./load.model";
+import { Loads } from "../../modules/load/data";
+import { Load } from "../../modules/load/load.model";
 export enum LOAD_TAB_TYPE {
   ACTIVE = "Active",
   DELIVERED = "Delivered",

@@ -80,7 +80,7 @@ export class AddCompanyComponent implements OnInit {
       code: "q3%"
     }]
   }
-
+ 
   validSubmit() {
     this.submit = true;
     console.log(this.form.telephone.value.length);

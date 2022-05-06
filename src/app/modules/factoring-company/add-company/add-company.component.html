@@ -119,7 +119,7 @@
 
               <label for="state">City <span class="text-danger"> *</span></label>
               <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
-                bindValue="isoCode"
+                bindValue="isoCode" 
                 [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
               </ng-select>
 

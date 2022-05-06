@@ -5,7 +5,7 @@ import { debounceTime, delay, switchMap, tap } from "rxjs/operators";
 import { FilteredResult, Load, SearchResult } from "../load.model";
 import { SortDirection } from "src/app/shared/directives/loads-sortable.directive";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
-import { LoadService, LOAD_TAB_TYPE } from "../loadService";
+import { LoadService, LOAD_TAB_TYPE } from "../../../core/services/loadService";
 
 interface State {
   page: number;
@@ -172,12 +172,7 @@ export class LoadTableService {
   get loading$() {
     return this._loading$.asObservable();
   }
-  get page() {
-    return this._State.page;
-  }
-  get pageSize() {
-    return this._State.pageSize;
-  }
+
   get searchTerm() {
     return this._State.searchTerm;
   }

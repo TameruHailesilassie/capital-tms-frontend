@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { DecimalPipe } from "@angular/common";
-import { LoadService, LOAD_TAB_TYPE } from "../loadService";
+import { LoadService, LOAD_TAB_TYPE} from "src/app/core/services/loadService";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
+
 
 @Component({
   selector: "app-load-board",

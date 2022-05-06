@@ -13,10 +13,14 @@ export class CompanyService {
   //all companies
 
   getAll(): Observable<Company[]> {
-    return this.http.get<Company[]>(`${this.baseUrl}/factoring-companies`);
+    return  this.http.get<Company[]>(`${this.baseUrl}/factoring-companies`);
   }
 
   get(id: any): Observable<Company> {
     return this.http.get<Company>(`${this.baseUrl}/factoring-company/${id}`);
   }
+
+
+
+
 }

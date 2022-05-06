@@ -16,7 +16,7 @@ import { AuthfakeauthenticationService } from "src/app/core/services/authfake.se
 import { LOAD_SELECT } from "src/app/shared/widget/loadstatus/status";
 import { LoadAttributeModalComponent } from "../load-attribute-modal/load-attribute-modal.component";
 import { Load } from "../load.model";
-import { LoadService, LOAD_TAB_TYPE } from "../loadService";
+import { LoadService, LOAD_TAB_TYPE } from "src/app/core/services/loadService"
 import { ShowPopupEvent } from "src/app/shared/directives/load-show-detail.directive";
 import { LoadsSortableDirective, SortEvent } from "src/app/shared/directives/loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
@@ -57,6 +57,7 @@ export class LoadTable implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.service.initForLoadType = this.loadType;
     this.loads$ = this.service.loads$;
     this.statusList = LOAD_SELECT;
