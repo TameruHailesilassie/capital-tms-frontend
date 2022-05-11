@@ -73,26 +73,27 @@ export class LoadTableService {
   private office: string;
   private status: number;
   private pickupDate: string;
-
-  // tslint:disable-next-line: variable-name
-
-  private _State: State = {
-    page: 1,
-    pageSize: 10,
-    searchTerm: "",
-    sortColumn: "",
-    sortDirection: "",
-    startIndex: 0,
-    endIndex: 9,
-    totalRecords: 0,
-  };
+  private _State: Partial<State>;
 
   constructor(
-    //private passed_loads: Load[],
+
     private pipe: DecimalPipe,
     private authService: AuthfakeauthenticationService,
     private _loadService: LoadService
   ) {
+
+    this._State = {
+      page: 1,
+      pageSize: 10,
+      searchTerm: "",
+      sortColumn: "",
+      sortDirection: "",
+      totalRecords: 0,
+      startIndex: 0,
+      endIndex: 9,
+    };
+
+
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -102,11 +103,12 @@ export class LoadTableService {
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
-        // console.log(result);
+
         this._loads$.next(result.loads);
         this._totalLoads$.next(result.total);
       });
-    this._search$.next();
+
+  // this._search$.next();
 
     this._filter$
       .pipe(
@@ -117,7 +119,7 @@ export class LoadTableService {
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
-        // console.log(result);
+
         this._loads$.next(result.loads);
         this._totalLoads$.next(result.total);
       });
@@ -131,14 +133,16 @@ export class LoadTableService {
         tap(() => this._loading$.next(false))
       )
       .subscribe((result) => {
-        // console.log(result);
         this._loads$.next(result.loadsFiltered);
         this._totalLoads$.next(result.total);
       });
+
   }
 
   set initForLoadType(type: LOAD_TAB_TYPE) {
+
     this._loadService.loads$.subscribe((data) => {
+
       let filteredData: Load[];
 
       switch (type) {
@@ -158,7 +162,7 @@ export class LoadTableService {
       this.loads.next(filteredData);
       // this._processedLoads$.next(filteredData);
 
-      this._filter$.next();
+      //this._filter$.next();
       this._search$.next();
     });
   }
@@ -166,9 +170,11 @@ export class LoadTableService {
   get loads$() {
     return this._loads$.asObservable();
   }
+
   get total$() {
     return this._totalLoads$.asObservable();
   }
+
   get loading$() {
     return this._loading$.asObservable();
   }
@@ -186,6 +192,7 @@ export class LoadTableService {
     return this._State.totalRecords;
   }
 
+
   set searchTerm(searchTerm: string) {
     this._set({ searchTerm });
     this._search$.next();
@@ -193,16 +200,12 @@ export class LoadTableService {
 
   set sortColumn(sortColumn: string) {
     this._set({ sortColumn });
-    this._adjust$.next();
+
   }
   set sortDirection(sortDirection: SortDirection) {
     this._set({ sortDirection });
-    this._adjust$.next();
+
   }
-  /**
-   * set the value
-   */
-  // tslint:disable-next-line: adjacent-overload-signatures
 
   set officeFilterTerm(term: string) {
     this.office = term;
@@ -225,22 +228,14 @@ export class LoadTableService {
     this._adjust$.next();
   }
 
-  // tslint:disable-next-line: adjacent-overload-signatures
-  // tslint:disable-next-line: adjacent-overload-signatures
-  /*set startIndex(startIndex: number) { this._set({ startIndex }); this._search$.next(); }
-    // tslint:disable-next-line: adjacent-overload-signatures
-    set endIndex(endIndex: number) { this._set({ endIndex });  this._search$.next();}
-    // tslint:disable-next-line: adjacent-overload-signatures
-    set totalRecords(totalRecords: number) { this._set({ totalRecords });  this._search$.next();}
-    // tslint:disable-next-line: adjacent-overload-signatures*/
 
   private _set(patch: Partial<State>) {
     Object.assign(this._State, patch);
-    // this._search$.next();
-    //this._filter$.next();
+
   }
 
   private _adjustTable(): Observable<FilteredResult> {
+
     const { sortColumn, sortDirection, pageSize, page, searchTerm } =
       this._State;
 
@@ -263,8 +258,10 @@ export class LoadTableService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } =
-      this._State;
+    console.log(this._State);
+    
+
+    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._State;
     let loadsToSearch: Load[];
 
     if (this._processedLoads$.value.length === 0)
@@ -274,23 +271,34 @@ export class LoadTableService {
 
     // 1. sort
     let loads = sort(loadsToSearch, sortColumn, sortDirection);
+
     // 2. filter
     loads = loads.filter((table) => matches(table, searchTerm, this.pipe));
+
     //  this._processedLoads$.next(loads);
     const total = loads.length;
     // 3. paginate
     this._State.totalRecords = loads.length;
+   
+    console.log(this._State.startIndex);
     this._State.startIndex = (page - 1) * this.pageSize + 1;
+    
     this._State.endIndex = (page - 1) * this.pageSize + this.pageSize;
     if (this.endIndex > this.totalRecords) {
       this._State.endIndex = this.totalRecords;
     }
+
+
     loads = loads.slice(this._State.startIndex - 1, this._State.endIndex);
+
+
+
 
     return of({ loads, total });
   }
 
   _filter(): Observable<SearchResult> {
+
     const filterByOffice = (load: Load) => {
       if (this.office !== null) return load.office.match(this.office);
       else return true;

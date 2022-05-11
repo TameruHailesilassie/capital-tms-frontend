@@ -38,6 +38,8 @@ export class LoadService {
     this._allLoads$.next(Loads);
     this._loads$.next(Loads);
     this.filterOnlyMyloads();
+
+    
   }
 
   showMyLoads() {

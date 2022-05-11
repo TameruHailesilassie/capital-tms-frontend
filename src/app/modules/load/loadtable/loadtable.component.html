@@ -16,6 +16,7 @@
 
       </div>
     </div>
+    
     <div class="col-xl-2 col-sm-6">
       <label><i class="bx bx-filter-alt text-primary"></i> Pickup Date :</label>
       <div class="input-group clockpicker mt-2">
@@ -30,8 +31,6 @@
         </div>
       </div>
     </div>
-
-
 
   </div>
 </form>
@@ -73,7 +72,9 @@
         <th>Actions</th>
       </tr>
     </thead>
+
     <tbody *ngFor="let table of loads$ | async;let i=index">
+
       <tr [ngStyle]="{padding:'0px', height:'5px'}">
 
         <td [ngStyle]="{padding:'0px'}">
@@ -141,7 +142,8 @@
 <!-- End table -->
 <div class="row justify-content-md-between align-items-md-center mt-2">
   <div class="col-sm-12 col-md-5">
-    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+    <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+      Showing
       {{service.startIndex}} to
       {{service.endIndex}} of {{service.totalRecords}}
       entries

@@ -11,6 +11,7 @@ import {
   NgbDateStruct,
   NgbModal,
 } from "@ng-bootstrap/ng-bootstrap";
+
 import { Observable } from "rxjs";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
 import { LOAD_SELECT } from "src/app/shared/widget/loadstatus/status";
@@ -20,12 +21,14 @@ import { LoadService, LOAD_TAB_TYPE } from "src/app/core/services/loadService"
 import { ShowPopupEvent } from "src/app/shared/directives/load-show-detail.directive";
 import { LoadsSortableDirective, SortEvent } from "src/app/shared/directives/loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
+
 @Component({
   selector: "load-table",
   templateUrl: "./loadtable.component.html",
   styleUrls: ["./loadtable.component.scss"],
   providers: [DecimalPipe],
 })
+
 export class LoadTable implements OnInit {
   officeList: string[] = ["Los Angeles", "Denver", "San Diego"];
   loadFilters = {
@@ -42,6 +45,7 @@ export class LoadTable implements OnInit {
   headers: QueryList<LoadsSortableDirective>;
   @Input() loadType: LOAD_TAB_TYPE;
   @Input() statusFilterRequired: boolean;
+ 
   constructor(
     private ngbDateParserFormatter: NgbDateParserFormatter,
     private modalService: NgbModal,
@@ -59,11 +63,14 @@ export class LoadTable implements OnInit {
   ngOnInit(): void {
    
     this.service.initForLoadType = this.loadType;
-    this.loads$ = this.service.loads$;
+    this.loads$ = this.service.loads$;  
+    console.log(this.service.loads);
+  
     this.statusList = LOAD_SELECT;
     this.isAdmin =
       this.authService.currentUserValue.role === "super-admin" ||
       this.authService.currentUserValue.role === "office-admin";
+
   }
 
   onFilterLoads() {
@@ -94,8 +101,8 @@ export class LoadTable implements OnInit {
   }
 
   onSort({ column, direction }: SortEvent) {
-    // resetting other headers
 
+    // resetting other headers
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = "";

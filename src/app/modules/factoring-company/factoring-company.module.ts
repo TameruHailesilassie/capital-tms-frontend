@@ -7,6 +7,7 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { UIModule } from "../../shared/ui/ui.module";
 import { NgxMaskModule } from 'ngx-mask';
 import { NgSelectModule } from '@ng-select/ng-select';
+
 import {
   NgbDropdownModule,
   NgbNavModule,
@@ -15,12 +16,14 @@ import {
   NgbTypeaheadModule,
   NgbDatepickerModule,
 } from "@ng-bootstrap/ng-bootstrap";
+import { CompanyFormComponent } from './company-form/company-form.component';
 
 
 @NgModule({
   declarations: [
     AddCompanyComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    CompanyFormComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,6 @@ import {
     NgbModalModule,
     NgbDatepickerModule,
     NgbTypeaheadModule,
- 
     NgSelectModule,
     NgxMaskModule.forRoot(),
   ]

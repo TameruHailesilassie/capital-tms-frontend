@@ -12,6 +12,7 @@ import {
   NgbAccordionModule,
   NgbTooltipModule,
   NgbModule,
+  NgbActiveModal,
 } from "@ng-bootstrap/ng-bootstrap";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { ScrollToModule } from "@nicky-lenaers/ngx-scroll-to";
@@ -53,6 +54,7 @@ export function createTranslateLoader(http: HttpClient): any {
   ],
   bootstrap: [AppComponent],
   providers: [
+    NgbActiveModal,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {
@@ -62,4 +64,4 @@ export function createTranslateLoader(http: HttpClient): any {
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

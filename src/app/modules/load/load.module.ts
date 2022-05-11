@@ -21,7 +21,14 @@ import { LoadTable } from './loadtable/loadtable.component';
 import { LoadAttributeModalComponent } from './load-attribute-modal/load-attribute-modal.component';
 
 @NgModule({
-  declarations: [LoadBoardComponent, CreatLoadComponent, LoadShowDetailDirective,LoadsSortableDirective, LoadTable, LoadAttributeModalComponent],
+  declarations: [
+    LoadBoardComponent, 
+    CreatLoadComponent, 
+    LoadShowDetailDirective,
+    LoadsSortableDirective, 
+    LoadTable, 
+    LoadAttributeModalComponent
+  ],
 
   imports: [
     CommonModule,
