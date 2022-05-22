@@ -29,6 +29,10 @@ const routes: Routes = [
         (m) => m.FactoringCompanyModule
       ),
   },
+  {
+    path: "",
+    loadChildren: () => import("./file-manager/file-manager.module").then((m) => m.FileManagerModule),
+  },
 ];
 
 @NgModule({

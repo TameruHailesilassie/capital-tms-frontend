@@ -1,0 +1,314 @@
+<div class="container-fluid">
+    <app-page-title title="File Manager" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+    <div class="row">
+
+        <div class="col-xl-9">
+
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <div class="row mb-4 justify-content-end">
+                           
+                            <div class="col-xl-3">
+                                <button class="btn btn-light dropdown-toggle w-100" ngbDropdownToggle type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-plus me-1"></i> Upload New </button>
+                            </div>
+
+
+                            <div class="col-xl-3 col-sm-6">
+                                <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
+                                    <div class="search-box mb-2 me-2">
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control bg-light border-light rounded"
+                                                placeholder="Search...">
+                                            <i class="bx bx-search-alt search-icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown mb-0" ngbDropdown>
+                                        <a class="btn btn-link text-muted dropdown-toggle mt-n2" ngbDropdownToggle
+                                            role="button" data-toggle="dropdown" aria-haspopup="true">
+                                            <i class="mdi mdi-dots-vertical font-size-20"></i>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                            
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4">
+                        <div class="d-flex flex-wrap">
+                            <h5 class="font-size-14 me-3">Recent Files</h5>
+
+                            <div class="ms-auto">
+                                <a href="javascript: void(0);" class="fw-medium text-reset">View All</a>
+                            </div>
+                        </div>
+                        <hr class="mt-2">
+
+                        <div class="table-responsive">
+                            <table class="table align-middle table-nowrap table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Date modified</th>
+                                        <th scope="col" colspan="2">Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-file-document font-size-16 align-middle text-primary me-2"></i>
+                                                agreement.doc</a></td>
+                                        <td>12-10-2020, 09:45</td>
+                                        <td>09 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-folder-zip font-size-16 align-middle text-warning me-2"></i>
+                                                file.zip</a></td>
+                                        <td>11-10-2020, 17:05</td>
+                                        <td>115 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-image font-size-16 align-middle text-muted me-2"></i>
+                                                Img-1.jpeg</a></td>
+                                        <td>11-10-2020, 13:26</td>
+                                        <td>86 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-file-pdffont-size-16 align-middle text-muted me-2"></i>
+                                                update list.pdf</a></td>
+                                        <td>10-10-2020, 11:32</td>
+                                        <td>08 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                             
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-text-box font-size-16 align-middle text-muted me-2"></i>
+                                                Changes list.txt</a></td>
+                                        <td>09-10-2020, 17:05</td>
+                                        <td>07 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-image font-size-16 align-middle text-success me-2"></i>
+                                                Img-2.png</a></td>
+                                        <td>09-10-2020, 15:12</td>
+                                        <td>31 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider">z</div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                               
+                                    <tr>
+                                        <td><a href="javascript: void(0);" class="text-dark fw-medium"><i
+                                                    class="mdi mdi-file-pdf font-size-16 align-middle text-primary me-2"></i>
+                                                legal-documents.pdf</a></td>
+                                        <td>08-10-2020, 03:22</td>
+                                        <td>11 KB</td>
+                                        <td>
+                                            <div class="dropdown" ngbDropdown>
+                                                <a class="font-size-16 text-muted dropdown-toggle" role="button"
+                                                    ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="mdi mdi-dots-horizontal"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Open</a>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a ngbDropdownItem href="javascript: void(0);">Remove</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card filemanager-sidebar col-xl-3">
+            <div class="card-body">
+                <div class="text-center">
+                    <h5 class="font-size-15 mb-4">Storage</h5>
+
+                    <p class="text-muted mt-4">48.02 GB used</p>
+                </div>
+
+                <div class="mt-4">
+                    <div class="card border shadow-none mb-2">
+                        <a href="javascript: void(0);" class="text-body">
+                            <div class="p-2">
+                                <div class="d-flex">
+                                    <div class="avatar-xs align-self-center me-2">
+                                        <div class="avatar-title rounded bg-transparent text-success font-size-20">
+                                            <i class="mdi mdi-image"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="overflow-hidden me-auto">
+                                        <h5 class="font-size-13 text-truncate mb-1">Images</h5>
+                                        <p class="text-muted text-truncate mb-0">176 Files</p>
+                                    </div>
+
+                                    <div class="ms-2">
+                                        <p class="text-muted">6 GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="card border shadow-none mb-2">
+                        <a href="javascript: void(0);" class="text-body">
+                            <div class="p-2">
+                                <div class="d-flex">
+                                    <div class="avatar-xs align-self-center me-2">
+                                        <div class="avatar-title rounded bg-transparent text-primary font-size-20">
+                                            <i class="mdi mdi-file-document"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="overflow-hidden me-auto">
+                                        <h5 class="font-size-13 text-truncate mb-1">Document</h5>
+                                        <p class="text-muted text-truncate mb-0">21 Files</p>
+                                    </div>
+
+                                    <div class="ms-2">
+                                        <p class="text-muted">2 GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="card border shadow-none">
+                        <a href="javascript: void(0);" class="text-body">
+                            <div class="p-2">
+                                <div class="d-flex">
+                                    <div class="avatar-xs align-self-center me-2">
+                                        <div class="avatar-title rounded bg-transparent text-warning font-size-20">
+                                            <i class="mdi mdi-folder"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="overflow-hidden me-auto">
+                                        <h5 class="font-size-13 text-truncate mb-1">Others</h5>
+                                        <p class="text-muted text-truncate mb-0">20 Files</p>
+                                    </div>
+
+                                    <div class="ms-2">
+                                        <p class="text-muted">1.4 GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
