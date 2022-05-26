@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WidgetModule } from "src/app/shared/widget/widget.module";
 import { LoadTable } from './loadtable/loadtable.component';
 import { LoadAttributeModalComponent } from './load-attribute-modal/load-attribute-modal.component';
+import { LoadDetailComponent } from './load-detail/load-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { LoadAttributeModalComponent } from './load-attribute-modal/load-attribu
     LoadShowDetailDirective,
     LoadsSortableDirective, 
     LoadTable, 
-    LoadAttributeModalComponent
+    LoadAttributeModalComponent, LoadDetailComponent
   ],
 
   imports: [

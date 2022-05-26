@@ -16,7 +16,7 @@
 
       </div>
     </div>
-    
+
     <div class="col-xl-2 col-sm-6">
       <label><i class="bx bx-filter-alt text-primary"></i> Pickup Date :</label>
       <div class="input-group clockpicker mt-2">
@@ -124,11 +124,12 @@
               aria-expanded="true"></i>
             <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
               <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-pen text-warning"></i> Edit</a>
-              <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-list-check text-warning"></i>
+              <a class="dropdown-item" (click)="onDetail(table.id)" href="javascript: void(0);"><i
+                  class="bx bx-list-check text-warning"></i>
                 Details</a>
 
-                <a class="dropdown-item" routerLink="/factoring-company/files"><i class="bx bxs-file text-warning"></i>
-                  Files</a>
+              <a class="dropdown-item" href="javascript: void(0);" (click)="onFiles(table.id)"><i class="bx bxs-file text-warning"></i>
+                Files</a>
               <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-map text-warning"></i> Track
                 Shipment</a>
               <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-copy text-warning"></i>

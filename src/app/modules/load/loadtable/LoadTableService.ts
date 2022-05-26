@@ -296,9 +296,6 @@ export class LoadTableService {
 
     loads = loads.slice(this._State.startIndex - 1, this._State.endIndex);
 
-
-    console.log(this._State);
-
     return of({ loads, total });
   }
 
