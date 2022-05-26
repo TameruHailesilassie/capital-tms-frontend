@@ -57,7 +57,7 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 10,
                 label: 'Load Board',
-                link: '/loads/load-board',
+                link: '/loads',
                 parentId: 9
             },
             {
@@ -137,7 +137,7 @@ const SUPER_ADMI_NMENU: MenuItem[] =
             {
                 id: 22,
                 label: 'Company List',
-                link: '/factoring-company/list',
+                link: '/factoring-company',
                 parentId: 21
             },
             {
@@ -238,7 +238,7 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 10,
                 label: 'Load Board',
-                link: '/loads/load-board',
+                link: '/loads',
                 parentId: 9
             },
             {
@@ -318,7 +318,7 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 22,
                 label: 'Company List',
-                link: '/factoring-company/list',
+                link: '/factoring-company',
                 parentId: 21
             },
             {
@@ -404,7 +404,7 @@ const DISPATCHER_MENU: MenuItem[] = [
             {
                 id: 10,
                 label: 'Load Board',
-                link: '/loads/load-board',
+                link: '/loads',
                 parentId: 9
             },
             {
@@ -484,7 +484,7 @@ const DISPATCHER_MENU: MenuItem[] = [
             {
                 id: 22,
                 label: 'Company List',
-                link: '/factoring-company/list',
+                link: '/factoring-company',
                 parentId: 21
             },
             {

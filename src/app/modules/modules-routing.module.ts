@@ -14,7 +14,7 @@ const routes: Routes = [
       import("./analytics/analytics.module").then((m) => m.AnalyticsModule),
   },
   {
-    path: "loads",
+    path: "",
     loadChildren: () => import("./load/load.module").then((m) => m.LoadModule),
   },
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
       import("../shared/components/ui.module").then((m) => m.UiModule),
   },
   {
-    path: "factoring-company",
+    path: "",
     loadChildren: () =>
       import("./factoring-company/factoring-company.module").then(
         (m) => m.FactoringCompanyModule

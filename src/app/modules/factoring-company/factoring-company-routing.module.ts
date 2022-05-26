@@ -6,21 +6,30 @@ import { CompanyListComponent } from "./company-list/company-list.component";
 
 const routes: Routes = [
   {
-    path: "add",
-    component: AddCompanyComponent,
-  },
-  {
-    path: "list",
-    component: CompanyListComponent,
-  },
-  {
-    path: "files",
-    component: FileViewerComponent,
-  },
+    path: "factoring-company",
+
+    children: [
+
+      {
+        path: "",
+        component: CompanyListComponent,
+      },
+
+      {
+        path: "add",
+        component: AddCompanyComponent,
+      },
+      {
+        path: "files",
+        component: FileViewerComponent,
+      }
+    ]
+  }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FactoringCompanyRoutingModule {}
+export class FactoringCompanyRoutingModule { }
