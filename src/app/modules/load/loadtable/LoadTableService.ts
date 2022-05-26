@@ -191,8 +191,13 @@ export class LoadTableService {
   get totalRecords() {
     return this._State.totalRecords;
   }
+  get pageSize() {
+    return this._State.pageSize;
+  }
 
-
+  get page() {
+    return this._State.page;
+  }
   set searchTerm(searchTerm: string) {
     this._set({ searchTerm });
     this._search$.next();
@@ -258,7 +263,7 @@ export class LoadTableService {
   }
 
   private _search(): Observable<SearchResult> {
-    console.log(this._State);
+   
     
 
     const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._State;
@@ -280,7 +285,7 @@ export class LoadTableService {
     // 3. paginate
     this._State.totalRecords = loads.length;
    
-    console.log(this._State.startIndex);
+  
     this._State.startIndex = (page - 1) * this.pageSize + 1;
     
     this._State.endIndex = (page - 1) * this.pageSize + this.pageSize;
@@ -292,7 +297,7 @@ export class LoadTableService {
     loads = loads.slice(this._State.startIndex - 1, this._State.endIndex);
 
 
-
+    console.log(this._State);
 
     return of({ loads, total });
   }

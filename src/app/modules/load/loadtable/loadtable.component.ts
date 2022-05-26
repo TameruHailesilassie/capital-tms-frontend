@@ -64,7 +64,7 @@ export class LoadTable implements OnInit {
    
     this.service.initForLoadType = this.loadType;
     this.loads$ = this.service.loads$;  
-    console.log(this.service.loads);
+    console.log(this.loads$);
   
     this.statusList = LOAD_SELECT;
     this.isAdmin =
