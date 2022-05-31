@@ -1,4 +1,11 @@
-<div class="container-fluid">
+
+<div [ngClass] = "'child-container'">	
+  <router-outlet></router-outlet>	
+ </div>
+
+
+
+<div class="container-fluid" *ngIf="route.children.length === 0">
   <app-page-title title="FACTORING COMPANY LIST" [breadcrumbItems]="breadCrumbItems">
 
   </app-page-title>
@@ -90,7 +97,7 @@
                   <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
                     <a (click)="onEdit(table.id)" class="dropdown-item" href="javascript: void(0);"><i
                         class="bx bx-pen text-warning"></i> Edit</a>
-                    <a class="dropdown-item" routerLink="/factoring-company/files"><i class="bx bxs-file text-warning"></i>
+                    <a class="dropdown-item" (click)="onViewFile(table.id)"><i class="bx bxs-file text-warning"></i>
                       Files</a>
 
                   </div>

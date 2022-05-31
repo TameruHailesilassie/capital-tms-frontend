@@ -8,30 +8,36 @@ const routes: Routes = [
 
   {
     path: "",
-
     children: [
       {
-      path: "list",
-      component: LoadBoardComponent,
+        path: "list",
+        component: LoadBoardComponent,
+        data: { breadcrumb: 'LoadBoard' },
+        children:[
+          {
+            path: "view/:id",
+            component: LoadDetailComponent,
+            pathMatch: 'full'
+    
+    
+          },
+    
+          {
+            path: 'view/:id/files',
+            component: FileViewerComponent,
+            pathMatch: 'full',
+            data: { breadcrumb: 'Files' }
+          },
+        ]
       },
       {
         path: 'create',
         component: CreatLoadComponent,
-        pathMatch:'full'
+        pathMatch: 'full',
+        data: { breadcrumb: 'Add' }
       },
 
-      {
-        path: "view/:id",
-        component: LoadDetailComponent,
-      pathMatch:'full'
-
-      },
-
-      {
-        path: 'view/:id/files',
-        component: FileViewerComponent,
-       pathMatch:'full'
-      },
+    
 
     ]
 

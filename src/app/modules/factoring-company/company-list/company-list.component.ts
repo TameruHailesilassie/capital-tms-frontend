@@ -6,7 +6,9 @@ import { tap, debounceTime, switchMap, delay } from "rxjs/operators";
 import { CompanyService } from "src/app/core/services/company.service";
 import { LoadsSortableDirective, SortDirection, SortEvent } from "src/app/shared/directives/loads-sortable.directive";
 import { Company } from "src/app/shared/models/Company.models";
-import{State} from "country-state-city"
+import { State } from "country-state-city"
+import { Breadcrumb } from "src/app/core/services/breadcrumb.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 interface companySearchResult {
   companies: Company[];
@@ -61,6 +63,8 @@ function matches(tables: Company, term: string) {
 export class CompanyListComponent implements OnInit {
   constructor(private service: CompanyService,
     public activeModal: NgbActiveModal,
+    public router:Router,
+    public route:ActivatedRoute,
     private modalService: NgbModal, private pipe: DecimalPipe) {
 
   }
@@ -69,22 +73,17 @@ export class CompanyListComponent implements OnInit {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
   private _State: State;
-  public  modalRef:any;
+  public modalRef: any;
   public formData: Company;
   public state;
   private _totalCompanies$ = new BehaviorSubject<number>(0);
-  breadCrumbItems: Array<{}>;
+  breadCrumbItems: Breadcrumb[];
   @ViewChildren(LoadsSortableDirective)
   headers: QueryList<LoadsSortableDirective>;
   @ViewChild('editModal') editModal: ElementRef;
 
   ngOnInit(): void {
-    this.state=State
-
-    this.breadCrumbItems = [
-      { label: "Factoring Company" },
-      { label: "List", active: true },
-    ];
+    this.state = State
     this._State = {
       page: 1,
       pageSize: 10,
@@ -113,9 +112,9 @@ export class CompanyListComponent implements OnInit {
 
   }
 
-  getStateName(countryCode:String, stateCode:String){
+  getStateName(countryCode: String, stateCode: String) {
     return this.state.getStateByCodeAndCountry(countryCode, stateCode)
-    ;
+      ;
   }
 
   validSubmit($event) {
@@ -225,15 +224,17 @@ export class CompanyListComponent implements OnInit {
   onEdit($event) {
 
     const companyToEdit = this.companies.filter(company => company.id === $event);
-    console.log(companyToEdit[0]);
     this.formData = companyToEdit[0];
 
-   this.modalRef= this.modalService.open(this.editModal, {
+    this.modalRef = this.modalService.open(this.editModal, {
       scrollable: true,
-
       size: "xl",
       centered: true,
     });
+  }
+
+  onViewFile($event) {
+    this.router.navigate([ 'factoring-company/list/view', $event,'files' ], );
   }
 
 

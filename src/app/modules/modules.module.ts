@@ -21,6 +21,7 @@ import { MapsModule } from './maps/maps.module';
 
 
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,

@@ -33,7 +33,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        if (!event.url.startsWith('/loads/view')) {
+
+        if (!event.url.startsWith('/loads/list/') && !event.url.startsWith('/factoring-company/list/')) {
           this._activateMenuDropdown();
           this._scrollElement();
         }

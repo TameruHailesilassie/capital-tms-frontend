@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Breadcrumb } from "src/app/core/services/breadcrumb.service";
 import { CompanyService } from "src/app/core/services/company.service";
 
 @Component({
@@ -9,34 +10,26 @@ import { CompanyService } from "src/app/core/services/company.service";
 
 export class AddCompanyComponent implements OnInit {
 
-  breadCrumbItems: Array<{}>;
+  breadCrumbItems: Breadcrumb[];
   constructor(
     private service: CompanyService
   ) { }
 
   ngOnInit(): void {
     this.service.getAll().subscribe((data) => {
-      //console.log(data);
+
     });
 
+  }
 
-    this.breadCrumbItems = [
-      { label: "factoring-company" },
-      { label: "Add", active: true },
-    ];
+  onSubmit($event): void {
+    console.log($event);
 
-    
 
   }
 
-  onSubmit($event):void{
-      console.log($event);
-      
-  
-  }
 
- 
- 
- 
-  
+
+
+
 }

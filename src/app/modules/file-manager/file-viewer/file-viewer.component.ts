@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
+import { Breadcrumb, BreadcrumbService } from 'src/app/core/services/breadcrumb.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-file-viewer',
@@ -12,14 +14,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FileViewerComponent implements OnInit {
   // bread crumb items
-  breadCrumbItems: Array<{}>;
-  constructor(private activatedRouter: ActivatedRoute) { }
+  breadCrumb: Breadcrumb[];
+
+  constructor(private activatedRouter: ActivatedRoute, private breadCrumbService: BreadcrumbService) { }
   public isCollapsed = false;
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Apps' }, { label: 'Files', active: true }];
-
-
+    this.breadCrumb = this.breadCrumbService.getCurrentBreadCrumb();
   }
 
 

@@ -129,13 +129,13 @@ export class LoadTable implements OnInit {
   }
 
   onDetail(loadID: number) {
-    this.router.navigate([ 'loads/view', 1 ],);
+    this.router.navigate([ 'loads/list/view', 1 ],);
 
   }
 
 
   onFiles(loadID: number) {
-        this.router.navigate([ 'loads/view', 1,'files' ], );
+        this.router.navigate([ 'loads/list/view', 1,'files' ], );
 
   //  this.router.navigate(['loads', 1, 'files'])
 

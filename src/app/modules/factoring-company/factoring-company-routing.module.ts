@@ -6,23 +6,31 @@ import { CompanyListComponent } from "./company-list/company-list.component";
 
 const routes: Routes = [
   {
-    path: "factoring-company",
-
+    path: "",
     children: [
 
       {
         path: "list",
         component: CompanyListComponent,
+        data: { breadcrumb: 'Companies' },
+        children:[
+        
+          {
+            path: 'view/:id/files',
+            component: FileViewerComponent,
+            pathMatch: 'full',
+            data: { breadcrumb: 'Files' }
+          },
+
+        ]
+
       },
 
       {
         path: "add",
         component: AddCompanyComponent,
       },
-      {
-        path: "files",
-        component: FileViewerComponent,
-      }
+     
     ]
   }
 

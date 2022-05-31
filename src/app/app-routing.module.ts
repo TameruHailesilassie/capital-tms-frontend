@@ -4,6 +4,8 @@ import { AuthGuard } from "./core/guards/auth.guard";
 import { LayoutComponent } from "./layouts/layout.component";
 
 const routes: Routes = [
+
+
   {
     path: "account",
     loadChildren: () =>
@@ -17,6 +19,8 @@ const routes: Routes = [
       import("./modules/modules.module").then((m) => m.PagesModule),
     canActivate: [AuthGuard],
   },
+  
+  {path: '**', redirectTo: '/404'},
  
 
 ];
