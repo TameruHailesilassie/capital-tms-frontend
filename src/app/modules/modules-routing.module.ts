@@ -2,19 +2,17 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: "", redirectTo: "analytics/company" },
+ 
+  { path: "", redirectTo: "" },
+ 
+  
   {
     path: "analytics",
     loadChildren: () =>
       import("./analytics/analytics.module").then((m) => m.AnalyticsModule),
   },
   {
-    path: "analytics",
-    loadChildren: () =>
-      import("./analytics/analytics.module").then((m) => m.AnalyticsModule),
-  },
-  {
-    path: "",
+    path: "loads",
     loadChildren: () => import("./load/load.module").then((m) => m.LoadModule),
   },
   {
@@ -23,7 +21,7 @@ const routes: Routes = [
       import("../shared/components/ui.module").then((m) => m.UiModule),
   },
   {
-    path: "",
+    path: "factoring-company",
     loadChildren: () =>
       import("./factoring-company/factoring-company.module").then(
         (m) => m.FactoringCompanyModule

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DecimalPipe } from "@angular/common";
 import { LoadService, LOAD_TAB_TYPE} from "src/app/core/services/loadService";
 import { AuthfakeauthenticationService } from "src/app/core/services/authfake.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-load-board",
@@ -16,6 +17,7 @@ export class LoadBoardComponent implements OnInit {
 
   constructor(
     public service: LoadService,
+    public route:ActivatedRoute,
     public authService: AuthfakeauthenticationService
   ) {}
 

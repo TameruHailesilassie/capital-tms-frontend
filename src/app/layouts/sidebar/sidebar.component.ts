@@ -1,16 +1,13 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Input, OnChanges } from '@angular/core';
 import MetisMenu from 'metismenujs/dist/metismenujs';
 import { EventService } from '../../core/services/event.service';
-import { Router, NavigationEnd } from '@angular/router';
-
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-import { ACCOUNTING_MENU, DISPATCHER_MENU, MENU, OFFICE_ADMIN_MENU, SUPER_ADMI_NMENU } from './menu';
+import { ACCOUNTING_MENU, DISPATCHER_MENU, OFFICE_ADMIN_MENU, SUPER_ADMI_NMENU } from './menu';
 import { MenuItem } from './menu.model';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthfakeauthenticationService } from 'src/app/core/services/authfake.service';
 import { User } from 'src/app/shared/models/auth.models';
-import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,11 +28,15 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
 
-  constructor(private eventService: EventService, private fakeAuthService: AuthfakeauthenticationService, private router: Router, public translate: TranslateService, private http: HttpClient) {
+  constructor(private eventService: EventService, private fakeAuthService: AuthfakeauthenticationService,
+    private router: Router, public translate: TranslateService, private http: HttpClient, private route: ActivatedRoute) {
+
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        this._activateMenuDropdown();
-        this._scrollElement();
+        if (!event.url.startsWith('/loads/view')) {
+          this._activateMenuDropdown();
+          this._scrollElement();
+        }
       }
     });
   }
@@ -160,7 +161,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
         this.menuItems = ACCOUNTING_MENU;
         break;
     }
-   // this.menuItems = MENU;
+    // this.menuItems = MENU;
   }
   /**
    * Returns true or false if given menu item has child or not

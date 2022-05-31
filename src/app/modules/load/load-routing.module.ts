@@ -7,59 +7,36 @@ import { FileViewerComponent } from '../file-manager/file-viewer/file-viewer.com
 const routes: Routes = [
 
   {
-    path: 'loads',
+    path: "",
 
     children: [
-
       {
-        path: "",
-        component: LoadBoardComponent
-      }
-      ,
-      {
-        path: 'create',
-        component: CreatLoadComponent
+      path: "list",
+      component: LoadBoardComponent,
       },
       {
-        path: ':id',
-        children: [
+        path: 'create',
+        component: CreatLoadComponent,
+        pathMatch:'full'
+      },
 
-          {
-            path: "",
-            component: LoadDetailComponent,
+      {
+        path: "view/:id",
+        component: LoadDetailComponent,
+      pathMatch:'full'
 
-          },
+      },
 
-          {
-            path: 'files',
-            component: FileViewerComponent
-          }
-        ]
+      {
+        path: 'view/:id/files',
+        component: FileViewerComponent,
+       pathMatch:'full'
+      },
 
-      }
     ]
-
-
-
-
-
 
   },
 
-  {
-    path: 'loads/create',
-    component: CreatLoadComponent
-  }
-  , {
-    path: 'loads/:id',
-    component: LoadDetailComponent,
-    children: [
-      {
-        path: 'files',
-        component: FileViewerComponent
-      }
-    ]
-  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

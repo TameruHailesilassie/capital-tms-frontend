@@ -21,7 +21,7 @@ import { LoadService, LOAD_TAB_TYPE } from "src/app/core/services/loadService"
 import { ShowPopupEvent } from "src/app/shared/directives/load-show-detail.directive";
 import { LoadsSortableDirective, SortEvent } from "src/app/shared/directives/loads-sortable.directive";
 import { LoadTableService } from "./LoadTableService";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "load-table",
   templateUrl: "./loadtable.component.html",
@@ -51,10 +51,11 @@ export class LoadTable implements OnInit {
     private modalService: NgbModal,
     public authService: AuthfakeauthenticationService,
     private pipe: DecimalPipe,
+    private route: ActivatedRoute,
     private _loadService: LoadService,
     private router: Router
   ) {
-   
+
     this.service = new LoadTableService(
       this.pipe,
       this.authService,
@@ -66,8 +67,6 @@ export class LoadTable implements OnInit {
 
     this.service.initForLoadType = this.loadType;
     this.loads$ = this.service.loads$;
-    console.log(this.loads$);
-
     this.statusList = LOAD_SELECT;
     this.isAdmin =
       this.authService.currentUserValue.role === "super-admin" ||
@@ -130,15 +129,16 @@ export class LoadTable implements OnInit {
   }
 
   onDetail(loadID: number) {
-    this.router.navigate(["loads", 1]);
+    this.router.navigate([ 'loads/view', 1 ],);
 
   }
 
 
   onFiles(loadID: number) {
-   
-    this.router.navigate(['loads', 1,'files'])
-  
+        this.router.navigate([ 'loads/view', 1,'files' ], );
+
+  //  this.router.navigate(['loads', 1, 'files'])
+
 
   }
 }

@@ -10,24 +10,17 @@ import { ActivatedRoute } from '@angular/router';
     NgbDropdown
   ]
 })
-export class FileViewerComponent implements OnInit{
+export class FileViewerComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
-  constructor(private activatedRouter:ActivatedRoute) { }
+  constructor(private activatedRouter: ActivatedRoute) { }
   public isCollapsed = false;
-  
+
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'Apps' }, { label: 'Files', active: true }];
 
-    console.log(this.activatedRouter.snapshot.params);
-    console.log(this.activatedRouter.snapshot.parent);
-    console.log(this.activatedRouter.snapshot.data);
-    
-    
-    
-    this.breadCrumbItems = [{ label: 'Apps' }, { label: 'File Manager', active: true }];
 
-   
   }
-  
-  
+
+
 }

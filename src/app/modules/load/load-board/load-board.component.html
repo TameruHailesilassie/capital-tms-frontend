@@ -1,4 +1,10 @@
-<div class="container-fluid">
+<div [ngClass] = "'child-container'">	
+  <router-outlet></router-outlet>	
+ </div>
+
+
+
+<div class="container-fluid" *ngIf="route.children.length === 0">
   <app-page-title title="Load Board" [breadcrumbItems]="breadCrumbItems">
 
   </app-page-title>
