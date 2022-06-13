@@ -19,11 +19,13 @@ const routes: Routes = [
     path: "404",
     component:Page404Component
   },
+
   {
     path: "ui",
     loadChildren: () =>
       import("../shared/components/ui.module").then((m) => m.UiModule),
   },
+
   {
     path: "factoring-company",
     loadChildren: () =>
@@ -31,6 +33,13 @@ const routes: Routes = [
         (m) => m.FactoringCompanyModule
       ),
   },
+
+  {
+    path: "carrier",
+    loadChildren: () =>
+      import("./carrier/carrier.module").then((m) => m.CarrierModule),
+  },
+  
   {
     path: "",
     loadChildren: () => import("./file-manager/file-manager.module").then((m) => m.FileManagerModule),

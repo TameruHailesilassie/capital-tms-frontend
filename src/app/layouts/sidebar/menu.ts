@@ -83,7 +83,7 @@ const SUPER_ADMI_NMENU: MenuItem[] =
                 {
                     id: 14,
                     label: 'Add Carrier',
-                    link: '#',
+                    link: '/carrier/add',
                     parentId: 12
                 }
             ]
@@ -265,7 +265,7 @@ const OFFICE_ADMIN_MENU: MenuItem[] = [
             {
                 id: 14,
                 label: 'Add Carrier',
-                link: '#',
+                link: '/carrier/add',
                 parentId: 12
             }
         ]
@@ -431,7 +431,7 @@ const DISPATCHER_MENU: MenuItem[] = [
             {
                 id: 14,
                 label: 'Add Carrier',
-                link: '',
+                link: '/carrier/add',
                 parentId: 12
             }
         ]

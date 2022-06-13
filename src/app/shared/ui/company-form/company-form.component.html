@@ -35,7 +35,7 @@
 
     <div class="mb-3 col-md-4">
       <label for="state">Country <span class="text-danger"> *</span></label>
-      <ng-select formControlName="country" (ngModelChange)="onCountryChange($event)" placeholder="Select Country"
+      <ng-select [clearable]="false" formControlName="country" (ngModelChange)="onCountryChange($event)" placeholder="Select Country"
         [items]="countryList" bindLabel="name" bindValue="isoCode"
         [ngClass]="{'is-invalid' :submit && form.country.errors ,'is-valid': !form.country.errors}">
       </ng-select>
@@ -76,7 +76,7 @@
     <div class="mb-3 col-md-4">
 
       <label for="state">State/Province <span class="text-danger"> *</span></label>
-      <ng-select formControlName="state" (ngModelChange)="onStateChange($event)" placeholder="Select State"
+      <ng-select [clearable]="false" formControlName="state" (ngModelChange)="onStateChange($event)" placeholder="Select State"
         [items]="stateList" bindLabel="name" bindValue="isoCode"
         [ngClass]="{'is-invalid' :submit && form.state.errors ,'is-valid': !form.state.errors}">
       </ng-select>
@@ -90,7 +90,7 @@
     <div class="mb-3 col-md-4">
 
       <label for="city">City <span class="text-danger"> *</span></label>
-      <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name" bindValue="name"
+      <ng-select [clearable]="false" formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name" bindValue="name"
         [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
       </ng-select>
 
@@ -197,11 +197,12 @@
 
   <h5 class="mb-3 text-primary">Additional Information</h5>
 
-  <div class="row ">
-    <div class="row col-md-4 ">
-      <div class="mb-3 col-md-6">
+  <div class="row mb-3 ">
+    <div class=" col-md-4 ">
+      <div class="row">
+      <div class="col-md-6">
         <label for="paymentTerms">Payment Terms</label>
-        <ng-select formControlName="paymentTerms" placeholder="Select Terms" [items]="paymentTerms" bindLabel="name"
+        <ng-select [clearable]="false" formControlName="paymentTerms" placeholder="Select Terms" [items]="paymentTerms" bindLabel="name"
           bindValue="code"
           [ngClass]="{'is-invalid' :submit && form.paymentTerms.errors ,'is-valid': !form.paymentTerms.errors}">
         </ng-select>
@@ -211,17 +212,17 @@
         </div>
       </div>
 
-
-      <div class="mb-3 col-md-6">
+      <div class="col-md-6">
 
         <label for="currency">Currency</label>
-        <ng-select formControlName="currency" placeholder="Select currency" [items]="currencyList" bindLabel="code"
+        <ng-select [clearable]="false" formControlName="currency" placeholder="Select currency" [items]="currencyList" bindLabel="code"
           bindValue="code" [ngClass]="{'is-invalid' :submit && form.currency.errors }">
         </ng-select>
 
         <div *ngIf="submit && form.currency.errors" class="invalid-feedback">
           <span *ngIf="form.currency.errors.required">Please choose a valid currency.</span>
         </div>
+      </div>
       </div>
 
     </div>

@@ -16,14 +16,13 @@ export class AddCompanyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.service.getAll().subscribe((data) => {
 
-    });
 
   }
 
   onSubmit($event): void {
     console.log($event);
+
 
 
   }

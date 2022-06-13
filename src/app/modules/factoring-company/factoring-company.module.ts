@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FactoringCompanyRoutingModule } from './factoring-company-routing.module';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { CompanyListComponent } from './company-list/company-list.component';
@@ -16,20 +16,17 @@ import {
   NgbTypeaheadModule,
   NgbDatepickerModule,
 } from "@ng-bootstrap/ng-bootstrap";
-import { CompanyFormComponent } from './company-form/company-form.component';
-
 
 @NgModule({
   declarations: [
     AddCompanyComponent,
     CompanyListComponent,
-    CompanyFormComponent
+  
   ],
   imports: [
+    FormsModule,
     CommonModule,
     FactoringCompanyRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
     UIModule,
     NgbPaginationModule,
     NgbDropdownModule,
