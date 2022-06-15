@@ -70,6 +70,9 @@ export class CarrierFormComponent implements OnInit {
     this.bTypes = [
       {
         name: "Corporation"
+      },
+      {
+        name:"Sole proprietorship"
       }
     ]
 
