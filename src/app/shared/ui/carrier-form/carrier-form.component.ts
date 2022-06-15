@@ -9,7 +9,7 @@ import { City, Country, State } from 'country-state-city';
 })
 export class CarrierFormComponent implements OnInit {
 
-  carrierForm: FormGroup;
+  carrierProfileForm: FormGroup;
   submit: boolean;
   stateList: any[];
   cDialCode: string;
@@ -30,7 +30,7 @@ export class CarrierFormComponent implements OnInit {
   @ViewChild('factoringCompanyAddModal') editModal: ElementRef;
   ngOnInit(): void {
 
-    this.carrierForm = this.formBuilder.group({
+    this.carrierProfileForm = this.formBuilder.group({
 
       name: new FormControl("", [Validators.required]),
       primaryConatct: new FormControl(""),
@@ -49,6 +49,7 @@ export class CarrierFormComponent implements OnInit {
       factoringCompany:new FormControl(null),
       mcff: new FormControl(null, [Validators.required]),
       urs: new FormControl(null, [Validators.required]),
+      scac: new FormControl(null, [Validators.required]),
       dot: new FormControl(null, [Validators.required]),
       paymentTerms: new FormControl("n30", Validators.required),
       telephone: new FormControl("", [Validators.required, Validators.minLength(16), Validators.maxLength(18)]),
@@ -58,6 +59,9 @@ export class CarrierFormComponent implements OnInit {
       remittanceEmail: new FormControl("", [Validators.email]),
 
     });
+
+
+    
 
     this.submit = false;
     this.cDialCode = '';
@@ -103,13 +107,13 @@ export class CarrierFormComponent implements OnInit {
     }]
 
     if (this.formData) {
-      this.carrierForm.patchValue(this.formData)
+      this.carrierProfileForm.patchValue(this.formData)
     }
 
   }
 
   get form() {
-    return this.carrierForm.controls;
+    return this.carrierProfileForm.controls;
   }
 
   onCountryChange($event) {
