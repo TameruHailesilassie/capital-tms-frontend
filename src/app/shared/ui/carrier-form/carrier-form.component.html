@@ -1,338 +1,343 @@
-<form class="needs-validation" (ngSubmit)="validSubmit()" [formGroup]="carrierProfileForm">
+<form class="needs-validation" (ngSubmit)="validSubmit()" [formGroup]="carrierForm">
   <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
 
     <li [ngbNavItem]="1" [destroyOnHide]="false">
+
       <a ngbNavLink>Profile</a>
       <ng-template ngbNavContent>
-        <div class="d-flex justify-content-between">
-          <h5 class="text-primary mb-3">Company Information</h5>
+        <div formGroupName="profile">
 
-          <div class="form-check form-check-primary mb-3">
-            <input class="form-check-input date-cursor" type="checkbox" name="blacklisted"
-              [(ngModel)]="form.blacklisted" id="formCheckcolor1">
-            <label>Blacklist Carrier</label>
-          </div>
-        </div>
-
-
-        <div class="row ">
-
-          <div class="mb-3 col-md-4">
-            <label for="floatingemailInput">Company Name <span class="text-danger"> *</span></label>
-            <input type="text" class="form-control" formControlName="name" placeholder="Enter Company Name"
-              [ngClass]="{'is-invalid' :submit && form.name.errors ,'is-valid': !form.name.errors}">
-            <div *ngIf="submit && form.name.errors" class="invalid-feedback">
-              <span *ngIf="form.name.errors.required">Please provide a valid name.</span>
+          <div class="d-flex justify-content-between">
+            <h5 class="text-primary mb-3">Company Information</h5>
+            <div class="form-check form-check-primary mb-3">
+              <input class="form-check-input date-cursor" type="checkbox" name="blacklisted"
+                formControlName="blacklisted" id="blacklisted">
+              <label>Blacklist Carrier</label>
             </div>
           </div>
 
 
+          <div class="row ">
 
-          <div class="mb-3 col-md-4">
-            <label for="floatingemailInput">Primary Contact</label>
-            <input type="text" class="form-control" formControlName="primaryConatct" placeholder="Enter Primary Contact"
-              [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
-          </div>
-
-
-          <div class="mb-3 col-md-4">
-            <label for="floatingemailInput">Secondary Contact</label>
-            <input type="text" class="form-control" formControlName="primaryConatct"
-              placeholder="Enter Secondary Contact" [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
-          </div>
-
-        </div>
-
-        <div class="row ">
-
-          <div class="mb-3 col-md-4">
-            <label for="state">Country <span class="text-danger"> *</span></label>
-            <ng-select formControlName="country" (ngModelChange)="onCountryChange($event)" placeholder="Select Country"
-              [items]="countryList" bindLabel="name" bindValue="isoCode"
-              [ngClass]="{'is-invalid' :submit && form.country.errors ,'is-valid': !form.country.errors}">
-            </ng-select>
-
-            <div *ngIf="submit && form.country.errors" class="invalid-feedback">
-              <span *ngIf="form.country.errors.required">Please choose a valid Country.</span>
-            </div>
-          </div>
-
-
-          <div class="mb-3 col-md-4">
-            <label for="floatingemailInput">Address Line 1 <span class="text-danger"> *</span></label>
-            <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
-              [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
-
-            <div *ngIf="submit && form.address_1.errors" class="invalid-feedback">
-              <span *ngIf="form.address_1.errors.required">Please provide a valid Address.</span>
-            </div>
-          </div>
-
-
-          <div class="mb-3 col-md-4">
-            <label for="floatingemailInput">Address Line 2 <span class="text-danger"> *</span></label>
-            <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
-              [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
-
-            <div *ngIf="submit && form.address_2.errors" class="invalid-feedback">
-              <span *ngIf="form.address_2.errors.required">Please provide a valid Address.</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row mb-2">
-
-          <div class="mb-3 col-md-4">
-
-            <label for="state">State/Province <span class="text-danger"> *</span></label>
-            <ng-select formControlName="state" (ngModelChange)="onStateChange($event)" placeholder="Select State"
-              [items]="stateList" bindLabel="name" bindValue="isoCode"
-              [ngClass]="{'is-invalid' :submit && form.state.errors ,'is-valid': !form.state.errors}">
-            </ng-select>
-
-            <div *ngIf="submit && form.state.errors" class="invalid-feedback">
-              <span *ngIf="form.state.errors.required">Please choose a valid State.</span>
-            </div>
-          </div>
-
-
-          <div class="mb-3 col-md-4">
-
-            <label for="city">City <span class="text-danger"> *</span></label>
-            <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
-              bindValue="name" [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
-            </ng-select>
-
-            <div *ngIf="submit && form.city.errors" class="invalid-feedback">
-              <span *ngIf="form.city.errors.required">Please choose a valid City.</span>
-            </div>
-          </div>
-
-
-
-          <div class="mb-3 col-md-4">
-            <label for="zip">Zip/Postal </label>
-            <input type="zip" class="form-control" formControlName="zip" placeholder="Enter Zip/postal code"
-              [ngClass]="{'is-invalid' :submit && form.zip.errors ,'is-valid': !form.zip.errors}">
-
-            <div *ngIf="submit && form.zip.errors" class="invalid-feedback">
-              <span *ngIf="form.zip.errors.required">Please provide a valid Postal Address.</span>
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="row mb-2">
-
-          <div class="mb-3 col-md-4">
-
-            <label for="state">MC#/FF# <span class="text-danger"> *</span></label>
-
-            <div class="row">
-              <div class="col-md-3">
-                <ng-select [items]="mcff" [clearable]="false" formControlName="mcffOption" bindLabel="name"
-                  bindValue="code">
-                </ng-select>
-              </div>
-              <div class="col-md-7">
-                <input type="number" class="form-control" formControlName="mcff" placeholder="Enter MC#/FF#"
-                  [ngClass]="{'is-invalid' :submit && form.mcff.errors ,'is-valid': !form.mcff.errors}">
+            <div class="mb-3 col-md-4">
+              <label for="name">Company Name <span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && form.name.errors ,'is-valid': !form.name.errors}">
+              <div *ngIf="submit && form.name.errors" class="invalid-feedback">
+                <span *ngIf="form.name.errors.required">Please provide a valid name.</span>
               </div>
             </div>
 
-            <div *ngIf="submit && form.state.errors" class="invalid-feedback">
-              <span *ngIf="form.state.errors.required">Please add a MC#/FF#.</span>
+
+
+            <div class="mb-3 col-md-4">
+              <label for="primaryConatct">Primary Contact</label>
+              <input type="text" class="form-control" formControlName="primaryConatct"
+                placeholder="Enter Primary Contact" [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
             </div>
+
+
+            <div class="mb-3 col-md-4">
+              <label for="secondaryConatct">Secondary Contact</label>
+              <input type="text" class="form-control" formControlName="primaryConatct"
+                placeholder="Enter Secondary Contact"
+                [ngClass]="{'is-invalid' :submit && form.secondaryConatct.errors}">
+            </div>
+
           </div>
 
-          <div class="mb-3 col-md-4">
-            <div class="row">
-              <div class="col-md-6">
-                <label for="urs">URS# <span class="text-danger"> *</span></label>
-                <input type="number" class="form-control" formControlName="urs" placeholder="Enter URS#"
-                  [ngClass]="{'is-invalid' :submit && form.urs.errors ,'is-valid': !form.urs.errors}">
+          <div class="row ">
 
-                <div *ngIf="submit && form.urs.errors" class="invalid-feedback">
-                  <span *ngIf="form.urs.errors.required">Please add a valid URS#.</span>
+            <div class="mb-3 col-md-4">
+              <label for="country">Country <span class="text-danger"> *</span></label>
+              <ng-select formControlName="country" (ngModelChange)="onCountryChange($event)"
+                placeholder="Select Country" [items]="countryList" bindLabel="name" bindValue="isoCode"
+                [ngClass]="{'is-invalid' :submit && form.country.errors ,'is-valid': !form.country.errors}">
+              </ng-select>
+
+              <div *ngIf="submit && form.country.errors" class="invalid-feedback">
+                <span *ngIf="form.country.errors.required">Please choose a valid Country.</span>
+              </div>
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+              <label for="address_1">Address Line 1 <span class="text-danger"> *</span></label>
+              <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
+                [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
+
+              <div *ngIf="submit && form.address_1.errors" class="invalid-feedback">
+                <span *ngIf="form.address_1.errors.required">Please provide a valid Address.</span>
+              </div>
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+              <label for="address_2">Address Line 2 <span class="text-danger"> *</span></label>
+              <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
+                [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
+
+              <div *ngIf="submit && form.address_2.errors" class="invalid-feedback">
+                <span *ngIf="form.address_2.errors.required">Please provide a valid Address.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row mb-2">
+
+            <div class="mb-3 col-md-4">
+
+              <label for="state">State/Province <span class="text-danger"> *</span></label>
+              <ng-select formControlName="state" (ngModelChange)="onStateChange($event)" placeholder="Select State"
+                [items]="stateList" bindLabel="name" bindValue="isoCode"
+                [ngClass]="{'is-invalid' :submit && form.state.errors ,'is-valid': !form.state.errors}">
+              </ng-select>
+
+              <div *ngIf="submit && form.state.errors" class="invalid-feedback">
+                <span *ngIf="form.state.errors.required">Please choose a valid State.</span>
+              </div>
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+
+              <label for="city">City <span class="text-danger"> *</span></label>
+              <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
+                bindValue="name" [ngClass]="{'is-invalid' :submit && form.city.errors ,'is-valid': !form.city.errors}">
+              </ng-select>
+
+              <div *ngIf="submit && form.city.errors" class="invalid-feedback">
+                <span *ngIf="form.city.errors.required">Please choose a valid City.</span>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3 col-md-4">
+              <label for="zip">Zip/Postal </label>
+              <input type="zip" class="form-control" formControlName="zip" placeholder="Enter Zip/postal code"
+                [ngClass]="{'is-invalid' :submit && form.zip.errors ,'is-valid': !form.zip.errors}">
+
+              <div *ngIf="submit && form.zip.errors" class="invalid-feedback">
+                <span *ngIf="form.zip.errors.required">Please provide a valid Postal Address.</span>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row mb-2">
+
+            <div class="mb-3 col-md-4">
+
+              <label for="state">MC#/FF# <span class="text-danger"> *</span></label>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <ng-select [items]="mcff" [clearable]="false" formControlName="mcffOption" bindLabel="name"
+                    bindValue="code">
+                  </ng-select>
                 </div>
-
-              </div>
-              <div class="col-md-6">
-                <label for="scac">SCAS <span class="text-danger"> *</span></label>
-                <input type="number" class="form-control" formControlName="scac" placeholder="Enter SCAC"
-                  [ngClass]="{'is-invalid' :submit && form.scac.errors ,'is-valid': !form.scac.errors}">
-
-                <div *ngIf="submit && form.scac.errors" class="invalid-feedback">
-                  <span *ngIf="form.scac.errors.required">Please add a valid SCAC.</span>
-                </div>
-
-              </div>
-            </div>
-
-
-
-
-          </div>
-
-          <div class="mb-3 col-md-4">
-            <label for="dot">DOT# </label>
-            <input type="number" class="form-control" formControlName="dot" placeholder="Enter DOT#"
-              [ngClass]="{'is-invalid' :submit && form.dot.errors ,'is-valid': !form.dot.errors}">
-
-            <div *ngIf="submit && form.dot.errors" class="invalid-feedback">
-              <span *ngIf="form.dot.errors.required">Please provide a valid DOT#</span>
-            </div>
-          </div>
-
-
-        </div>
-
-        <h5 class="mb-3 text-primary">Contact Information</h5>
-
-        <div class="row ">
-
-          <div class=" col-md-4 mb-3">
-            <div class="row">
-
-              <div class="col-sm-6">
-                <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
-                <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
-                  [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
-                  [ngClass]="{'is-invalid' :submit && form.telephone.errors ,'is-valid': !form.telephone.errors}"
-                  mask="(000) 000-0000">
-
-                <div *ngIf="submit && form.telephone.errors" class="invalid-feedback">
-                  <span *ngIf="form.telephone.errors.required">Please provide a valid Phone Number.</span>
+                <div class="col-md-7">
+                  <input type="number" class="form-control" formControlName="mcff" placeholder="Enter MC#/FF#"
+                    [ngClass]="{'is-invalid' :submit && form.mcff.errors ,'is-valid': !form.mcff.errors}">
                 </div>
               </div>
 
-              <div class=" col-sm-6">
-                <label for="ext">Ext.</label>
-                <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
-                  [ngClass]="{'is-invalid' :submit && form.ext.errors }">
-
-                <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
-                  <span *ngIf="form.ext.errors.required">Please provide a valid Extension Number.</span>
-                </div>
+              <div *ngIf="submit && form.state.errors" class="invalid-feedback">
+                <span *ngIf="form.state.errors.required">Please add a MC#/FF#.</span>
               </div>
             </div>
-          </div>
 
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="urs">URS# <span class="text-danger"> *</span></label>
+                  <input type="number" class="form-control" formControlName="urs" placeholder="Enter URS#"
+                    [ngClass]="{'is-invalid' :submit && form.urs.errors ,'is-valid': !form.urs.errors}">
 
-          <div class=" mb-3 col-md-4">
-            <label for="tollFree">Toll Free </label>
-            <input type="text" class="form-control" formControlName="tollFree" placeholder="Enter Toll Free"
-              [ngClass]="{'is-invalid' :submit && form.tollFree.errors }">
+                  <div *ngIf="submit && form.urs.errors" class="invalid-feedback">
+                    <span *ngIf="form.urs.errors.required">Please add a valid URS#.</span>
+                  </div>
 
-            <div *ngIf="submit && form.tollFree.errors" class="invalid-feedback">
-              <span *ngIf="form.tollFree.errors.required">Please provide a valid Toll Free.</span>
-            </div>
-          </div>
-
-
-          <div class=" mb-3 col-md-4">
-            <label for="faxNumber">Fax </label>
-            <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
-              [dropSpecialCharacters]="false" formControlName="faxNumber" placeholder="Enter Fax Number"
-              [ngClass]="{'is-invalid' :submit && form.faxNumber.errors}" mask="(000) 000-0000">
-
-            <div *ngIf="submit && form.faxNumber.errors" class="invalid-feedback">
-              <span *ngIf="form.faxNumber.errors.required">Please provide a valid Fax Number.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-
-          <div class="mb-3 col-md-4">
-            <label for="email">Email </label>
-            <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"
-              [ngClass]="{'is-invalid' :submit && form.email.errors }">
-
-            <div *ngIf="submit && form.email.errors" class="invalid-feedback">
-              <span *ngIf="form.email.errors.required">Please provide a valid Email.</span>
-            </div>
-          </div>
-
-
-          <div class="mb-3 col-md-4">
-            <label for="remittanceEmail">Remittance Email </label>
-            <input type="email" class="form-control" formControlName="remittanceEmail"
-              placeholder="Enter Remittance Email" [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors }">
-
-            <div *ngIf="submit && form.remittanceEmail.errors" class="invalid-feedback">
-              <span *ngIf="form.remittanceEmail.errors.required">Please provide a valid Email.</span>
-            </div>
-          </div>
-
-        </div>
-
-        <h5 class="mb-3 text-primary">Additional Information</h5>
-        <div class="row">
-          <div class=" col-md-4 mb-3">
-            <div class="row">
-
-              <div class=" col-md-6">
-                <label for="paymentTerms">Payment Terms</label>
-                <ng-select [clearable]="false" formControlName="paymentTerms" placeholder="Select Terms"
-                  [items]="paymentTerms" bindLabel="name" bindValue="code"
-                  [ngClass]="{'is-invalid' :submit && form.paymentTerms.errors ,'is-valid': !form.paymentTerms.errors}">
-                </ng-select>
-
-                <div *ngIf="submit && form.paymentTerms.errors" class="invalid-feedback">
-                  <span *ngIf="form.paymentTerms.errors.required">Please choose a valid Payment Term.</span>
                 </div>
+                <div class="col-md-6">
+                  <label for="scac">SCAS <span class="text-danger"> *</span></label>
+                  <input type="number" class="form-control" formControlName="scac" placeholder="Enter SCAC"
+                    [ngClass]="{'is-invalid' :submit && form.scac.errors ,'is-valid': !form.scac.errors}">
 
-              </div>
-              <div class="col-md-6">
-                <label for="currency">Currency</label>
-                <ng-select [clearable]="false" formControlName="currency" placeholder="Select currency"
-                  [items]="currencyList" bindLabel="code" bindValue="code"
-                  [ngClass]="{'is-invalid' :submit && form.currency.errors }">
-                </ng-select>
+                  <div *ngIf="submit && form.scac.errors" class="invalid-feedback">
+                    <span *ngIf="form.scac.errors.required">Please add a valid SCAC.</span>
+                  </div>
 
-                <div *ngIf="submit && form.currency.errors" class="invalid-feedback">
-                  <span *ngIf="form.currency.errors.required">Please choose a valid currency.</span>
                 </div>
               </div>
 
+
+
+
             </div>
+
+            <div class="mb-3 col-md-4">
+              <label for="dot">DOT# </label>
+              <input type="number" class="form-control" formControlName="dot" placeholder="Enter DOT#"
+                [ngClass]="{'is-invalid' :submit && form.dot.errors ,'is-valid': !form.dot.errors}">
+
+              <div *ngIf="submit && form.dot.errors" class="invalid-feedback">
+                <span *ngIf="form.dot.errors.required">Please provide a valid DOT#</span>
+              </div>
+            </div>
+
+
           </div>
 
-          <div class=" col-md-4 mb-3">
-            <div class="row">
-              <div class="col-md-6">
-                <label for="taxID">Tax ID/EIN </label>
-                <input type="email" class="form-control" formControlName="taxID" placeholder="Enter Tax ID"
-                  [ngClass]="{'is-invalid' :submit && form.taxID.errors }">
 
-                <div *ngIf="submit && form.taxID.errors" class="invalid-feedback">
-                  <span *ngIf="form.taxID.errors.required">Please provide a valid Tax ID.</span>
+          <h5 class="mb-3 text-primary">Contact Information</h5>
+
+          <div class="row ">
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
+                  <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                    [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid' :submit && form.telephone.errors ,'is-valid': !form.telephone.errors}"
+                    mask="(000) 000-0000">
+
+                  <div *ngIf="submit && form.telephone.errors" class="invalid-feedback">
+                    <span *ngIf="form.telephone.errors.required">Please provide a valid Phone Number.</span>
+                  </div>
+                </div>
+
+                <div class=" col-sm-6">
+                  <label for="ext">Ext.</label>
+                  <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
+                    [ngClass]="{'is-invalid' :submit && form.ext.errors }">
+
+                  <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
+                    <span *ngIf="form.ext.errors.required">Please provide a valid Extension Number.</span>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-md-6">
-                <label for="taxID">Business Type </label>
 
-                <ng-select [clearable]="false" formControlName="businessType" placeholder="Select Business Type"
-                  [items]="bTypes" bindLabel="name" bindValue="name"
-                  [ngClass]="{'is-invalid' :submit && form.currency.errors }">
-                </ng-select>
+            <div class=" mb-3 col-md-4">
+              <label for="tollFree">Toll Free </label>
+              <input type="text" class="form-control" formControlName="tollFree" placeholder="Enter Toll Free"
+                [ngClass]="{'is-invalid' :submit && form.tollFree.errors }">
+
+              <div *ngIf="submit && form.tollFree.errors" class="invalid-feedback">
+                <span *ngIf="form.tollFree.errors.required">Please provide a valid Toll Free.</span>
+              </div>
+            </div>
+
+
+            <div class=" mb-3 col-md-4">
+              <label for="faxNumber">Fax </label>
+              <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                [dropSpecialCharacters]="false" formControlName="faxNumber" placeholder="Enter Fax Number"
+                [ngClass]="{'is-invalid' :submit && form.faxNumber.errors}" mask="(000) 000-0000">
+
+              <div *ngIf="submit && form.faxNumber.errors" class="invalid-feedback">
+                <span *ngIf="form.faxNumber.errors.required">Please provide a valid Fax Number.</span>
               </div>
             </div>
           </div>
 
-          <div class="col-md-4 mb-4">
-            <label for="floatingemailInput">Factoring Company <span (click)="onAddfactoringCompany()"
-                class="text-success"> <i class="bx bx-plus 2x"></i></span></label>
-            <ng-select [clearable]="false" formControlName="factoringCompany" placeholder="No"
-              [items]="factoringCompanies" bindLabel="name" bindValue="id"
-              [ngClass]="{'is-invalid' :submit && form.factoringCompany.errors }">
-            </ng-select>
+          <div class="row mb-3">
+
+            <div class="mb-3 col-md-4">
+              <label for="email">Email </label>
+              <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"
+                [ngClass]="{'is-invalid' :submit && form.email.errors }">
+
+              <div *ngIf="submit && form.email.errors" class="invalid-feedback">
+                <span *ngIf="form.email.errors.required">Please provide a valid Email.</span>
+              </div>
+            </div>
+
+
+            <div class="mb-3 col-md-4">
+              <label for="remittanceEmail">Remittance Email </label>
+              <input type="email" class="form-control" formControlName="remittanceEmail"
+                placeholder="Enter Remittance Email" [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors }">
+
+              <div *ngIf="submit && form.remittanceEmail.errors" class="invalid-feedback">
+                <span *ngIf="form.remittanceEmail.errors.required">Please provide a valid Email.</span>
+              </div>
+            </div>
+
           </div>
 
+          <h5 class="mb-3 text-primary">Additional Information</h5>
+          <div class="row">
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class=" col-md-6">
+                  <label for="paymentTerms">Payment Terms</label>
+                  <ng-select [clearable]="false" formControlName="paymentTerms" placeholder="Select Terms"
+                    [items]="paymentTerms" bindLabel="name" bindValue="code"
+                    [ngClass]="{'is-invalid' :submit && form.paymentTerms.errors ,'is-valid': !form.paymentTerms.errors}">
+                  </ng-select>
+
+                  <div *ngIf="submit && form.paymentTerms.errors" class="invalid-feedback">
+                    <span *ngIf="form.paymentTerms.errors.required">Please choose a valid Payment Term.</span>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <label for="currency">Currency</label>
+                  <ng-select [clearable]="false" formControlName="currency" placeholder="Select currency"
+                    [items]="currencyList" bindLabel="code" bindValue="code"
+                    [ngClass]="{'is-invalid' :submit && form.currency.errors }">
+                  </ng-select>
+
+                  <div *ngIf="submit && form.currency.errors" class="invalid-feedback">
+                    <span *ngIf="form.currency.errors.required">Please choose a valid currency.</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="taxID">Tax ID/EIN </label>
+                  <input type="email" class="form-control" formControlName="taxID" placeholder="Enter Tax ID"
+                    [ngClass]="{'is-invalid' :submit && form.taxID.errors }">
+
+                  <div *ngIf="submit && form.taxID.errors" class="invalid-feedback">
+                    <span *ngIf="form.taxID.errors.required">Please provide a valid Tax ID.</span>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="taxID">Business Type </label>
+
+                  <ng-select [clearable]="false" formControlName="businessType" placeholder="Select Business Type"
+                    [items]="bTypes" bindLabel="name" bindValue="name"
+                    [ngClass]="{'is-invalid' :submit && form.currency.errors }">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label for="floatingemailInput">Factoring Company <span (click)="onAddfactoringCompany()"
+                  class="text-success"> <i class="bx bx-plus 2x"></i></span></label>
+              <ng-select [clearable]="false" formControlName="factoringCompany" placeholder="No"
+                [items]="factoringCompanies" bindLabel="name" bindValue="id"
+                [ngClass]="{'is-invalid' :submit && form.factoringCompany.errors }">
+              </ng-select>
+            </div>
+
+          </div>
         </div>
       </ng-template>
 
@@ -341,7 +346,474 @@
     <li [ngbNavItem]="2" [destroyOnHide]="false">
       <a ngbNavLink>Insuarance</a>
       <ng-template ngbNavContent>
-        <p>Insuarance goes here</p>
+
+        <div formGroupName="liability">
+          <h5 class="text-primary mb-3">Liability</h5>
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <label for="liabilityCompany">Liability Company<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="liabilityCompany"
+                placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && liability.liabilityCompany.errors ,'is-valid': !liability.liabilityCompany.errors}">
+              <div *ngIf="submit && liability.liabilityCompany.errors" class="invalid-feedback">
+                <span *ngIf="liability.liabilityCompany.errors.required">Please provide a valid name.</span>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3 col-md-4">
+              <label for="conatct">Contact</label>
+              <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact"
+                [ngClass]="{'is-invalid' :submit && liability.conatct.errors}">
+            </div>
+
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
+                  <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                    [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid' :submit && liability.telephone.errors ,'is-valid': !liability.telephone.errors}"
+                    mask="(000) 000-0000">
+
+                  <div *ngIf="submit && liability.telephone.errors" class="invalid-feedback">
+                    <span *ngIf="liability.telephone.errors.required">Please provide a valid Phone Number.</span>
+                  </div>
+                </div>
+
+                <div class=" col-sm-6">
+                  <label for="ext">Ext.</label>
+                  <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
+                    [ngClass]="{'is-invalid' :submit && liability.ext.errors }">
+
+                  <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
+                    <span *ngIf="liability.ext.errors.required">Please provide a valid Extension Number.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" formControlName="policyNumber"
+                    placeholder="Enter Policy Number"
+                    [ngClass]="{'is-invalid' :submit && liability.policyNumber.errors ,'is-valid': !liability.policyNumber.errors}">
+                  <div *ngIf="submit && liability.policyNumber.errors" class="invalid-feedback">
+                    <span *ngIf="liability.policyNumber.errors.required">Please provide a valid Policy
+                      faxNumber.</span>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="expirationDate">Exp. Date<span class="text-danger"> *</span></label>
+                  <div class="input-group clockpicker">
+                    <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
+                      placeholder="Enter Expiration Date" #l="ngbDatepicker"
+                      [ngClass]="{'is-invalid' :submit && liability.expirationDate.errors ,'is-valid': !liability.expirationDate.errors}">
+
+                    <div class="input-group-append" (click)="l.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="submit && liability.expirationDate.errors" class="invalid-feedback">
+                    <span *ngIf="liability.expirationDate.errors.required">Please pick a valid Date.</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+
+              <label for="liability">Liability ($)<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="liability" placeholder="Enter Liability amount"
+                [ngClass]="{'is-invalid' :submit && liability.liability.errors ,'is-valid': !liability.liability.errors}">
+              <div *ngIf="submit && liability.liability.errors" class="invalid-feedback">
+                <span *ngIf="liability.liability.errors.required">Please provide liability</span>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label for="lNote">Note</label>
+              <textarea class="form-control" formControlName="lNote" placeholder=" Note...">
+
+                </textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <h5 class="text-primary mb-3">Auto</h5>
+        <div formGroupName="auto">
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <label for="insCompany">Insuarance Company<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="insCompany" placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && auto.insCompany.errors ,'is-valid': !auto.insCompany.errors}">
+              <div *ngIf="submit && auto.insCompany.errors" class="invalid-feedback">
+                <span *ngIf="auto.insCompany.errors.required">Please provide a valid name.</span>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3 col-md-4">
+              <label for="conatct">Contact</label>
+              <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact"
+                [ngClass]="{'is-invalid' :submit && auto.conatct.errors}">
+            </div>
+
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
+                  <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                    [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid' :submit && auto.telephone.errors ,'is-valid': !auto.telephone.errors}"
+                    mask="(000) 000-0000">
+
+                  <div *ngIf="submit && auto.telephone.errors" class="invalid-feedback">
+                    <span *ngIf="auto.telephone.errors.required">Please provide a valid Phone Number.</span>
+                  </div>
+                </div>
+
+                <div class=" col-sm-6">
+                  <label for="ext">Ext.</label>
+                  <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
+                    [ngClass]="{'is-invalid' :submit && auto.ext.errors }">
+
+                  <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
+                    <span *ngIf="auto.ext.errors.required">Please provide a valid Extension Number.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" formControlName="policyNumber"
+                    placeholder="Enter Policy Number"
+                    [ngClass]="{'is-invalid' :submit && auto.policyNumber.errors ,'is-valid': !auto.policyNumber.errors}">
+                  <div *ngIf="submit && auto.policyNumber.errors" class="invalid-feedback">
+                    <span *ngIf="auto.policyNumber.errors.required">Please provide a valid Policy
+                      number.</span>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="expirationDate">Exp. Date<span class="text-danger"> *</span></label>
+                  <div class="input-group clockpicker">
+                    <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
+                      placeholder="Enter Expiration Date" #a="ngbDatepicker"
+                      [ngClass]="{'is-invalid' :submit && auto.expirationDate.errors ,'is-valid': !auto.expirationDate.errors}">
+
+                    <div class="input-group-append" (click)="a.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="submit && auto.expirationDate.errors" class="invalid-feedback">
+                    <span *ngIf="auto.expirationDate.errors.required">Please pick a valid Date.</span>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+
+              <label for="liability">Liability ($)<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="liability" placeholder="Enter Liability amount"
+                [ngClass]="{'is-invalid' :submit && auto.liability.errors ,'is-valid': !auto.liability.errors}">
+              <div *ngIf="submit && auto.liability.errors" class="invalid-feedback">
+                <span *ngIf="auto.liability.errors.required">Please provide liability Amount</span>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label for="note">Note</label>
+              <textarea class="form-control" formControlName="note" placeholder=" Note...">
+
+                  </textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <h5 class="text-primary mb-3">Cargo</h5>
+
+        <div formGroupName="cargo">
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <label for="cargoCompany">Cargo Company<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="cargoCompany" placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && cargo.cargoCompany.errors ,'is-valid': !cargo.cargoCompany.errors}">
+              <div *ngIf="submit && cargo.cargoCompany.errors" class="invalid-feedback">
+                <span *ngIf="cargo.cargoCompany.errors.required">Please provide a valid name.</span>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3 col-md-4">
+              <label for="conatct">Contact</label>
+              <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact"
+                [ngClass]="{'is-invalid' :submit && cargo.conatct.errors}">
+            </div>
+
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
+                  <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                    [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid' :submit && cargo.telephone.errors ,'is-valid': !cargo.telephone.errors}"
+                    mask="(000) 000-0000">
+
+                  <div *ngIf="submit && cargo.telephone.errors" class="invalid-feedback">
+                    <span *ngIf="cargo.telephone.errors.required">Please provide a valid Phone Number.</span>
+                  </div>
+                </div>
+
+                <div class=" col-sm-6">
+                  <label for="ext">Ext.</label>
+                  <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
+                    [ngClass]="{'is-invalid' :submit && cargo.ext.errors }">
+
+                  <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
+                    <span *ngIf="cargo.ext.errors.required">Please provide a valid Extension Number.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" formControlName="policyNumber"
+                    placeholder="Enter Policy Number"
+                    [ngClass]="{'is-invalid' :submit && cargo.policyNumber.errors ,'is-valid': !cargo.policyNumber.errors}">
+                  <div *ngIf="submit && cargo.policyNumber.errors" class="invalid-feedback">
+                    <span *ngIf="cargo.policyNumber.errors.required">Please provide a valid Policy
+                      number.</span>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="expirationDate">Exp. Date<span class="text-danger"> *</span></label>
+                  <div class="input-group clockpicker">
+                    <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
+                      placeholder="Enter Expiration Date" #c="ngbDatepicker"
+                      [ngClass]="{'is-invalid' :submit && cargo.expirationDate.errors ,'is-valid': !cargo.expirationDate.errors}">
+
+                    <div class="input-group-append" (click)="c.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="submit && cargo.expirationDate.errors" class="invalid-feedback">
+                    <span *ngIf="cargo.expirationDate.errors.required">Please pick a valid Date.</span>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+
+              <label for="cargoInsuarance">Cargo Ins ($)<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="cargoInsuarance"
+                placeholder="Enter Insuarance amount"
+                [ngClass]="{'is-invalid' :submit && cargo.cargoInsuarance.errors ,'is-valid': !cargo.cargoInsuarance.errors}">
+              <div *ngIf="submit && cargo.cargoInsuarance.errors" class="invalid-feedback">
+                <span *ngIf="cargo.cargoInsuarance.errors.required">Please provide liability Amount</span>
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+
+              <label for="wsib">WSIB#<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="wsib" placeholder="Enter WSIB number"
+                [ngClass]="{'is-invalid' :submit && cargo.wsib.errors ,'is-valid': !cargo.wsib.errors}">
+              <div *ngIf="submit && cargo.wsib.errors" class="invalid-feedback">
+                <span *ngIf="cargo.wsib.errors.required">Please provide WSIB number</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <h5 class="text-primary mb-3">FCMSA</h5>
+        <div formGroupName="fmcsa">
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <label for="fmcsaCompany">FMCSA Company<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="fmcsaCompany" placeholder="Enter Company Name"
+                [ngClass]="{'is-invalid' :submit && fmcsa.fmcsaCompany.errors ,'is-valid': !fmcsa.fmcsaCompany.errors}">
+              <div *ngIf="submit && fmcsa.fmcsaCompany.errors" class="invalid-feedback">
+                <span *ngIf="fmcsa.fmcsaCompany.errors.required">Please provide a valid name.</span>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3 col-md-4">
+              <label for="type">Type</label>
+              <input type="text" class="form-control" formControlName="type" placeholder="Enter Type"
+                [ngClass]="{'is-invalid' :submit && fmcsa.type.errors}">
+            </div>
+
+
+            <div class=" col-md-4 mb-3">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <label for="telephone">Telephone Number <span class="text-danger"> *</span> </label>
+                  <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
+                    [dropSpecialCharacters]="false" formControlName="telephone" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid' :submit && fmcsa.telephone.errors ,'is-valid': !fmcsa.telephone.errors}"
+                    mask="(000) 000-0000">
+
+                  <div *ngIf="submit && fmcsa.telephone.errors" class="invalid-feedback">
+                    <span *ngIf="fmcsa.telephone.errors.required">Please provide a valid Phone Number.</span>
+                  </div>
+                </div>
+
+                <div class=" col-sm-6">
+                  <label for="ext">Ext.</label>
+                  <input type="text" class="form-control" formControlName="ext" placeholder="Enter Extension"
+                    [ngClass]="{'is-invalid' :submit && fmcsa.ext.errors }">
+
+                  <div *ngIf="submit && form.ext.errors" class="invalid-feedback">
+                    <span *ngIf="fmcsa.ext.errors.required">Please provide a valid Extension Number.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row ">
+
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
+                  <input type="text" class="form-control" formControlName="policyNumber"
+                    placeholder="Enter Policy Number"
+                    [ngClass]="{'is-invalid' :submit && fmcsa.policyNumber.errors ,'is-valid': !fmcsa.policyNumber.errors}">
+                  <div *ngIf="submit && fmcsa.policyNumber.errors" class="invalid-feedback">
+                    <span *ngIf="fmcsa.policyNumber.errors.required">Please provide a valid Policy
+                      number.</span>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="expirationDate">Exp. Date<span class="text-danger"> *</span></label>
+                  <div class="input-group clockpicker">
+                    <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
+                      placeholder="Enter Expiration Date" #f="ngbDatepicker"
+                      [ngClass]="{'is-invalid' :submit && fmcsa.expirationDate.errors ,'is-valid': !fmcsa.expirationDate.errors}">
+
+                    <div class="input-group-append" (click)="f.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="submit && fmcsa.expirationDate.errors" class="invalid-feedback">
+                    <span *ngIf="fmcsa.expirationDate.errors.required">Please pick a valid Date.</span>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+
+              <label for="coverage">Cargo Ins ($)<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control" formControlName="coverage" placeholder="Enter Insuarance amount"
+                [ngClass]="{'is-invalid' :submit && fmcsa.coverage.errors ,'is-valid': !fmcsa.coverage.errors}">
+              <div *ngIf="submit && fmcsa.coverage.errors" class="invalid-feedback">
+                <span *ngIf="fmcsa.coverage.errors.required">Please provide coverage Amount</span>
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="amBestRating">A.M. Best Rating</label>
+
+                  <ng-select  [clearable]="false" formControlName="amBestRating" placeholder="Select Rating" [items]="ratingList"
+                    bindLabel="name" bindValue="name"
+                    [ngClass]="{'is-invalid' :submit && fmcsa.amBestRating.errors ,'is-valid': !fmcsa.amBestRating.errors}">
+                  </ng-select>
+
+                  <div *ngIf="submit && fmcsa.amBestRating.errors" class="invalid-feedback">
+                    <span *ngIf="fmcsa.amBestRating.errors.required">Please choose a valid Rating.</span>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
       </ng-template>
     </li>
 
