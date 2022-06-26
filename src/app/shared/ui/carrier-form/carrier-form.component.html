@@ -790,8 +790,8 @@
                 <div class="col-md-6">
                   <label for="amBestRating">A.M. Best Rating</label>
 
-                  <ng-select  [clearable]="false" formControlName="amBestRating" placeholder="Select Rating" [items]="ratingList"
-                    bindLabel="name" bindValue="name"
+                  <ng-select [clearable]="false" formControlName="amBestRating" placeholder="Select Rating"
+                    [items]="ratingList" bindLabel="name" bindValue="name"
                     [ngClass]="{'is-invalid' :submit && fmcsa.amBestRating.errors ,'is-valid': !fmcsa.amBestRating.errors}">
                   </ng-select>
 
@@ -821,20 +821,50 @@
     <li [ngbNavItem]="3" [destroyOnHide]="false">
       <a ngbNavLink>Equipment</a>
       <ng-template ngbNavContent>
-        <p>Equipment goes here </p>
+
+        <div class="mb-3" formArrayName="equipments">
+          <div class="mb-3" *ngFor="let data1 of equipments().controls; let i=index;">
+            <div [formGroupName]="i" class="row">
+              <div class="mb-3 col-lg-2">
+                <label for="equipment">Equipment</label>
+
+                <ng-select [clearable]="false" formControlName="equipment" placeholder="Select Equipment"
+                  [items]="equipmentList" bindLabel="name" bindValue="name"></ng-select>
+
+              </div>
+
+              <div class="mb-3 col-lg-2">
+                <label for="email">Quantity</label>
+                <input type="number" formControlName="qty" class="form-control">
+              </div>
+
+              <div class="col-lg-1 align-self-center">
+                <div class="d-grid">
+                  <span  (click)="removeField(i)"><i class="bx bxs-trash text-danger"></i> </span>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)="addField()">Add <i class="mdi mdi-plus"></i> </button>
+
+        </div>
       </ng-template>
     </li>
 
   </ul>
   <div [ngbNavOutlet]="nav" class="p-3"></div>
 
-  <div class="d-flex flex-wrap gap-2">
-    <button type="submit" class="btn btn-primary waves-effect waves-light">
-      Save
-    </button>
+  <div class="d-flex flex-wrap gap-1 justify-content-end">
+   
     <button type="reset" class="btn btn-secondary waves-effect">
       Reset
     </button>
+    <button type="submit" class="btn btn-primary waves-effect waves-light">
+      Save
+    </button>
+
   </div>
 </form>
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { NgbCollapseModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {
   NgbDropdownModule,
   NgbNavModule,
@@ -35,7 +36,8 @@ import { NgxMaskModule } from 'ngx-mask';
     NgbCollapseModule,
     NgbDatepickerModule,
     NgbTimepickerModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    Ng2SmartTableModule
   ],
   exports: [PagetitleComponent, LoaderComponent,CompanyFormComponent,CarrierFormComponent]
 })

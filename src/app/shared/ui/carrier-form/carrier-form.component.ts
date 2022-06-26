@@ -8,12 +8,14 @@ import {
   ElementRef,
 } from "@angular/core";
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Equipments } from "./equipments";
 import { City, Country, State } from "country-state-city";
 @Component({
   selector: "carrier-form",
@@ -28,7 +30,8 @@ export class CarrierFormComponent implements OnInit {
   stateList: any[];
   cDialCode: string;
   cityList: any[];
-  ratingList:any[];
+  ratingList: any[];
+  equipmentList: any[];
   countryList: any[];
   factoringCompanies: any[];
   public modalRef: any;
@@ -37,6 +40,29 @@ export class CarrierFormComponent implements OnInit {
   countryCode: string;
   currencyList: any[];
   paymentTerms: any[];
+  editableTable: any;
+  settings = {
+
+    columns: {
+      equipment: {
+        title: 'Equipment',
+        filter: {
+          type: 'list',
+          config: {
+            selectText: 'Select...',
+            list: [
+              { value: 'Glenna Reichert', title: 'Glenna Reichert' },
+              { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
+              { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },
+            ],
+          },
+        },
+      },
+      qty: {
+        title: 'Quantity',
+      },
+    },
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +72,9 @@ export class CarrierFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter();
   @Output() onCancel = new EventEmitter();
   @ViewChild("factoringCompanyAddModal") editModal: ElementRef;
+
   ngOnInit(): void {
+
     this.carrierForm = new FormGroup({
       profile: new FormGroup({
         name: new FormControl("", [Validators.required]),
@@ -210,15 +238,20 @@ export class CarrierFormComponent implements OnInit {
           Validators.pattern("[0-9]+"),
           Validators.required,
         ]),
-
         amBestRating: new FormControl("", [
           Validators.required,
         ]),
 
       }),
 
-    });
+      equipments: new FormArray([
+        this.equipmentfield()
+      ])
 
+
+    });
+    this.editableTable = [];
+    this.fetchEquipmentList();
 
     this.submit = false;
     this.cDialCode = "";
@@ -253,46 +286,46 @@ export class CarrierFormComponent implements OnInit {
       },
     ];
 
-    this.ratingList=[
+    this.ratingList = [
       {
         name: "A+",
-        value:"A+"
+        value: "A+"
       },
       {
         name: "A",
-        value:"A"
+        value: "A"
       },
       {
         name: "A-",
-        value:"A-"
+        value: "A-"
       },
       {
         name: "B+",
-        value:"B+"
+        value: "B+"
       },
       {
         name: "B",
-        value:"B"
+        value: "B"
       },
       {
         name: "B-",
-        value:"B-"
+        value: "B-"
       },
       {
         name: "C+",
-        value:"C+"
+        value: "C+"
       },
       {
         name: "C",
-        value:"C"
+        value: "C"
       },
       {
         name: "C-",
-        value:"C-"
+        value: "C-"
       },
       {
         name: "D",
-        value:"D"
+        value: "D"
       }
     ]
 
@@ -317,12 +350,34 @@ export class CarrierFormComponent implements OnInit {
     return this.carrierForm.get('profile')['controls']
   }
 
+  equipments(): FormArray {
+    return this.carrierForm.get('equipments') as FormArray;
+  }
+
+  equipmentfield(): FormGroup {
+    return new FormGroup({
+      equipment: new FormControl(null, Validators.required),
+      qty: new FormControl(null, Validators.required),
+    });
+  }
+
+  addField() {
+    this.equipments().push(this.equipmentfield());
+  }
+
+  removeField(i: number) {
+    this.equipments().removeAt(i);
+    
+  }
+
   get liability() {
     return this.carrierForm.get('liability')['controls']
   }
   get auto() {
     return this.carrierForm.get('auto')['controls']
   }
+
+
   get cargo() {
     return this.carrierForm.get('cargo')['controls']
   }
@@ -355,5 +410,12 @@ export class CarrierFormComponent implements OnInit {
       size: "xl",
       centered: true,
     });
+  }
+
+
+  fetchEquipmentList() {
+
+    this.equipmentList = Equipments;
+
   }
 }
