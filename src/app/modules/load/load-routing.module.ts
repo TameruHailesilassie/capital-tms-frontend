@@ -5,7 +5,6 @@ import { CreatLoadComponent } from './creat-load/creat-load.component';
 import { LoadDetailComponent } from './load-detail/load-detail.component';
 import { FileViewerComponent } from '../file-manager/file-viewer/file-viewer.component';
 const routes: Routes = [
-
   {
     path: "",
     children: [

@@ -40,30 +40,6 @@ export class CarrierFormComponent implements OnInit {
   countryCode: string;
   currencyList: any[];
   paymentTerms: any[];
-  editableTable: any;
-  settings = {
-
-    columns: {
-      equipment: {
-        title: 'Equipment',
-        filter: {
-          type: 'list',
-          config: {
-            selectText: 'Select...',
-            list: [
-              { value: 'Glenna Reichert', title: 'Glenna Reichert' },
-              { value: 'Kurtis Weissnat', title: 'Kurtis Weissnat' },
-              { value: 'Chelsey Dietrich', title: 'Chelsey Dietrich' },
-            ],
-          },
-        },
-      },
-      qty: {
-        title: 'Quantity',
-      },
-    },
-  };
-
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal
@@ -246,11 +222,12 @@ export class CarrierFormComponent implements OnInit {
 
       equipments: new FormArray([
         this.equipmentfield()
-      ])
+      ]),
+      gNote:new FormControl("")
 
 
     });
-    this.editableTable = [];
+
     this.fetchEquipmentList();
 
     this.submit = false;
