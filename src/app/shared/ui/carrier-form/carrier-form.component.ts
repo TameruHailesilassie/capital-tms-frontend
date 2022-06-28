@@ -117,10 +117,9 @@ export class CarrierFormComponent implements OnInit {
       }),
 
       liability: new FormGroup({
-        liabilityCompany: new FormControl("", [Validators.required]),
-        conatct: new FormControl("", [Validators.required]),
+        liabilityCompany: new FormControl(""),
+        conatct: new FormControl(""),
         telephone: new FormControl("", [
-          Validators.required,
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -129,13 +128,13 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-          Validators.required,
+      
           Validators.pattern("[0-9]+"),
         ]),
-        expirationDate: new FormControl("", Validators.required),
+        expirationDate: new FormControl(""),
         liability: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          Validators.required,
+          
         ]),
         note: new FormControl(""),
 
@@ -143,10 +142,10 @@ export class CarrierFormComponent implements OnInit {
 
       auto: new FormGroup({
 
-        insCompany: new FormControl("", [Validators.required]),
-        conatct: new FormControl("", [Validators.required]),
+        insCompany: new FormControl(""),
+        conatct: new FormControl(""),
         telephone: new FormControl("", [
-          Validators.required,
+         
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -155,13 +154,13 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-          Validators.required,
+        
           Validators.pattern("[0-9]+"),
         ]),
-        expirationDate: new FormControl("", Validators.required),
+        expirationDate: new FormControl(""),
         liability: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          Validators.required,
+          
         ]),
         note: new FormControl(""),
 
@@ -172,7 +171,7 @@ export class CarrierFormComponent implements OnInit {
         cargoCompany: new FormControl("", [Validators.required]),
         conatct: new FormControl("", [Validators.required]),
         telephone: new FormControl("", [
-          Validators.required,
+        
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -181,23 +180,23 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-          Validators.required,
+         
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl("", Validators.required),
         cargoInsuarance: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          Validators.required,
+       
         ]),
         wsib: new FormControl(""),
 
       }),
 
       fmcsa: new FormGroup({
-        fmcsaCompany: new FormControl("", [Validators.required]),
-        type: new FormControl("", [Validators.required]),
+        fmcsaCompany: new FormControl(""),
+        type: new FormControl(""),
         telephone: new FormControl("", [
-          Validators.required,
+        
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -206,16 +205,16 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-          Validators.required,
+         
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl("", Validators.required),
         coverage: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          Validators.required,
+         
         ]),
         amBestRating: new FormControl("", [
-          Validators.required,
+         
         ]),
 
       }),
@@ -224,12 +223,10 @@ export class CarrierFormComponent implements OnInit {
         this.equipmentfield()
       ]),
       gNote:new FormControl("")
-
-
     });
 
-    this.fetchEquipmentList();
 
+    this.fetchEquipmentList();
     this.submit = false;
     this.cDialCode = "";
     this.countryList = Country.getAllCountries();
@@ -321,7 +318,6 @@ export class CarrierFormComponent implements OnInit {
       },
     ];
   }
-
 
   get form() {
     return this.carrierForm.get('profile')['controls']

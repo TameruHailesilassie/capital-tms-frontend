@@ -13,7 +13,6 @@ export class AddCarrierComponent implements OnInit {
 
   ngOnInit(): void {
 
-
   }
 
   onSubmit($event): void {
