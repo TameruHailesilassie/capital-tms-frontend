@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <app-page-title title="RMIS" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-4 ">
+                    <div class="border p-3 rounded mt-4  d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar-x me-3">
+                                <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                    <img class="rounded-circle header-profile-user"
+                                        src="assets/images/brands/rmis-logo.jpeg">
+                                </span>
+                            </div>
+                            <h3 class="font-size-22 mb-0">RMIS</h3>
+                        </div>
+
+                        <div class="">
+                            <div class="text-muted mt-3">
+                                <p>Connect Carrier compliance data from RMIS to your Capital TMS carrier database
+                                    and ensure that you are always woring with carriers that meet your business'
+                                    compliance standard <a href="#">Learn More</a> </p>
+                            </div>
+                        </div>
+
+                        <div class=" mt-auto">
+                            <a (click)="disable()" href="javascript: void(0);"
+                                class="btn btn-outline-secondary form-control">Disable Integration
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class=" col-lg-8">
+                    <h5 class=" title mb-3 mt-3"><i class="bx bx-wrench"></i> Configuration</h5>
+                    <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="rmisFromGroup">
+
+
+                        <div class="mb-3 ">
+                            <label for="rmisClientID">RMIS API Client ID <span class="text-primary"> <i
+                                        class="bx bxs-info-circle"></i></span></label>
+                            <input type="text" class="form-control" formControlName="rmisClientID"
+                                placeholder="API Client ID"
+                                [ngClass]="{'is-invalid' :submit && form.rmisClientID.errors ,'is-valid': !form.rmisClientID.errors}">
+                            <div *ngIf="submit && form.rmisClientID.errors" class="invalid-feedback">
+                                <span *ngIf="form.rmisClientID.errors.required">Please provide RMIS client ID.</span>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 ">
+                            <label for="rmisClientPwd">RMIS API Password <span class="text-primary"> <i
+                                        class="bx bxs-info-circle"></i></span></label>
+                            <input type="password" class="form-control" formControlName="rmisClientPwd"
+                                placeholder="API Password"
+                                [ngClass]="{'is-invalid' :submit && form.rmisClientPwd.errors ,'is-valid': !form.rmisClientPwd.errors}">
+                            <div *ngIf="submit && form.rmisClientPwd.errors" class="invalid-feedback">
+                                <span *ngIf="form.rmisClientPwd.errors.required">Please provide API password.</span>
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex flex-wrap gap-1 mt-3">
+
+                            <button type="reset" class="btn btn-outline-success  waves-effect">
+                                Test Config
+                            </button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                Save
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>

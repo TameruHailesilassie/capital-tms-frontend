@@ -179,6 +179,12 @@ const SUPER_ADMI_NMENU: MenuItem[] =
         },
         {
             id: 29,
+            label: 'Integrations',
+            icon: 'dripicons-link',
+            link: "/integrations"
+        },
+        {
+            id: 30,
             label: 'Documentations',
             isTitle: true
         },

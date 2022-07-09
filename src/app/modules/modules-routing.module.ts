@@ -39,6 +39,12 @@ const routes: Routes = [
     loadChildren: () =>
       import("./carrier/carrier.module").then((m) => m.CarrierModule),
   },
+
+  {
+  path:"integrations",
+  loadChildren:()=>
+  import("./integrations/integrations.module").then((m)=>m.IntegrationsModule),
+  },
   
   {
     path: "",
