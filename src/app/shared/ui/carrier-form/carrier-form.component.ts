@@ -17,6 +17,8 @@ import {
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Equipments } from "./equipments";
 import { City, Country, State } from "country-state-city";
+import { SaferwatchService } from "src/app/core/services/integration/saferwatch.service";
+import { LoaderService } from "src/app/core/services/loader.service";
 @Component({
   selector: "carrier-form",
   templateUrl: "./carrier-form.component.html",
@@ -25,7 +27,7 @@ import { City, Country, State } from "country-state-city";
 export class CarrierFormComponent implements OnInit {
   carrierForm: FormGroup;
   profileForm: FormGroup;
-
+  searchForm: FormGroup;
   submit: boolean;
   stateList: any[];
   cDialCode: string;
@@ -36,13 +38,17 @@ export class CarrierFormComponent implements OnInit {
   factoringCompanies: any[];
   public modalRef: any;
   mcff: any[];
+  mcffSearch: any[];
   bTypes: any[];
   countryCode: string;
   currencyList: any[];
   paymentTerms: any[];
+  isSearching:boolean=false;
   constructor(
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public saferWatchService: SaferwatchService
+   
   ) { }
   @Input() formData;
   @Output() onSubmit = new EventEmitter();
@@ -50,6 +56,11 @@ export class CarrierFormComponent implements OnInit {
   @ViewChild("factoringCompanyAddModal") editModal: ElementRef;
 
   ngOnInit(): void {
+    this.saferWatchService.checkAddon();
+    this.searchForm = new FormGroup({
+      mcff: new FormControl("MC", Validators.required),
+      searchValue: new FormControl("", Validators.required)
+    })
 
     this.carrierForm = new FormGroup({
       profile: new FormGroup({
@@ -128,13 +139,13 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-      
+
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl(""),
         liability: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          
+
         ]),
         note: new FormControl(""),
 
@@ -145,7 +156,7 @@ export class CarrierFormComponent implements OnInit {
         insCompany: new FormControl(""),
         conatct: new FormControl(""),
         telephone: new FormControl("", [
-         
+
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -154,13 +165,13 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-        
+
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl(""),
         liability: new FormControl("", [
           Validators.pattern("[0-9]+"),
-          
+
         ]),
         note: new FormControl(""),
 
@@ -171,7 +182,7 @@ export class CarrierFormComponent implements OnInit {
         cargoCompany: new FormControl("", [Validators.required]),
         conatct: new FormControl("", [Validators.required]),
         telephone: new FormControl("", [
-        
+
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -180,13 +191,13 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-         
+
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl("", Validators.required),
         cargoInsuarance: new FormControl("", [
           Validators.pattern("[0-9]+"),
-       
+
         ]),
         wsib: new FormControl(""),
 
@@ -196,7 +207,7 @@ export class CarrierFormComponent implements OnInit {
         fmcsaCompany: new FormControl(""),
         type: new FormControl(""),
         telephone: new FormControl("", [
-        
+
           Validators.minLength(16),
           Validators.maxLength(18),
         ]),
@@ -205,16 +216,16 @@ export class CarrierFormComponent implements OnInit {
           Validators.maxLength(3),
         ]),
         policyNumber: new FormControl("", [
-         
+
           Validators.pattern("[0-9]+"),
         ]),
         expirationDate: new FormControl("", Validators.required),
         coverage: new FormControl("", [
           Validators.pattern("[0-9]+"),
-         
+
         ]),
         amBestRating: new FormControl("", [
-         
+
         ]),
 
       }),
@@ -222,7 +233,7 @@ export class CarrierFormComponent implements OnInit {
       equipments: new FormArray([
         this.equipmentfield()
       ]),
-      gNote:new FormControl("")
+      gNote: new FormControl("")
     });
 
 
@@ -252,13 +263,40 @@ export class CarrierFormComponent implements OnInit {
     this.mcff = [
       {
         name: "M.C.#",
-        code: "mc",
+        code: "MC",
       },
       {
         name: "F.F.#",
-        code: "ff",
+        code: "FF",
+      },
+      {
+        name: "M.X.#",
+        code: "MX",
+      },
+      {
+        name: "D.O.T.#",
+        code: "DOT",
       },
     ];
+
+    this.mcffSearch = [
+      {
+        name: "M.C.#",
+        code: "MC",
+      },
+      {
+        name: "F.F.#",
+        code: "FF",
+      },
+      {
+        name: "M.X.#",
+        code: "MX",
+      },
+      {
+        name: "D.O.T.#",
+        code: "DOT",
+      }
+        ];
 
     this.ratingList = [
       {
@@ -340,7 +378,7 @@ export class CarrierFormComponent implements OnInit {
 
   removeField(i: number) {
     this.equipments().removeAt(i);
-    
+
   }
 
   get liability() {
@@ -376,7 +414,20 @@ export class CarrierFormComponent implements OnInit {
       this.onSubmit.emit(this.form.value);
     }
   }
+  searchSubmit() {
 
+    if (this.searchForm.valid) {
+      this.isSearching=true;
+  
+      this.saferWatchService.searchCarrier(
+        {
+          identifier:this.searchForm.get('mcff').value,
+          parameter:this.searchForm.get('searchValue').value
+        }
+      )
+
+    }
+  }
   onAddfactoringCompany() {
     this.modalRef = this.modalService.open(this.editModal, {
       scrollable: true,

@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+
+saferWatchBaseURL:"https://www.saferwatch.com/webservices/CarrierService32.php?Action=",
   baseURL:"",
   production: false,
   defaultauth: 'fackbackend',

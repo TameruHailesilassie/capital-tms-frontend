@@ -1,4 +1,31 @@
-<form class="needs-validation" (ngSubmit)="validSubmit()" [formGroup]="carrierForm">
+<form  *ngIf="saferWatchService.addonEnabled" form class="needs-validation" (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+
+<div class="col-sm-12  col-lg-4 mb-3">
+
+  <label for="email">Search Carrier </label>
+
+
+  <label class="visually-hidden" for="inlineFormInputGroupUsername">Search Carrier</label>
+  <div class="input-group">
+  
+      <ng-select [items]="mcffSearch" [clearable]="false" formControlName="mcff" bindLabel="name" bindValue="code">
+      </ng-select>
+   
+   
+    <input type="email" class="form-control" formControlName="searchValue" placeholder=""
+      [ngClass]="{'is-invalid' :submit && form.email.errors }">
+
+    <button  [disabled]="isSearching" class="btn btn-info "><i class="mdi mdi-book-search-outline"></i> 
+      <span *ngIf="isSearching" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+    
+      Search</button>
+
+  </div>
+</div>
+</form>
+
+<form  class="needs-validation" (ngSubmit)="validSubmit()" [formGroup]="carrierForm">
   <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs nav-tabs-custom">
 
     <li [ngbNavItem]="1" [destroyOnHide]="false">
@@ -19,7 +46,7 @@
 
           <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3 col-sm-6 col-lg-4">
               <label for="name">Company Name <span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="name" placeholder="Enter Company Name"
                 [ngClass]="{'is-invalid' :submit && form.name.errors ,'is-valid': !form.name.errors}">
@@ -30,25 +57,23 @@
 
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3 col-sm-6 col-lg-4">
               <label for="primaryConatct">Primary Contact</label>
               <input type="text" class="form-control" formControlName="primaryConatct"
                 placeholder="Enter Primary Contact" [ngClass]="{'is-invalid' :submit && form.primaryConatct.errors}">
             </div>
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3 col-sm-6 col-lg-4">
               <label for="secondaryConatct">Secondary Contact</label>
               <input type="text" class="form-control" formControlName="primaryConatct"
                 placeholder="Enter Secondary Contact"
                 [ngClass]="{'is-invalid' :submit && form.secondaryConatct.errors}">
             </div>
 
-          </div>
 
-          <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="country">Country <span class="text-danger"> *</span></label>
               <ng-select formControlName="country" (ngModelChange)="onCountryChange($event)"
                 placeholder="Select Country" [items]="countryList" bindLabel="name" bindValue="isoCode"
@@ -61,7 +86,7 @@
             </div>
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="address_1">Address Line 1 <span class="text-danger"> *</span></label>
               <input type="email" class="form-control" formControlName="address_1" placeholder="Enter Address Line 1"
                 [ngClass]="{'is-invalid' :submit && form.address_1.errors ,'is-valid': !form.address_1.errors}">
@@ -72,7 +97,7 @@
             </div>
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="address_2">Address Line 2 <span class="text-danger"> *</span></label>
               <input type="email" class="form-control" formControlName="address_2" placeholder="Enter Address Line 2"
                 [ngClass]="{'is-invalid' :submit && form.address_2.errors ,'is-valid': !form.address_2.errors}">
@@ -82,11 +107,9 @@
               </div>
             </div>
 
-          </div>
 
-          <div class="row mb-2">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="state">State/Province <span class="text-danger"> *</span></label>
               <ng-select formControlName="state" (ngModelChange)="onStateChange($event)" placeholder="Select State"
@@ -100,7 +123,7 @@
             </div>
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="city">City <span class="text-danger"> *</span></label>
               <ng-select formControlName="city" placeholder="Select City" [items]="cityList" bindLabel="name"
@@ -114,7 +137,7 @@
 
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="zip">Zip/Postal </label>
               <input type="zip" class="form-control" formControlName="zip" placeholder="Enter Zip/postal code"
                 [ngClass]="{'is-invalid' :submit && form.zip.errors ,'is-valid': !form.zip.errors}">
@@ -125,21 +148,18 @@
             </div>
 
 
-          </div>
 
-          <div class="row mb-2">
-
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="state">MC#/FF# <span class="text-danger"> *</span></label>
 
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <ng-select [items]="mcff" [clearable]="false" formControlName="mcffOption" bindLabel="name"
                     bindValue="code">
                   </ng-select>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                   <input type="number" class="form-control" formControlName="mcff" placeholder="Enter MC#/FF#"
                     [ngClass]="{'is-invalid' :submit && form.mcff.errors ,'is-valid': !form.mcff.errors}">
                 </div>
@@ -150,7 +170,8 @@
               </div>
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
+
               <div class="row">
                 <div class="col-md-6">
                   <label for="urs">URS# <span class="text-danger"> *</span></label>
@@ -179,7 +200,7 @@
 
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="dot">DOT# </label>
               <input type="number" class="form-control" formControlName="dot" placeholder="Enter DOT#"
                 [ngClass]="{'is-invalid' :submit && form.dot.errors ,'is-valid': !form.dot.errors}">
@@ -193,11 +214,11 @@
           </div>
 
 
-          <h5 class="mb-3 text-primary">Contact Information</h5>
+          <h5 class="mb-3 mt-2 text-primary">Contact Information</h5>
 
           <div class="row ">
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class="col-sm-6">
@@ -225,7 +246,7 @@
             </div>
 
 
-            <div class=" mb-3 col-md-4">
+            <div class=" mb-3  col-sm-6 col-lg-4">
               <label for="tollFree">Toll Free </label>
               <input type="text" class="form-control" formControlName="tollFree" placeholder="Enter Toll Free"
                 [ngClass]="{'is-invalid' :submit && form.tollFree.errors }">
@@ -236,7 +257,7 @@
             </div>
 
 
-            <div class=" mb-3 col-md-4">
+            <div class=" mb-3  col-sm-6 col-lg-4">
               <label for="faxNumber">Fax </label>
               <input type="text" class="form-control" [prefix]="cDialCode" [showMaskTyped]="true"
                 [dropSpecialCharacters]="false" formControlName="faxNumber" placeholder="Enter Fax Number"
@@ -246,11 +267,9 @@
                 <span *ngIf="form.faxNumber.errors.required">Please provide a valid Fax Number.</span>
               </div>
             </div>
-          </div>
 
-          <div class="row mb-3">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="email">Email </label>
               <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"
                 [ngClass]="{'is-invalid' :submit && form.email.errors }">
@@ -261,7 +280,7 @@
             </div>
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="remittanceEmail">Remittance Email </label>
               <input type="email" class="form-control" formControlName="remittanceEmail"
                 placeholder="Enter Remittance Email" [ngClass]="{'is-invalid' :submit && form.remittanceEmail.errors }">
@@ -273,9 +292,9 @@
 
           </div>
 
-          <h5 class="mb-3 text-primary">Additional Information</h5>
+          <h5 class="mb-3 mt-2 text-primary">Additional Information</h5>
           <div class="row">
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class=" col-md-6">
@@ -305,7 +324,7 @@
               </div>
             </div>
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
                 <div class="col-md-6">
                   <label for="taxID">Tax ID/EIN </label>
@@ -320,7 +339,7 @@
                 <div class="col-md-6">
                   <label for="taxID">Business Type </label>
 
-                  <ng-select [clearable]="false" formControlName="businessType" placeholder="Select Business Type"
+                  <ng-select [clearable]="false" formControlName="businessType" placeholder="Select ..."
                     [items]="bTypes" bindLabel="name" bindValue="name"
                     [ngClass]="{'is-invalid' :submit && form.currency.errors }">
                   </ng-select>
@@ -328,7 +347,7 @@
               </div>
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class=" col-sm-6 col-lg-4 mb-4">
               <label for="floatingemailInput">Factoring Company <span (click)="onAddfactoringCompany()"
                   class="text-success"> <i class="bx bx-plus 2x"></i></span></label>
               <ng-select [clearable]="false" formControlName="factoringCompany" placeholder="No"
@@ -352,20 +371,20 @@
 
           <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="liabilityCompany">Liability Company<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="liabilityCompany"
                 placeholder="Enter Company Name">
 
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="conatct">Contact</label>
               <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact">
             </div>
 
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class="col-sm-6">
@@ -386,11 +405,9 @@
               </div>
             </div>
 
-          </div>
 
-          <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
@@ -406,9 +423,9 @@
                     <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
                       placeholder="Enter Expiration Date" #l="ngbDatepicker">
 
-                      <div class="input-group-append" (click)="l.toggle()">
-                        <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                      </div>
+                    <div class="input-group-append" (click)="l.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
 
                   </div>
 
@@ -418,14 +435,14 @@
               </div>
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="liability">Liability ($)<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="liability" placeholder="Enter Liability amount">
 
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class=" col-sm-6 col-lg-4 mb-4">
               <label for="note">Note</label>
               <textarea class="form-control" formControlName="note" placeholder=" Note...">
 
@@ -440,20 +457,20 @@
 
           <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="insCompany">Insuarance Company<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="insCompany" placeholder="Enter Company Name">
             </div>
 
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="conatct">Contact</label>
               <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact">
             </div>
 
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class="col-sm-6">
@@ -474,11 +491,9 @@
               </div>
             </div>
 
-          </div>
 
-          <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
@@ -494,23 +509,23 @@
                     <input ngbDatepicker type="text" class="form-control" formControlName="expirationDate"
                       placeholder="Enter Expiration Date" #a="ngbDatepicker">
 
-                      <div class="input-group-append" (click)="a.toggle()">
-                        <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                      </div>
+                    <div class="input-group-append" (click)="a.toggle()">
+                      <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                    </div>
                   </div>
                 </div>
 
               </div>
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="liability">Liability ($)<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="liability" placeholder="Enter Liability amount">
 
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class=" col-sm-6 col-lg-4 mb-4">
               <label for="note">Note</label>
               <textarea class="form-control" formControlName="note" placeholder=" Note...">
 
@@ -525,7 +540,7 @@
         <div formGroupName="cargo">
           <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="cargoCompany">Cargo Company<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="cargoCompany" placeholder="Enter Company Name">
 
@@ -533,13 +548,13 @@
 
 
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="conatct">Contact</label>
               <input type="text" class="form-control" formControlName="conatct" placeholder="Enter Contact">
             </div>
 
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class="col-sm-6">
@@ -560,11 +575,9 @@
               </div>
             </div>
 
-          </div>
 
-          <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
@@ -592,7 +605,7 @@
               </div>
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="cargoInsuarance">Cargo Ins ($)<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="cargoInsuarance"
@@ -600,7 +613,7 @@
 
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="wsib">WSIB#<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="wsib" placeholder="Enter WSIB number">
@@ -612,22 +625,22 @@
         </div>
 
 
-        <h5 class="text-primary mb-3">FCMSA</h5>
+        <h5 class="text-primary mb-3 mt-2">FCMSA</h5>
         <div formGroupName="fmcsa">
           <div class="row ">
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="fmcsaCompany">FMCSA Company<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="fmcsaCompany" placeholder="Enter Company Name">
 
             </div>
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <label for="type">Type</label>
               <input type="text" class="form-control" formControlName="type" placeholder="Enter Type">
             </div>
 
 
-            <div class=" col-md-4 mb-3">
+            <div class="  col-sm-6 col-lg-4 mb-3">
               <div class="row">
 
                 <div class="col-sm-6">
@@ -646,11 +659,8 @@
               </div>
             </div>
 
-          </div>
 
-          <div class="row ">
-
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label for="policyNumber">Policy#<span class="text-danger"> *</span></label>
@@ -674,13 +684,13 @@
               </div>
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
 
               <label for="coverage">Cargo Ins ($)<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" formControlName="coverage" placeholder="Enter Insuarance amount">
             </div>
 
-            <div class="mb-3 col-md-4">
+            <div class="mb-3  col-sm-6 col-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label for="amBestRating">A.M. Best Rating</label>
@@ -710,7 +720,7 @@
         <div class="mb-3" formArrayName="equipments">
           <div class="mb-3" *ngFor="let data1 of equipments().controls; let i=index;">
             <div [formGroupName]="i" class="row">
-              <div class="mb-3 col-lg-2">
+              <div class="mb-3 col-lg-2 col-sm-4">
                 <label for="equipment">Equipment</label>
 
                 <ng-select [clearable]="false" formControlName="equipment" placeholder="Select Equipment"
@@ -718,12 +728,12 @@
 
               </div>
 
-              <div class="mb-3 col-lg-2">
+              <div class="mb-3 col-lg-2 col-sm-4">
                 <label for="email">Quantity</label>
                 <input type="number" formControlName="qty" class="form-control">
               </div>
 
-              <div class="col-lg-1 align-self-center">
+              <div class="col-lg-1  col-sm-2 align-self-center">
                 <div class="d-grid">
                   <span (click)="removeField(i)"><i class="bx bxs-trash text-danger"></i> </span>
 
@@ -742,9 +752,7 @@
     <li [ngbNavItem]="4" [destroyOnHide]="false">
       <a ngbNavLink>Notes</a>
       <ng-template ngbNavContent>
-        <textarea class="form-control" 
-        rows="10" cols="5"
-        formControlName="gNote" placeholder=" Note...">
+        <textarea class="form-control" rows="10" cols="5" formControlName="gNote" placeholder=" Note...">
           </textarea>
 
       </ng-template>
