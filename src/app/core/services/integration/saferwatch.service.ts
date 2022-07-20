@@ -41,8 +41,8 @@ export class SaferwatchService {
     //set Api Credentials
 
     this.apiCredentials={
-      customerKey:"9TC975cKJZ",
-      serviceKey:"JgdTV75KpD"
+      customerKey:"",
+      serviceKey:""
     }
 
 
